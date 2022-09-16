@@ -7,4 +7,46 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CMS-BackEnd.Domain\CMS-BackEnd.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DTOs\SalaryTemplate\" />
+    <Folder Include="DTOs\Transation\" />
+    <Folder Include="Features\Attendance\Handlers\Commands" />
+    <Folder Include="Features\Student\" />
+    <Folder Include="Features\Student\Handlers\" />
+    <Folder Include="Features\Student\Handlers\Commands" />
+    <Folder Include="Features\Student\Handlers\Queries" />
+    <Folder Include="Features\Student\Requests\" />
+    <Folder Include="Features\Announcement\" />
+    <Folder Include="Features\Announcement\Handlers\" />
+    <Folder Include="Features\Announcement\Handlers\Commands" />
+    <Folder Include="Features\Announcement\Handlers\Queries" />
+    <Folder Include="Features\Announcement\Requests\" />
+    <Folder Include="Features\Course\" />
+    <Folder Include="Features\Course\Handlers\" />
+    <Folder Include="Features\Course\Handlers\Commands" />
+    <Folder Include="Features\Course\Handlers\Queries" />
+    <Folder Include="Features\Course\Requests\" />
+    <Folder Include="Features\SessionYear\" />
+    <Folder Include="Features\SessionYear\Handlers\" />
+    <Folder Include="Features\SessionYear\Handlers\Commands" />
+    <Folder Include="Features\SessionYear\Handlers\Queries" />
+    <Folder Include="Features\SessionYear\Requests\" />
+    <Folder Include="Features\Staff\" />
+    <Folder Include="Features\Staff\Handlers\" />
+    <Folder Include="Features\Staff\Handlers\Commands" />
+    <Folder Include="Features\Staff\Handlers\Queries" />
+    <Folder Include="Features\Staff\Requests\" />
+  </ItemGroup>
+
 </Project>

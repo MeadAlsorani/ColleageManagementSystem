@@ -1,0 +1,20 @@
+﻿using CMS_BackEnd.Application.DTOs.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CMS_BackEnd.Application.DTOs.Student
+{
+    public class StudentDto:BaseDto
+    {
+        public string FullName { get; set; }
+        public string GuardianName { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string Address { get; set; }
+        public int ClassLevel { get; set; }
+        public string SchoolName { get; set; }
+        public DateTime RegisterationDate { get; set; }
+    }
+}
