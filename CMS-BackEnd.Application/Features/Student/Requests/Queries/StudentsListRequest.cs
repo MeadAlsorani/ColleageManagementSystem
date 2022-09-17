@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMS_BackEnd.Application.Features.Attendance.Requests
+namespace CMS_BackEnd.Application.Features.Student.Requests.Queries
 {
-    public class StudentsListRequest:IRequest<List<StudentDto>>
+    public class StudentsListRequest : IRequest<List<StudentDto>>
     {
     }
 }

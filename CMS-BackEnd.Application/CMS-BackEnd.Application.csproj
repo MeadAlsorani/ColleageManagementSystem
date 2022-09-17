@@ -22,31 +22,24 @@
     <Folder Include="DTOs\SalaryTemplate\" />
     <Folder Include="DTOs\Transation\" />
     <Folder Include="Features\Attendance\Handlers\Commands" />
-    <Folder Include="Features\Student\" />
-    <Folder Include="Features\Student\Handlers\" />
-    <Folder Include="Features\Student\Handlers\Commands" />
-    <Folder Include="Features\Student\Handlers\Queries" />
-    <Folder Include="Features\Student\Requests\" />
-    <Folder Include="Features\Announcement\" />
-    <Folder Include="Features\Announcement\Handlers\" />
-    <Folder Include="Features\Announcement\Handlers\Commands" />
-    <Folder Include="Features\Announcement\Handlers\Queries" />
-    <Folder Include="Features\Announcement\Requests\" />
-    <Folder Include="Features\Course\" />
+    <Folder Include="Features\Attendance\Handlers\Queries\" />
+    <Folder Include="Features\Attendance\Requests\Commands\" />
+    <Folder Include="Features\Attendance\Requests\Queries\" />
+    <Folder Include="Features\Course\Requests\Commands\" />
+    <Folder Include="Features\Course\Requests\Queries\" />
+    <Folder Include="Features\SessionYear\Requests\Commands\" />
+    <Folder Include="Features\SessionYear\Requests\Queries\" />
+    <Folder Include="Features\Staff\Requests\Commands\" />
+    <Folder Include="Features\Staff\Requests\Queries\" />
     <Folder Include="Features\Course\Handlers\" />
     <Folder Include="Features\Course\Handlers\Commands" />
     <Folder Include="Features\Course\Handlers\Queries" />
-    <Folder Include="Features\Course\Requests\" />
-    <Folder Include="Features\SessionYear\" />
     <Folder Include="Features\SessionYear\Handlers\" />
     <Folder Include="Features\SessionYear\Handlers\Commands" />
     <Folder Include="Features\SessionYear\Handlers\Queries" />
-    <Folder Include="Features\SessionYear\Requests\" />
-    <Folder Include="Features\Staff\" />
     <Folder Include="Features\Staff\Handlers\" />
     <Folder Include="Features\Staff\Handlers\Commands" />
     <Folder Include="Features\Staff\Handlers\Queries" />
-    <Folder Include="Features\Staff\Requests\" />
   </ItemGroup>
 
 </Project>

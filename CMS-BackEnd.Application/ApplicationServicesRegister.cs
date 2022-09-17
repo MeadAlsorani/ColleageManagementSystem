@@ -1,4 +1,4 @@
-﻿using CMS_BackEnd.Application.Profile;
+﻿using CMS_BackEnd.Application.Profiles;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;

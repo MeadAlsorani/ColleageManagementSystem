@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS-BackEnd.API", "CMS-BackEnd.API.csproj", "{4391F770-BA7F-4E0E-8BD2-F83CFDF8AD03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMS-BackEnd.API", "CMS-BackEnd.API.csproj", "{4391F770-BA7F-4E0E-8BD2-F83CFDF8AD03}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{F3B48C13-C07E-4FCA-9CD9-7FC72E3B850B}"
 EndProject
@@ -15,9 +15,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{2E9C0EAC-7
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{64EA2BD4-81C5-420E-B523-5B4B48D3ECCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS-BackEnd.Domain", "..\CMS-BackEnd.Domain\CMS-BackEnd.Domain.csproj", "{0C8CCB47-0F3F-4E35-869B-05A201112B90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMS-BackEnd.Domain", "..\CMS-BackEnd.Domain\CMS-BackEnd.Domain.csproj", "{0C8CCB47-0F3F-4E35-869B-05A201112B90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS-BackEnd.Application", "..\CMS-BackEnd.Application\CMS-BackEnd.Application.csproj", "{97278DB4-5D7D-4DDB-BA92-DB83BA1073C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CMS-BackEnd.Application", "..\CMS-BackEnd.Application\CMS-BackEnd.Application.csproj", "{97278DB4-5D7D-4DDB-BA92-DB83BA1073C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMS-Backend.Persistence", "..\CMS-Backend.Persistence\CMS-Backend.Persistence.csproj", "{D008DE8D-3CAE-4C91-9DF0-9AA9E9051B22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{97278DB4-5D7D-4DDB-BA92-DB83BA1073C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97278DB4-5D7D-4DDB-BA92-DB83BA1073C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97278DB4-5D7D-4DDB-BA92-DB83BA1073C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D008DE8D-3CAE-4C91-9DF0-9AA9E9051B22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D008DE8D-3CAE-4C91-9DF0-9AA9E9051B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D008DE8D-3CAE-4C91-9DF0-9AA9E9051B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D008DE8D-3CAE-4C91-9DF0-9AA9E9051B22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{64EA2BD4-81C5-420E-B523-5B4B48D3ECCC} = {F3B48C13-C07E-4FCA-9CD9-7FC72E3B850B}
 		{0C8CCB47-0F3F-4E35-869B-05A201112B90} = {2E9C0EAC-7279-43C6-AED1-43F751876A4F}
 		{97278DB4-5D7D-4DDB-BA92-DB83BA1073C9} = {2E9C0EAC-7279-43C6-AED1-43F751876A4F}
+		{D008DE8D-3CAE-4C91-9DF0-9AA9E9051B22} = {64EA2BD4-81C5-420E-B523-5B4B48D3ECCC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7B2A8D41-9626-4904-B511-5025E29D7974}

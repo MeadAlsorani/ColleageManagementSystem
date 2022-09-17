@@ -10,7 +10,7 @@ namespace CMS_BackEnd.Domain
     public class OutcomeTransaction:BaseModelClass
     {
         public double Amount { get; set; }
-        public OutcomeTransaction Type { get; set; }
+        public OutcomeType Type { get; set; }
         public string Description { get; set; }
         public int? StaffId { get; set; }
         public Staff? Staff { get; set; }

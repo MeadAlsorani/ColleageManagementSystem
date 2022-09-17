@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using CMS_BackEnd.Application.Contracts.Base;
+using CMS_BackEnd.Application.Contracts;
 using CMS_BackEnd.Application.DTOs.Student;
-using CMS_BackEnd.Application.Features.Attendance.Requests;
+using CMS_BackEnd.Application.Features.Student.Requests.Queries;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMS_BackEnd.Application.Features.Attendance.Handlers.Queries
+namespace CMS_BackEnd.Application.Features.Student.Handlers.Queries
 {
     public class StudentsListRequestHandler : IRequestHandler<StudentsListRequest, List<StudentDto>>
     {
