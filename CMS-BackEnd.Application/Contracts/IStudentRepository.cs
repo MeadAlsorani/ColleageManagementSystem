@@ -1,4 +1,5 @@
 ﻿using CMS_BackEnd.Application.Contracts.Base;
+using CMS_BackEnd.Application.DTOs.Student;
 using CMS_BackEnd.Domain;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,7 @@ namespace CMS_BackEnd.Application.Contracts
 {
     public interface IStudentRepository : IGenericRepository<Student>
     {
+        public Task<IReadOnlyList<StudentCoursesDto>> GetStudentWithCourses(int id);
+        public Task CreateStudentWithCourses(CreateStudentDto student);
     }
 }

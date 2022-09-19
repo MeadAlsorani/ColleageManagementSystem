@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace CMS_BackEnd.Application.DTOs.Attendance
 {
-    public class AttendanceDto : BaseDto
+    public class StaffAttendanceDto
     {
         public DateTime Date { get; set; }
         public StaffListDto? Staff { get; set; }
-        public StudentDto? Student { get; set; }
     }
 }

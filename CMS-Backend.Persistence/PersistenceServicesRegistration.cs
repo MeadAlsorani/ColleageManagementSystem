@@ -24,7 +24,8 @@ namespace CMS_Backend.Persistence
                     );
             });
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddScoped<IStudentRepository,StudentRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IAnnouncementRepository, AnnouncementRepository>();
             return services;
         }
     }

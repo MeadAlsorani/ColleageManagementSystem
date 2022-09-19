@@ -1,4 +1,6 @@
-﻿using CMS_BackEnd.Application.Contracts.Base;
+﻿using CMS_Backend.Persistence.ExtensionMethods;
+using CMS_BackEnd.Application.Contracts.Base;
+using CMS_BackEnd.Application.Features.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,9 +12,9 @@ namespace CMS_Backend.Persistence.Repositories.Base
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly DbContext dbContext;
+        public readonly ColleageManagementDbContext dbContext;
 
-        public GenericRepository(DbContext dbContext)
+        public GenericRepository(ColleageManagementDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
@@ -22,9 +24,10 @@ namespace CMS_Backend.Persistence.Repositories.Base
             return entity;
         }
 
-        public async Task Delete(T entity)
+        public async Task Delete(int key)
         {
-            dbContext.Set<T>().Remove(entity);
+            var entity = await dbContext.Set<T>().FindAsync(key);
+            dbContext.Set<T>().Remove(entity!);
         }
 
         public async Task<bool> Exists(int id)
@@ -43,9 +46,15 @@ namespace CMS_Backend.Persistence.Repositories.Base
             return await dbContext.Set<T>().ToListAsync();
         }
 
+        public async Task<IReadOnlyList<T>> GetAllWithPagination(ListPaginationRequest request)
+        {
+            var records=await dbContext.Set<T>().AsQueryable().ApplyPagination(request).ToListAsync();
+            return records;
+        }
+
         public Task Update(T entity)
         {
-            dbContext.Entry(entity).State= EntityState.Modified;
+            dbContext.Entry(entity).State = EntityState.Modified;
             return Task.CompletedTask;
         }
     }
