@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CMS_BackEnd.Application.Contracts;
+using CMS_BackEnd.Application.Contracts.Features;
 using CMS_BackEnd.Application.DTOs.Announcement;
 using CMS_BackEnd.Application.Features.Announcement.Requests.Commands;
 using CMS_BackEnd.Domain;

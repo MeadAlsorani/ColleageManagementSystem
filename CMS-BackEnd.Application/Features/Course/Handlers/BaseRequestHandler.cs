@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CMS_BackEnd.Application.Contracts;
+using CMS_BackEnd.Application.Contracts.Features;
 using System;
 using System.Collections.Generic;
 using System.Linq;

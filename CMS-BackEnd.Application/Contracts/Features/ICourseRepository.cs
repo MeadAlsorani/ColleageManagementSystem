@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CMS_BackEnd.Application.Contracts
+namespace CMS_BackEnd.Application.Contracts.Features
 {
     public interface ICourseRepository : IGenericRepository<Course>
     {

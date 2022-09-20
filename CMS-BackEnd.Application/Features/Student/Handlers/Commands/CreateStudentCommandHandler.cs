@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CMS_BackEnd.Application.Contracts;
+using CMS_BackEnd.Application.Contracts.Features;
 using CMS_BackEnd.Application.Features.Student.Requests.Commands;
 using MediatR;
 namespace CMS_BackEnd.Application.Features.Student.Handlers.Commands

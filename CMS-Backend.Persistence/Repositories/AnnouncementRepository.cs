@@ -1,5 +1,5 @@
 ﻿using CMS_Backend.Persistence.Repositories.Base;
-using CMS_BackEnd.Application.Contracts;
+using CMS_BackEnd.Application.Contracts.Features;
 using CMS_BackEnd.Domain;
 using Microsoft.EntityFrameworkCore;
 using System;

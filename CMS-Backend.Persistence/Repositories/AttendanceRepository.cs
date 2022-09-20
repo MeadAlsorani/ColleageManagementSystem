@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using CMS_Backend.Persistence.Repositories.Base;
-using CMS_BackEnd.Application.Contracts;
+using CMS_BackEnd.Application.Contracts.Features;
 using CMS_BackEnd.Application.DTOs.Attendance;
 using CMS_BackEnd.Application.DTOs.Student;
 using CMS_BackEnd.Domain;

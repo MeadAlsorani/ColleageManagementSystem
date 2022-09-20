@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CMS_BackEnd.Application.Contracts;
+using CMS_BackEnd.Application.Contracts.Features;
 using CMS_BackEnd.Application.DTOs.Course;
 using CMS_BackEnd.Application.Features.Course.Requests.Queries;
 using MediatR;
