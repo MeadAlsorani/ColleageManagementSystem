@@ -2,6 +2,7 @@
 using CMS_Backend.Persistence.Repositories.Base;
 using CMS_BackEnd.Application.Contracts.Base;
 using CMS_BackEnd.Application.Contracts.Features;
+using CMS_BackEnd.Application.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +18,7 @@ namespace CMS_Backend.Persistence
     {
         public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
+            
             services.AddDbContext<ColleageManagementDbContext>(options =>
             {
                 options.UseSqlServer(

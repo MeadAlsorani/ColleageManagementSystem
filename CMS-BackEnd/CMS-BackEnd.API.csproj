@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CMS-BackEnd.Identity\CMS-BackEnd.Identity.csproj" />
     <ProjectReference Include="..\CMS-Backend.Persistence\CMS-Backend.Persistence.csproj" />
   </ItemGroup>
 

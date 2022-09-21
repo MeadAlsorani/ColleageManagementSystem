@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\Identity\" />
     <Folder Include="DTOs\SalaryTemplate\" />
     <Folder Include="DTOs\Transation\" />
     <Folder Include="Features\Attendance\Handlers\Commands" />
