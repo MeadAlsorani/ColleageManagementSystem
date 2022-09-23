@@ -19,7 +19,11 @@ namespace CMS_BackEnd.Application.Features.Course.Handlers.Queries
         }
         public async Task<IReadOnlyList<CourseListDto>> Handle(CoursesListRequest request, CancellationToken cancellationToken)
         {
-            var records = await repository.GetAllWithPagination(request.pagination);
+            IReadOnlyList<Domain.Course> records;
+            if (request.pagination != null)
+                records = await repository.GetAllWithPagination(request.pagination);
+            else
+                records = await repository.GetAll();
             return mapper.Map<IReadOnlyList<CourseListDto>>(records);
         }
     }

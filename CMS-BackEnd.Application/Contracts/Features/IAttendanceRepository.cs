@@ -12,10 +12,10 @@ namespace CMS_BackEnd.Application.Contracts.Features
 {
     public interface IAttendanceRepository : IGenericRepository<Attendance>
     {
-        public IReadOnlyList<StaffAttendanceDto> StaffAttendances(int staffId);
-        public IReadOnlyList<StudentAttendanceDto> StudentAttendances(int studentId);
-        public IReadOnlyList<StudentAttendanceDto> StudentAttendancesByDate(DateTime start, DateTime end, int studentId);
-        public IReadOnlyList<StaffAttendanceDto> StaffAttendancesByDate(DateTime start, DateTime end, int staffId);
+        public Task<IReadOnlyList<StaffAttendanceDto>> StaffAttendances(int staffId);
+        public Task<IReadOnlyList<StudentAttendanceDto>> StudentAttendances(int studentId);
+        public Task<IReadOnlyList<StudentAttendanceDto>> StudentAttendancesByDate(DateTime start, DateTime end, int studentId);
+        public Task<IReadOnlyList<StaffAttendanceDto>> StaffAttendancesByDate(DateTime start, DateTime end, int staffId);
 
     }
 }

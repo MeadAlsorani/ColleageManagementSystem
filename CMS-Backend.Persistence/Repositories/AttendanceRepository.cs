@@ -4,6 +4,7 @@ using CMS_BackEnd.Application.Contracts.Features;
 using CMS_BackEnd.Application.DTOs.Attendance;
 using CMS_BackEnd.Application.DTOs.Student;
 using CMS_BackEnd.Domain;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,27 +22,35 @@ namespace CMS_Backend.Persistence.Repositories
             this.mapper = mapper;
         }
 
-        public IReadOnlyList<StaffAttendanceDto> StaffAttendances(int staffId)
+        public override async Task<IReadOnlyList<Attendance>> GetAll()
         {
-            var list = dbContext.Attendances.Where(x => x.StaffId == staffId).ToList();
-            return mapper.Map<List<StaffAttendanceDto>>(list);
+            var records = await dbContext.Attendances.Include(x => x.Student).Include(x => x.Staff).AsNoTracking().ToListAsync();
+            return records;
+        }
+        public async Task<IReadOnlyList<StaffAttendanceDto>> StaffAttendances(int staffId)
+        {
+            var list = await dbContext.Attendances.Include(x => x.Student).Include(x => x.Staff).AsNoTracking().Where(x => x.StaffId == staffId).ToListAsync();
+            var mapped = mapper.Map<List<StaffAttendanceDto>>(list);
+            return mapped;
         }
 
-        public IReadOnlyList<StaffAttendanceDto> StaffAttendancesByDate(DateTime start, DateTime end,int staffId)
+        public async Task<IReadOnlyList<StaffAttendanceDto>> StaffAttendancesByDate(DateTime start, DateTime end,int staffId)
         {
-            var list = StaffAttendances(staffId).Where(x => x.Date >= start && x.Date <= end).ToList();
+            var records =await StaffAttendances(staffId);
+            var list = records.Where(x => x.Date >= start && x.Date <= end).ToList();
             return list;
         }
 
-        public IReadOnlyList<StudentAttendanceDto> StudentAttendances(int studentId)
+        public async Task<IReadOnlyList<StudentAttendanceDto>> StudentAttendances(int studentId)
         {
-            var list = dbContext.Attendances.Where(x => x.StaffId == studentId).ToList();
+            var list = await dbContext.Attendances.Include(x => x.Student).Include(x => x.Staff).AsNoTracking().Where(x => x.StaffId == studentId).ToListAsync();
             return mapper.Map<List<StudentAttendanceDto>>(list);
         }
 
-        public IReadOnlyList<StudentAttendanceDto> StudentAttendancesByDate(DateTime start, DateTime end,int studentId)
+        public async Task<IReadOnlyList<StudentAttendanceDto>> StudentAttendancesByDate(DateTime start, DateTime end,int studentId)
         {
-            var list = StudentAttendances(studentId).Where(x => x.Date >= start && x.Date <= end).ToList();
+            var records = await StudentAttendances(studentId);
+            var list = records.Where(x => x.Date >= start && x.Date <= end).ToList();
             return list;
         }
     }

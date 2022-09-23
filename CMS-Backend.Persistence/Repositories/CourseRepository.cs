@@ -13,11 +13,11 @@ using System.Threading.Tasks;
 
 namespace CMS_Backend.Persistence.Repositories
 {
-    public class CoureseRepository : GenericRepository<Course>, ICourseRepository
+    public class CourseRepository : GenericRepository<Course>, ICourseRepository
     {
         private readonly IMapper mapper;
 
-        public CoureseRepository(ColleageManagementDbContext dbContext, IMapper mapper) : base(dbContext)
+        public CourseRepository(ColleageManagementDbContext dbContext, IMapper mapper) : base(dbContext)
         {
             this.mapper = mapper;
         }

@@ -32,12 +32,14 @@ namespace CMS_BackEnd.Application.Profiles
                 {
                     opt.MapFrom((src, dest) =>
                     {
-                        if (dest.Type == AttendanceType.Staff)
+                        if (src.Staff != null)
                         {
+                            dest.Type = AttendanceType.Staff;
                             return $"{src.Staff?.FirstName} {src.Staff?.LastName}";
                         }
-                        else if (dest.Type == AttendanceType.Student)
+                        else if (src.Student != null)
                         {
+                            dest.Type= AttendanceType.Student;
                             return $"{src.Student?.FirstName} {src.Student?.LastName}";
                         }
                         return "";

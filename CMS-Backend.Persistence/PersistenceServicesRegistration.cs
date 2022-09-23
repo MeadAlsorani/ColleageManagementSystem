@@ -28,6 +28,8 @@ namespace CMS_Backend.Persistence
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IAnnouncementRepository, AnnouncementRepository>();
+            services.AddScoped<ICourseRepository,CourseRepository>();
+            services.AddScoped<IAttendanceRepository,AttendanceRepository>();
             return services;
         }
     }

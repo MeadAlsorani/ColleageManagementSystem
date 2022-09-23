@@ -29,7 +29,18 @@ namespace CMS_BackEnd.Identity
             services.AddTransient<IAuthentication, AuthRepository>();
 
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(opt =>
+            {
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.User.RequireUniqueEmail = true;
+                opt.SignIn.RequireConfirmedEmail = false;
+                opt.SignIn.RequireConfirmedAccount = false;
+                opt.SignIn.RequireConfirmedPhoneNumber = false;
+            })
+                .AddRoles<IdentityRole>()
+                .AddRoleManager<RoleManager<IdentityRole>>()
+                .AddSignInManager<SignInManager<ApplicationUser>>()
+                .AddRoleValidator<RoleValidator<IdentityRole>>()
                 .AddEntityFrameworkStores<CmsIdentityContext>()
                 .AddDefaultTokenProviders();
 
@@ -41,7 +52,6 @@ namespace CMS_BackEnd.Identity
             {
                 opt.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
-                    ValidateIssuerSigningKey = true,
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuer = true,

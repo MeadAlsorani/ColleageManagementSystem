@@ -21,6 +21,7 @@ namespace CMS_Backend.Persistence.Repositories.Base
         public async Task<T> Add(T entity)
         {
             await dbContext.Set<T>().AddAsync(entity);
+            await dbContext.SaveChangesAsync();
             return entity;
         }
 
@@ -28,6 +29,7 @@ namespace CMS_Backend.Persistence.Repositories.Base
         {
             var entity = await dbContext.Set<T>().FindAsync(key);
             dbContext.Set<T>().Remove(entity!);
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<bool> Exists(int id)
@@ -35,27 +37,28 @@ namespace CMS_Backend.Persistence.Repositories.Base
             return await dbContext.Set<T>().FindAsync(id) != null;
         }
 
-        public async Task<T> Get(int id)
+        public virtual async Task<T> Get(int id)
         {
             var record = await dbContext.Set<T>().FindAsync(id);
             return record!;
         }
 
-        public async Task<IReadOnlyList<T>> GetAll()
+        public virtual async Task<IReadOnlyList<T>> GetAll()
         {
-            return await dbContext.Set<T>().ToListAsync();
+            return await dbContext.Set<T>().AsNoTracking().ToListAsync();
         }
 
-        public async Task<IReadOnlyList<T>> GetAllWithPagination(ListPaginationRequest request)
+        public virtual async Task<IReadOnlyList<T>> GetAllWithPagination(ListPaginationRequest request)
         {
-            var records=await dbContext.Set<T>().AsQueryable().ApplyPagination(request).ToListAsync();
+            var records=await dbContext.Set<T>().AsNoTracking().ApplyPagination(request).ToListAsync();
             return records;
         }
 
-        public Task Update(T entity)
+        public async Task Update(T entity)
         {
             dbContext.Entry(entity).State = EntityState.Modified;
-            return Task.CompletedTask;
+            await dbContext.SaveChangesAsync();
+            return;
         }
     }
 }

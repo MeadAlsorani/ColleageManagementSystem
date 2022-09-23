@@ -11,6 +11,6 @@ namespace CMS_BackEnd.Application.Features.Course.Requests.Queries
 {
     public class CoursesListRequest:IRequest<IReadOnlyList<CourseListDto>>
     {
-        public ListPaginationRequest pagination { get; set; }
+        public ListPaginationRequest? pagination { get; set; }
     }
 }
