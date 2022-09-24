@@ -18,7 +18,7 @@ namespace CMS_Backend.Persistence
     {
         public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
-            
+
             services.AddDbContext<ColleageManagementDbContext>(options =>
             {
                 options.UseSqlServer(
@@ -28,9 +28,10 @@ namespace CMS_Backend.Persistence
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<IAnnouncementRepository, AnnouncementRepository>();
-            services.AddScoped<ICourseRepository,CourseRepository>();
-            services.AddScoped<IAttendanceRepository,AttendanceRepository>();
-            services.AddScoped<ISessionYearRepository,SessionYearRepository>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<IAttendanceRepository, AttendanceRepository>();
+            services.AddScoped<ISessionYearRepository, SessionYearRepository>();
+            services.AddScoped<IStaffRepository, StaffRepository>();
             return services;
         }
     }

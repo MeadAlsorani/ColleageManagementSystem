@@ -40,7 +40,7 @@ namespace CMS_BackEnd.Application.Profiles
                         }
                         else if (src.Student != null)
                         {
-                            dest.Type= AttendanceType.Student;
+                            dest.Type = AttendanceType.Student;
                             return $"{src.Student?.FirstName} {src.Student?.LastName}";
                         }
                         return "";
@@ -66,6 +66,14 @@ namespace CMS_BackEnd.Application.Profiles
             CreateMap<SessionYear, CreateSessionYearDto>().ReverseMap();
             CreateMap<SessionYear, SessionYearListDto>().ReverseMap();
             #endregion
+
+            #region Staff
+            CreateMap<CreateStaffDto, Staff>().ReverseMap();
+            CreateMap<StaffDetailsDto, Staff>().ReverseMap();
+            CreateMap<StaffListDto, Staff>().ReverseMap();
+            CreateMap<UpdateStaffDto, Staff>().ReverseMap();
+            #endregion
+
         }
     }
 }

@@ -12,5 +12,6 @@ namespace CMS_BackEnd.Domain
         public int Amount { get; set; }
         public int StaffId { get; set; }
         public Staff Staff { get; set; }
+        public DateTime Date { get; set; }
     }
 }
