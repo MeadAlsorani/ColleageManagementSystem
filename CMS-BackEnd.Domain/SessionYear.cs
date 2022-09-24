@@ -9,6 +9,7 @@ namespace CMS_BackEnd.Domain
 {
     public class SessionYear : BaseModelClass
     {
+        public string Title { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime FinishDate { get; set; }
     }

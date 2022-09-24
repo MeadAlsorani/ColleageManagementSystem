@@ -3,6 +3,7 @@ using AutoMapper;
 using CMS_BackEnd.Application.DTOs.Announcement;
 using CMS_BackEnd.Application.DTOs.Attendance;
 using CMS_BackEnd.Application.DTOs.Course;
+using CMS_BackEnd.Application.DTOs.SessionYear;
 using CMS_BackEnd.Application.DTOs.Staff;
 using CMS_BackEnd.Application.DTOs.Student;
 using CMS_BackEnd.Domain;
@@ -58,6 +59,12 @@ namespace CMS_BackEnd.Application.Profiles
             CreateMap<Course, CreateCourseDto>()
                 .ForMember(dest => dest.TeacherId, opt => opt.MapFrom(src => src.StaffId))
                 .ReverseMap();
+            #endregion
+
+            #region SessionYear
+            CreateMap<SessionYear, UpdateSessionYearDto>().ReverseMap();
+            CreateMap<SessionYear, CreateSessionYearDto>().ReverseMap();
+            CreateMap<SessionYear, SessionYearListDto>().ReverseMap();
             #endregion
         }
     }

@@ -13,13 +13,21 @@ namespace CMS_BackEnd.Application.Features.Announcement.Handlers.Queries
 {
     public class AnnouncementListRequestHandler : BaseRequestHandler, IRequestHandler<AnnouncementListRequest, IReadOnlyList<AnnouncementListDto>>
     {
-        
-        public AnnouncementListRequestHandler(IAnnouncementRepository  announcement, IMapper mapper):base(announcement, mapper)
+
+        public AnnouncementListRequestHandler(IAnnouncementRepository announcement, IMapper mapper) : base(announcement, mapper)
         {
         }
         public async Task<IReadOnlyList<AnnouncementListDto>> Handle(AnnouncementListRequest request, CancellationToken cancellationToken)
         {
-            var records = await announcement.GetAllWithPagination(request);
+            IReadOnlyList<Domain.Announcement> records;
+            if (request.request != null)
+            {
+                records = await announcement.GetAllWithPagination(request.request);
+            }
+            else
+            {
+                records=await announcement.GetAll();
+            }
             return mapper.Map<IReadOnlyList<AnnouncementListDto>>(records);
         }
     }

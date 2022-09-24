@@ -30,6 +30,7 @@ namespace CMS_Backend.Persistence
             services.AddScoped<IAnnouncementRepository, AnnouncementRepository>();
             services.AddScoped<ICourseRepository,CourseRepository>();
             services.AddScoped<IAttendanceRepository,AttendanceRepository>();
+            services.AddScoped<ISessionYearRepository,SessionYearRepository>();
             return services;
         }
     }
