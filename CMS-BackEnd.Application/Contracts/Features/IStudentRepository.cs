@@ -11,7 +11,8 @@ namespace CMS_BackEnd.Application.Contracts.Features
 {
     public interface IStudentRepository : IGenericRepository<Student>
     {
-        public Task<IReadOnlyList<StudentCoursesDto>> GetStudentWithCourses(int id);
+        public Task<StudentCoursesDto> GetStudentWithCourses(int id);
         public Task CreateStudentWithCourses(CreateStudentDto student);
+        public Task ApproveStudent(int id);
     }
 }

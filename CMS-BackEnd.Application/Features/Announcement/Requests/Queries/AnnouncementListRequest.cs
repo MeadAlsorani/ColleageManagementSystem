@@ -11,6 +11,6 @@ namespace CMS_BackEnd.Application.Features.Announcement.Requests.Queries
 {
     public class AnnouncementListRequest : IRequest<List<AnnouncementListDto>>
     {
-        public ListPaginationRequest request { get; set; }
+        public ListPaginationRequest? request { get; set; }
     }
 }

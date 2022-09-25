@@ -11,6 +11,6 @@ namespace CMS_BackEnd.Application.Features.Staff.Requests.Queries
 {
     public class GetStaffsListRequest:IRequest<IReadOnlyList<StaffListDto>>
     {
-        public ListPaginationRequest pagination { get; set; }
+        public ListPaginationRequest? pagination { get; set; }
     }
 }

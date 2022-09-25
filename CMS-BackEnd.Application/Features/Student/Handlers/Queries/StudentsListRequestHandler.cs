@@ -11,20 +11,19 @@ using System.Threading.Tasks;
 
 namespace CMS_BackEnd.Application.Features.Student.Handlers.Queries
 {
-    public class StudentsListRequestHandler : IRequestHandler<StudentsListRequest, List<StudentDto>>
+    public class StudentsListRequestHandler : BaseRequestHandler, IRequestHandler<StudentsListRequest, List<StudentDto>>
     {
-        private readonly IStudentRepository student;
-        private readonly IMapper mapper;
-
-        public StudentsListRequestHandler(IStudentRepository student, IMapper mapper)
+        public StudentsListRequestHandler(IStudentRepository student, IMapper mapper) : base(student, mapper)
         {
-            this.student = student;
-            this.mapper = mapper;
         }
         public async Task<List<StudentDto>> Handle(StudentsListRequest request, CancellationToken cancellationToken)
         {
-            var records = await student.GetAll();
-            return mapper.Map<List<StudentDto>>(records);
+            IReadOnlyList<Domain.Student> students;
+            if (request.pagination == null)
+                students = await repository.GetAll();
+            else
+                students = await repository.GetAllWithPagination(request.pagination);
+            return mapper.Map<List<StudentDto>>(students);
         }
     }
 }

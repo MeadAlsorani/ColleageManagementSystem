@@ -1,5 +1,4 @@
 ﻿using CMS_BackEnd.Application.DTOs.Student;
-using CMS_BackEnd.Application.Features.Common;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -9,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace CMS_BackEnd.Application.Features.Student.Requests.Queries
 {
-    public class StudentsListRequest : IRequest<List<StudentDto>>
+    public class GetStudentWithCoursesRequest : IRequest<StudentCoursesDto>
     {
-        public ListPaginationRequest? pagination { get; set; }
+        public int Id { get; set; }
     }
 }

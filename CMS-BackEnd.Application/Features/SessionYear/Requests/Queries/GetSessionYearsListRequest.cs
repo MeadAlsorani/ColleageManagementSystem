@@ -11,6 +11,6 @@ namespace CMS_BackEnd.Application.Features.SessionYear.Requests.Queries
 {
     public class GetSessionYearsListRequest : IRequest<IReadOnlyList<SessionYearListDto>>
     {
-        public ListPaginationRequest request { get; set; }
+        public ListPaginationRequest? request { get; set; }
     }
 }

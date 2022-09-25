@@ -50,11 +50,11 @@ namespace CMS_Backend.Persistence.Repositories.Base
 
         public virtual async Task<IReadOnlyList<T>> GetAllWithPagination(ListPaginationRequest request)
         {
-            var records=await dbContext.Set<T>().AsNoTracking().ApplyPagination(request).ToListAsync();
+            var records = await dbContext.Set<T>().AsNoTracking().ApplyPagination(request).ToListAsync();
             return records;
         }
 
-        public async Task Update(T entity)
+        public virtual async Task Update(T entity)
         {
             dbContext.Entry(entity).State = EntityState.Modified;
             await dbContext.SaveChangesAsync();

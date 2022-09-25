@@ -4,20 +4,16 @@ using CMS_BackEnd.Application.Features.Student.Requests.Commands;
 using MediatR;
 namespace CMS_BackEnd.Application.Features.Student.Handlers.Commands
 {
-    public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, int>
+    public class CreateStudentRequestHandler : BaseRequestHandler, IRequestHandler<CreateStudentCommand, int>
     {
-        private readonly IStudentRepository student;
-        private readonly IMapper mapper;
 
-        public CreateStudentCommandHandler(IStudentRepository student, IMapper mapper)
+        public CreateStudentRequestHandler(IStudentRepository student, IMapper mapper) : base(student, mapper)
         {
-            this.student = student;
-            this.mapper = mapper;
         }
         public async Task<int> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
         {
             var stu = mapper.Map<Domain.Student>(request.Student);
-            var result = await student.Add(stu);
+            var result = await repository.Add(stu);
             return result.Id;
         }
     }

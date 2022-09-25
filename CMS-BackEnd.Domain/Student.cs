@@ -18,6 +18,7 @@ namespace CMS_BackEnd.Domain
         public ICollection<StudentCourse> StudentCourses { get; set; }
         public string SchoolName { get; set; }
         public DateTime RegisterationDate { get; set; }
+        public int Balance { get; set; }
         public bool Approved { get; set; }
     }
 }

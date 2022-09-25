@@ -1,5 +1,7 @@
-﻿using CMS_Backend.Persistence.Repositories.Base;
+﻿using AutoMapper;
+using CMS_Backend.Persistence.Repositories.Base;
 using CMS_BackEnd.Application.Contracts.Features;
+using CMS_BackEnd.Application.DTOs.Course;
 using CMS_BackEnd.Application.DTOs.Student;
 using CMS_BackEnd.Domain;
 using Microsoft.EntityFrameworkCore;
@@ -13,22 +15,46 @@ namespace CMS_Backend.Persistence.Repositories
 {
     public class StudentRepository : GenericRepository<Student>, IStudentRepository
     {
-        private readonly DbContext dbContext;
+        private readonly IMapper mapper;
 
-        public StudentRepository(ColleageManagementDbContext dbContext) : base(dbContext)
+        public StudentRepository(ColleageManagementDbContext dbContext, IMapper mapper) : base(dbContext)
         {
-            this.dbContext = dbContext;
+            this.mapper = mapper;
         }
 
-        public Task CreateStudentWithCourses(CreateStudentDto student)
+        public async Task ApproveStudent(int id)
         {
-
-            throw new NotImplementedException();
+            var student = await dbContext.Students.FindAsync(id);
+            if (student == null)
+            {
+                throw new KeyNotFoundException("Student is not exists");
+            }
+            student.Approved = true;
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task<IReadOnlyList<StudentCoursesDto>> GetStudentWithCourses(int id)
+        public async Task CreateStudentWithCourses(CreateStudentDto student)
         {
-            throw new NotImplementedException();
+            var record = mapper.Map<Student>(student);
+            dbContext.Add(record);
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task<StudentCoursesDto> GetStudentWithCourses(int id)
+        {
+            var records = await dbContext.Students
+                .Include(x => x.StudentCourses)
+                .ThenInclude(v => v.Course)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(z => z.Id == id);
+            var student = mapper.Map<StudentCoursesDto>(records);
+            student.Coureses = mapper.Map<IReadOnlyList<CourseListDto>>(records?.StudentCourses.Select(z => z.Course));
+            return student;
+        }
+
+        public override Task Update(Student entity)
+        {
+            return base.Update(entity);
         }
     }
 }

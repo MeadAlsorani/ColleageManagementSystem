@@ -17,7 +17,47 @@ namespace CMS_BackEnd.Application.Profiles
 
             #region Student
             CreateMap<Student, StudentDto>().ReverseMap();
-            CreateMap<Student, CreateStudentDto>().ReverseMap();
+            CreateMap<Student, CreateStudentDto>().ForMember(dest => dest.StudentCoursesIds, opt =>
+            {
+                opt.MapFrom((src, dest) =>
+                {
+                    return dest.StudentCoursesIds = src.StudentCourses.Select(x => x.CourseId).ToList();
+                });
+            })
+                .ReverseMap().ForMember(dest => dest.StudentCourses, opt =>
+            {
+                opt.MapFrom((src, dest) =>
+                {
+                    foreach (int id in src.StudentCoursesIds)
+                    {
+                        dest.StudentCourses.Add(new StudentCourse
+                        {
+                            CourseId = id
+                        });
+                    }
+                    return dest;
+                });
+            });
+            CreateMap<Student, UpdateStudentDto>().ForMember(dest => dest.StudentCoursesIds, opt =>
+            {
+                opt.MapFrom(src => src.StudentCourses.Select(x => x.CourseId));
+            })
+                .ReverseMap()
+                .ForMember(dest => dest.StudentCourses, opt =>
+                {
+                    opt.MapFrom((src, dest) =>
+                    {
+                        foreach (int id in src.StudentCoursesIds)
+                        {
+                            dest.StudentCourses.Add(new StudentCourse
+                            {
+                                CourseId = id,
+                                StudentId = src.Id
+                            });
+                        }
+                        return dest;
+                    });
+                });
             #endregion
 
             #region Staff

@@ -11,6 +11,6 @@ namespace CMS_BackEnd.Application.Features.Attendance.Requests.Queries
 {
     public class GetAttendancesRequest : IRequest<IReadOnlyList<AttendancesListDto>>
     {
-        public ListPaginationRequest pagination { get; set; }
+        public ListPaginationRequest? pagination { get; set; }
     }
 }
