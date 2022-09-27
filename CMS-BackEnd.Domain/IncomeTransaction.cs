@@ -10,6 +10,7 @@ namespace CMS_BackEnd.Domain
     public class IncomeTransaction : StudentCourse
     {
         public int Amount { get; set; }
+        public DateTime Date { get; set; }
 
     }
 }

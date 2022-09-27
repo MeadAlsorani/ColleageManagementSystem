@@ -3,6 +3,7 @@ using AutoMapper;
 using CMS_BackEnd.Application.DTOs.Announcement;
 using CMS_BackEnd.Application.DTOs.Attendance;
 using CMS_BackEnd.Application.DTOs.Course;
+using CMS_BackEnd.Application.DTOs.OutcomeTransaction;
 using CMS_BackEnd.Application.DTOs.SessionYear;
 using CMS_BackEnd.Application.DTOs.Staff;
 using CMS_BackEnd.Application.DTOs.Student;
@@ -114,6 +115,30 @@ namespace CMS_BackEnd.Application.Profiles
             CreateMap<UpdateStaffDto, Staff>().ReverseMap();
             #endregion
 
+            #region Outcome
+            CreateMap<OutcomeTransaction, CreateOutcomeTransactionDto>().ReverseMap();
+            CreateMap<OutcomeTransaction, UpdateOutcomeTransactionDto>().ReverseMap();
+            CreateMap<OutcomeTransaction, OutcomeDetailsDto>();
+            CreateMap<OutcomeTransaction, OutcomeListDto>().ForMember(dest => dest.Type, opt =>
+             {
+                 opt.MapFrom(src => Enum.GetName(typeof(OutcomeType), src.Type));
+             }).ForMember(dest => dest.Description, opt =>
+             {
+                 opt.MapFrom((src, dest) =>
+                 {
+                     string Desc = "";
+                     if (src.Type == OutcomeType.Salary)
+                     {
+                         Desc = dest.Description = $"{src.Staff?.FirstName} {src.Staff?.LastName} - {src.Description}";
+                     }
+                     else
+                     {
+                         Desc = dest.Description = src.Description;
+                     }
+                     return Desc;
+                 });
+             });
+            #endregion
         }
     }
 }

@@ -4,6 +4,7 @@ using CMS_Backend.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMS_Backend.Persistence.Migrations
 {
     [DbContext(typeof(ColleageManagementDbContext))]
-    partial class ColleageManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220926223515_ADD_DATE_TO_TRANSACTIONS")]
+    partial class ADD_DATE_TO_TRANSACTIONS
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
