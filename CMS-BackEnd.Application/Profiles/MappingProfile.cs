@@ -3,6 +3,7 @@ using AutoMapper;
 using CMS_BackEnd.Application.DTOs.Announcement;
 using CMS_BackEnd.Application.DTOs.Attendance;
 using CMS_BackEnd.Application.DTOs.Course;
+using CMS_BackEnd.Application.DTOs.Loan;
 using CMS_BackEnd.Application.DTOs.OutcomeTransaction;
 using CMS_BackEnd.Application.DTOs.SessionYear;
 using CMS_BackEnd.Application.DTOs.Staff;
@@ -139,6 +140,14 @@ namespace CMS_BackEnd.Application.Profiles
                  });
              });
             #endregion
+
+            #region Loan
+            CreateMap<Loan, CreateLoanDto>().ReverseMap();
+            CreateMap<Loan, LoanRecordDto>().ReverseMap();
+            CreateMap<Loan, LoanListDto>().ReverseMap();
+            CreateMap<Loan, UpdateLoanDto>().ReverseMap();
+            #endregion
+
         }
     }
 }

@@ -21,9 +21,6 @@
   <ItemGroup>
     <Folder Include="DTOs\SalaryTemplate\" />
     <Folder Include="Features\Loan\Handlers\Commands\" />
-    <Folder Include="Features\Loan\Handlers\Queries\" />
-    <Folder Include="Features\Loan\Requests\Commands\" />
-    <Folder Include="Features\Loan\Requests\Queries\" />
     <Folder Include="Features\NewFolder\" />
   </ItemGroup>
 
