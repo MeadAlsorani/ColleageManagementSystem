@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <Folder Include="DTOs\SalaryTemplate\" />
-    <Folder Include="Features\Loan\Handlers\Commands\" />
     <Folder Include="Features\NewFolder\" />
   </ItemGroup>
 

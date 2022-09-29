@@ -3,6 +3,7 @@ using AutoMapper;
 using CMS_BackEnd.Application.DTOs.Announcement;
 using CMS_BackEnd.Application.DTOs.Attendance;
 using CMS_BackEnd.Application.DTOs.Course;
+using CMS_BackEnd.Application.DTOs.IncomingTransaction;
 using CMS_BackEnd.Application.DTOs.Loan;
 using CMS_BackEnd.Application.DTOs.OutcomeTransaction;
 using CMS_BackEnd.Application.DTOs.SessionYear;
@@ -146,6 +147,36 @@ namespace CMS_BackEnd.Application.Profiles
             CreateMap<Loan, LoanRecordDto>().ReverseMap();
             CreateMap<Loan, LoanListDto>().ReverseMap();
             CreateMap<Loan, UpdateLoanDto>().ReverseMap();
+            #endregion
+
+            #region IncomeTransaction
+            CreateMap<IncomeTransaction, CreateIncomingTransactionDto>().ReverseMap();
+            CreateMap<IncomeTransaction, UpdateIncomingTransactionDto>().ReverseMap();
+            CreateMap<IncomeTransaction, IncomingTransactionDetailsDto>().ReverseMap();
+            CreateMap<IncomeTransaction, IncomingTransactionsListDto>()
+                .ForMember(dest => dest.CourseName, opt =>
+                {
+                    opt.MapFrom((src, dest) =>
+                    {
+                        return src.Course?.Name;
+                    });
+                })
+                .ForMember(dest => dest.StudentName, opt =>
+                {
+                    opt.MapFrom((src, dest) =>
+                    {
+                        return $"{src.Student?.FirstName} {src.Student?.LastName}";
+                    });
+                })
+                .ReverseMap();
+            CreateMap<IncomeTransaction, StudentIncomingTransactionsDto>()
+                .ForMember(dest => dest.CourseName, opt =>
+                {
+                    opt.MapFrom((src, dest) =>
+                    {
+                        return src.Course?.Name;
+                    });
+                });
             #endregion
 
         }
