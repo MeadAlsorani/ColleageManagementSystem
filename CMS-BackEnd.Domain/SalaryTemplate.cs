@@ -10,7 +10,7 @@ namespace CMS_BackEnd.Domain
     public class SalaryTemplate:BaseModelClass
     {
         public int StaffId { get; set; }
-        public double SalaryPerHour { get; set; }
+        public double OverTimePerHour { get; set; }
         public int TotalDuration { get; set; }
 
     }

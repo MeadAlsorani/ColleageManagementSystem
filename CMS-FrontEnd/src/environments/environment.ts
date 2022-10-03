@@ -1,9 +1,12 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
+export const baseUrl: string = 'https://localhost:7014/';
 export const environment = {
-  production: false
+  production: false,
+  apiUrl: `${baseUrl}api/`,
+  token:
+    'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlZjg3YjFjZS0wMGNhLTQzZTctOWEzMC1kZTFkNzYwNGViYWMiLCJzdWIiOiJhZG1pbkBtZWFkLWFsc29yYW5pLmNvbSIsImVtYWlsIjoiYWRtaW5AbWVhZC1hbHNvcmFuaS5jb20iLCJ1aWQiOiIwOWRkOTI5NS01NDc3LTQ4MTgtODc1NS1mNzNiZmE2YjZmYzkiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTY2NDc1NjIxMywiaXNzIjoiQ29sbGVhZ2VNYW5hZ2VtZW50U3lzdGVtX01lYWRfQWxzb3JhbmkiLCJhdWQiOiJDTVNfVXNlcnMifQ.EWyibsm45msjMlW48aNFsgezxdPylGfdAg3zXHs-_MQvkw1bVvgN-UMmPJLPVf1pGNTBK4zP-ynvv_Qm0vT7ZA',
 };
 
 /*
