@@ -1,5 +1,6 @@
 {
   "title": "العنوان",
-  "date":"التاريخ",
-  "type":"النوع"
+  "date": "التاريخ",
+  "type": "النوع",
+  "Are you sure delete this record": "هل انت متاكد؟"
 }

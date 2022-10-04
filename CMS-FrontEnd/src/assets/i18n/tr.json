@@ -1,5 +1,6 @@
 {
   "title": "Başlık",
   "date": "tarih",
-  "type": "tip"
+  "type": "tip",
+  "Are you sure delete this record":"Bu kaydı siliyor musunuz?"
 }
