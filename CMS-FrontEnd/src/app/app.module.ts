@@ -4,22 +4,33 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularMaterialModulesModule } from './material/angular-material-modules/angular-material-modules.module';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TranslocoRootModule } from './transloco-root.module';
-import { TableComponent } from './shared/components/table/table.component';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { RequestHandlerInterceptor } from './shared/interceptor/request-handler.interceptor';
+import { AngularMaterialModulesModule } from './material/angular-material-modules/angular-material-modules.module';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AngularMaterialModulesModule,
     HttpClientModule,
-    TranslocoRootModule,
+    AngularMaterialModulesModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
+  exports: [],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
@@ -30,3 +41,6 @@ import { RequestHandlerInterceptor } from './shared/interceptor/request-handler.
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}

@@ -14,6 +14,7 @@ export class AnnouncementsListComponent
   implements OnInit
 {
   records: AnnouncementList[] = [];
+  columns: string[] = [];
   constructor(injector: Injector, private service: AnnouncementsService) {
     super(injector);
   }
@@ -24,8 +25,11 @@ export class AnnouncementsListComponent
 
   getAnnouncements() {
     return this.service.GetWithPagination(this.pagination).pipe(
-      tap((response) => {
-        console.log(response);
+      tap((response: any) => {
+        this.records = response;
+        this.columns = Object.keys(this.records[0]).filter(
+          (x) => x.toLowerCase() != 'id'
+        );
       })
     );
   }

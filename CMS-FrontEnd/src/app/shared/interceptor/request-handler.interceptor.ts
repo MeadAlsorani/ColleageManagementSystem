@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import {
   HttpInterceptor,
   HttpRequest,
@@ -11,17 +12,20 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class RequestHandlerInterceptor implements HttpInterceptor {
+  constructor(private translationService: TranslateService) {}
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const authReq = req.clone({
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${environment.token}`,
-      }),
-    });
-
-    console.log('Intercepted HTTP call', authReq);
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', `Bearer ${environment.token}`);
+    if (!req.url.includes('i18n')) {
+      headers = headers.append(
+        'Accept-Language',
+        this.translationService.currentLang
+      );
+    }
+    const authReq = req.clone({ headers: headers });
 
     return next.handle(authReq);
   }
