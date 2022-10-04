@@ -12,6 +12,6 @@ namespace CMS_BackEnd.Application.DTOs.Announcement
     {
         public string Title { get; set; }
         public DateTime Date { get; set; }
-        public AnnouncementType Type { get; set; }
+        public string Type { get; set; }
     }
 }

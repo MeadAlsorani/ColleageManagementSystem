@@ -2,9 +2,11 @@
 using CMS_BackEnd.Application.Features.Announcement.Requests.Commands;
 using CMS_BackEnd.Application.Features.Announcement.Requests.Queries;
 using CMS_BackEnd.Application.Features.Common;
+using CMS_BackEnd.Resources;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,23 +18,33 @@ namespace CMS_BackEnd.Controllers
     public class AnnouncementsController : ControllerBase
     {
         private readonly IMediator mediator;
+        private readonly IStringLocalizer localizer;
 
         // GET: api/<AnnouncementsController>
-        public AnnouncementsController(IMediator mediator)
+        public AnnouncementsController(IMediator mediator, IStringLocalizer<Resource> localizer)
         {
             this.mediator = mediator;
+            this.localizer = localizer;
         }
         [HttpGet]
         public async Task<ActionResult> Get()
         {
             var records = await mediator.Send(new AnnouncementListRequest());
+            //foreach (var record in records)
+            //{
+            //    record.Type = localizer[record.Type].Value;
+            //}
             return Ok(records);
         }
 
         [HttpPost("GetWithPagination")]
         public async Task<ActionResult> GetWithPagination(ListPaginationRequest listPagination)
         {
-            var records = await mediator.Send(new AnnouncementListRequest() { request=listPagination});
+            var records = await mediator.Send(new AnnouncementListRequest() { request = listPagination });
+            foreach (var record in records)
+            {
+                record.Type = localizer[record.Type].Value;
+            }
             return Ok(records);
         }
         // GET api/<AnnouncementsController>/5

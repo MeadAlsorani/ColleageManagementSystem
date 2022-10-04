@@ -10,6 +10,8 @@ using CMS_BackEnd.Application.DTOs.SessionYear;
 using CMS_BackEnd.Application.DTOs.Staff;
 using CMS_BackEnd.Application.DTOs.Student;
 using CMS_BackEnd.Domain;
+using CMS_BackEnd.Resources;
+using Microsoft.Extensions.Localization;
 
 namespace CMS_BackEnd.Application.Profiles
 {
@@ -92,7 +94,10 @@ namespace CMS_BackEnd.Application.Profiles
             #endregion
 
             #region Announcement
-            CreateMap<Announcement, AnnouncementListDto>().ReverseMap();
+            CreateMap<Announcement, AnnouncementListDto>().ForMember(dest => dest.Type, opt =>
+            {
+                opt.MapFrom<TranslationResolver,string>(src => src.Type.ToString());
+            });
             CreateMap<Announcement, AnnouncementRecordDto>().ReverseMap();
             #endregion
 
@@ -179,6 +184,19 @@ namespace CMS_BackEnd.Application.Profiles
                 });
             #endregion
 
+        }
+    }
+    public class TranslationResolver : IMemberValueResolver<object, object, string, string>
+    {
+        private readonly IStringLocalizer<Resource> localizer;
+
+        public TranslationResolver(IStringLocalizer<Resource> localizer)
+        {
+            this.localizer = localizer;
+        }
+        public string Resolve(object source, object destination, string sourceMember, string destMember, ResolutionContext context)
+        {
+            return localizer[sourceMember];
         }
     }
 }

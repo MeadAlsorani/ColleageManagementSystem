@@ -2,6 +2,9 @@ using CMS_BackEnd.Identity;
 using CMS_BackEnd.Application;
 using CMS_Backend.Persistence;
 using Microsoft.OpenApi.Models;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization.Routing;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +43,19 @@ builder.Services.AddSwaggerGen(opt =>
         }
     });
 });
+builder.Services.AddLocalization(opt => opt.ResourcesPath = "");
+var supportedCultures = new List<CultureInfo>
+    {
+        new CultureInfo("ar"),
+        new CultureInfo("tr")
+    };
+builder.Services.Configure<RequestLocalizationOptions>(opt =>
+{
+    opt.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture(culture: "ar", uiCulture: "ar");
+    opt.SupportedUICultures = supportedCultures; ;
+    opt.SupportedCultures = supportedCultures;
+});
+
 builder.Services.AddCors(o =>
 {
     o.AddPolicy("CorsPolicy",
@@ -48,7 +64,10 @@ builder.Services.AddCors(o =>
         .AllowAnyHeader());
 });
 var app = builder.Build();
-
+var localizationOptions = new RequestLocalizationOptions().SetDefaultCulture("ar")
+    .AddSupportedCultures(new[] { "ar", "tr" })
+    .AddSupportedUICultures(new[] { "ar", "tr" });
+app.UseRequestLocalization(localizationOptions);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
