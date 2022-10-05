@@ -9,11 +9,11 @@ import { environment } from 'src/environments/environment';
 })
 export class CommonService {
   baseUrl = '';
-  constructor(
-    private http: HttpClient,
-    @Inject('entity') private entity: string
-  ) {
-    this.baseUrl = environment.apiUrl + entity + '/';
+  get entity() {
+    return '';
+  }
+  constructor(private http: HttpClient) {
+    this.baseUrl = environment.apiUrl + this.entity + '/';
   }
 
   Get(): Observable<any[]> {

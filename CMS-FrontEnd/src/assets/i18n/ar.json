@@ -2,5 +2,15 @@
   "title": "العنوان",
   "date": "التاريخ",
   "type": "النوع",
-  "Are you sure delete this record": "هل انت متاكد؟"
+  "Are you sure delete this record": "هل انت متاكد؟",
+  "Announcements": "الإعلانات",
+  "Add Record": "إضافة سجل",
+  "this field is not valid": "هذا الحقل غير صالح",
+  "Title": "عنوان",
+  "Date": "تاريخ",
+  "Type": "نوع",
+  "Description": "وصف",
+  "Save": "حفظ",
+  "Cancel": "الغاء",
+  "Operation succeeded":"نجحت العملية"
 }

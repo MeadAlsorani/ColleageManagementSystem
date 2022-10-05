@@ -1,3 +1,5 @@
+import { RouterModule } from '@angular/router';
+import { AddComponent } from './components/add/add.component';
 import { DateParserPipe } from './pipes/date-parser.pipe';
 import { TableComponent } from './components/table/table.component';
 import { NgModule } from '@angular/core';
@@ -12,9 +14,10 @@ import { TranslateModule } from '@ngx-translate/core';
     AngularMaterialModulesModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
     TranslateModule.forChild({ extend: true }),
   ],
-  declarations: [TableComponent, DateParserPipe],
-  exports: [TableComponent, DateParserPipe],
+  declarations: [TableComponent, DateParserPipe, AddComponent],
+  exports: [TableComponent, DateParserPipe, AddComponent],
 })
 export class SharedModule {}

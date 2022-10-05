@@ -1,3 +1,4 @@
+import { AddAnnouncementComponent } from './add-announcement/add-announcement.component';
 import { AnnouncementsListComponent } from './announcements-list/announcements-list.component';
 import { AnnouncementsService } from './shared/announcements.service';
 import { NgModule } from '@angular/core';
@@ -6,8 +7,8 @@ import { AnnouncementRoutes } from './announcement.routing';
 import { SharedModule } from 'src/app/shared/sharedModule.module';
 
 @NgModule({
-  imports: [CommonModule, AnnouncementRoutes,SharedModule],
-  declarations: [AnnouncementsListComponent],
+  imports: [CommonModule, AnnouncementRoutes, SharedModule],
+  declarations: [AnnouncementsListComponent, AddAnnouncementComponent],
   providers: [AnnouncementsService],
 })
 export class AnnouncementModule {}

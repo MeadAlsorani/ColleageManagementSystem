@@ -4,7 +4,10 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AnnouncementsService extends CommonService {
+  override get entity(): string {
+    return 'Announcements';
+  }
   constructor(http: HttpClient) {
-    super(http, 'Announcements');
+    super(http);
   }
 }
