@@ -13,10 +13,12 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
 @NgModule({
   declarations: [],
   imports: [],
   exports: [
+    MatCardModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatInputModule,

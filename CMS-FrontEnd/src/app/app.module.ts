@@ -1,3 +1,4 @@
+import { IndexComponent } from './shared/components/index/index.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -15,7 +16,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, IndexComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

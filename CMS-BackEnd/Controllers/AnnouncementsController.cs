@@ -14,7 +14,7 @@ namespace CMS_BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "Reciptionist,Admin")]
     public class AnnouncementsController : ControllerBase
     {
         private readonly IMediator mediator;

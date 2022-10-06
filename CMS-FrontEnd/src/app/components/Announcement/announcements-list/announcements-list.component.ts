@@ -2,7 +2,7 @@ import { AnnouncementsService } from './../shared/announcements.service';
 import { BaseComponent } from './../../../shared/components/Base.component';
 import { Component, OnInit, Injector } from '@angular/core';
 import { AnnouncementList } from '../shared/Announcement';
-import { tap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'app-announcements-list',
@@ -35,5 +35,25 @@ export class AnnouncementsListComponent
         this.isLoading = false;
       })
     );
+  }
+  deleteRecord(id: number) {
+    this.service
+      .Delete(id)
+      .pipe(
+        tap(() => {
+          this.snackBar.open(
+            this.translateService.instant('Operation succeeded'),
+            undefined,
+            {
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+              duration: 4000,
+              panelClass: 'success-panel',
+            }
+          );
+        }),
+        switchMap(() => this.getAnnouncements())
+      )
+      .subscribe();
   }
 }

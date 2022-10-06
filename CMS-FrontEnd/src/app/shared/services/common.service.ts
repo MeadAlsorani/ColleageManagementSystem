@@ -13,14 +13,14 @@ export class CommonService {
     return '';
   }
   constructor(private http: HttpClient) {
-    this.baseUrl = environment.apiUrl + this.entity + '/';
+    this.baseUrl = environment.apiUrl + this.entity;
   }
 
   Get(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}`);
   }
   GetWithPagination(payload: PaginationPayload) {
-    return this.http.post(`${this.baseUrl}GetWithPagination`, payload);
+    return this.http.post(`${this.baseUrl}/GetWithPagination`, payload);
   }
   GetDetails(id: number) {
     return this.http.get(`${this.baseUrl}/${id}`);
@@ -31,10 +31,13 @@ export class CommonService {
   }
 
   Put(data: any) {
-    return this.http.put(`${this.baseUrl}`, data);
+    return this.http.put(`${this.baseUrl}/${data.id}`, data);
   }
 
   Delete(id: number) {
     return this.http.delete(`${this.baseUrl}/${id}`);
+  }
+  private getMenus() {
+    return this.http.get(`${environment.apiUrl}Common`);
   }
 }

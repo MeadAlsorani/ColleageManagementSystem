@@ -12,5 +12,11 @@
   "Description": "وصف",
   "Save": "حفظ",
   "Cancel": "الغاء",
-  "Operation succeeded":"نجحت العملية"
+  "Operation succeeded": "نجحت العملية",
+  "Notice": "اخطار",
+  "Event": "حدث",
+  "Holiday": "عطلة",
+  "Login": "تسجيل الدخول",
+  "Username": "اسم المستخدم",
+  "Password": "كلمة المرور"
 }

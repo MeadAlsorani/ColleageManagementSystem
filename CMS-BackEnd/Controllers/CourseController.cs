@@ -11,7 +11,7 @@ namespace CMS_BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class CourseController : ControllerBase
     {
         private readonly IMediator mediator;
@@ -24,6 +24,7 @@ namespace CMS_BackEnd.Controllers
         }
         // GET: api/<CourseController>
         [HttpGet]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<List<CourseListDto>>> Get()
         {
             var records = await mediator.Send(new CoursesListRequest());
@@ -32,6 +33,7 @@ namespace CMS_BackEnd.Controllers
 
 
         [HttpPost("GetWithPagination")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<List<CourseListDto>>> GetWithPagination(ListPaginationRequest request)
         {
             var records = await mediator.Send(new CoursesListRequest { pagination = request });
@@ -39,6 +41,7 @@ namespace CMS_BackEnd.Controllers
         }
         // GET api/<CourseController>/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<CourseDetailsDto>> Get(int id)
         {
             var record = await mediator.Send(new CourseDetailsRequest { Id = id });

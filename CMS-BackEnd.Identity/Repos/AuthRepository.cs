@@ -46,7 +46,9 @@ namespace CMS_BackEnd.Identity.Repos
                 Email = username,
                 Token = new JwtSecurityTokenHandler().WriteToken(token),
                 UserName = username,
-                Id = user.Id
+                Id = user.Id,
+                FullName = $"{user.FirstName} {user.LastName}",
+                Role = (await userManager.GetRolesAsync(user)).First()
             };
         }
 

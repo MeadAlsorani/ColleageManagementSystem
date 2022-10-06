@@ -1,0 +1,26 @@
+import { AuthService } from './../../../components/Authentication/auth.service';
+import { User } from './../../interfaces/User';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
+
+@Component({
+  selector: 'app-index',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.less'],
+})
+export class IndexComponent implements OnInit, AfterViewInit {
+  @ViewChild('snav') drawer!: MatDrawer;
+  mobileQuery!: MediaQueryList;
+  userData: User;
+  constructor(media: MediaMatcher, private authService: AuthService) {
+    this.userData = authService.userData;
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+  }
+  ngAfterViewInit(): void {
+    this.drawer.open();
+    // this.userData = this.authService.userData;
+  }
+
+  ngOnInit() {}
+}

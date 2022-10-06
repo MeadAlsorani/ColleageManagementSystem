@@ -9,18 +9,19 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.less'],
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  @ViewChild('snav') drawer!: MatDrawer;
-  mobileQuery!: MediaQueryList;
-  constructor(media: MediaMatcher, private translate: TranslateService) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+
+  isLoggedIn: boolean;
+  constructor( private translate: TranslateService) {
+    const token = localStorage.getItem('token');
+    this.isLoggedIn = token != null && token != '';
+
     translate.setDefaultLang('ar');
     translate.use('ar');
   }
 
   ngAfterViewInit(): void {
-    console.log(this.drawer);
-    this.drawer.open();
+
   }
   ngOnInit(): void {}
-  title = 'CMS-FrontEnd';
+  title = 'Zade Akademi';
 }

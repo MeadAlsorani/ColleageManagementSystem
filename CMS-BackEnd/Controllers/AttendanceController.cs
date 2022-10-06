@@ -12,7 +12,7 @@ namespace CMS_BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "Reciptionist")]
     public class AttendanceController : ControllerBase
     {
         private readonly IMediator mediator;
@@ -23,6 +23,7 @@ namespace CMS_BackEnd.Controllers
         }
         // GET: api/<AttendanceController>
         [HttpGet]
+        [Authorize(Roles = "Reciptionist,Admin,Manager")]
         public async Task<ActionResult<IReadOnlyList<AttendancesListDto>>> Get()
         {
             var records = await mediator.Send(new GetAttendancesRequest());
@@ -30,6 +31,7 @@ namespace CMS_BackEnd.Controllers
         }
 
         [HttpPost("GetWithPagination")]
+        [Authorize(Roles = "Reciptionist,Admin,Manager")]
         public async Task<ActionResult<IReadOnlyList<AttendancesListDto>>> Get(ListPaginationRequest request)
         {
             var records = await mediator.Send(new GetAttendancesRequest() { pagination = request });
@@ -38,6 +40,7 @@ namespace CMS_BackEnd.Controllers
 
         // GET api/<AttendanceController>/5
         [HttpGet("Student/{id}")]
+        [Authorize(Roles = "Reciptionist,Admin,Manager")]
         public async Task<ActionResult<IReadOnlyList<StudentAttendanceDto>>> GetStudentAttendances(int id, DateTime startDate, DateTime endDate)
         {
             var record = await mediator.Send(new GetStudentAttendancesListRequest()

@@ -25,7 +25,11 @@
             </button>
           </mat-grid-tile>
           <mat-grid-tile>
-            <button mat-icon-button color="accent">
+            <button
+              mat-icon-button
+              color="accent"
+              [routerLink]="['..', 'edit', element.id]"
+            >
               <mat-icon>edit</mat-icon>
             </button>
           </mat-grid-tile>

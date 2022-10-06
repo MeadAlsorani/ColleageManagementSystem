@@ -12,5 +12,11 @@
   "Description": "Açıklama",
   "Save": "Kaydet",
   "Cancel": "İptal",
-  "Operation succeeded": "Operasyon başarılı oldu"
+  "Operation succeeded": "Operasyon başarılı oldu",
+  "Notice": "Uyarı",
+  "Event": "Etkinlik",
+  "Holiday": "Tatil",
+  "Login": "Giriş",
+  "Username": "Kullancı adı",
+  "Password": "Şifre"
 }
