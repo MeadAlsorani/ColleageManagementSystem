@@ -1,4 +1,5 @@
 ﻿using CMS_BackEnd.Application.Contracts.Identity;
+using CMS_BackEnd.Application.DTOs.Identity;
 using CMS_BackEnd.Application.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,11 @@ namespace CMS_BackEnd.Controllers
         {
             var result = await authentication.Login(username, password);
             return Ok(result);
+        }
+        [HttpPost("RefreshToken")]
+        public async Task<ActionResult> RefreshToken([FromBody] RefreshTokenDto refreshTokenDto)
+        {
+            return Ok(await authentication.RefreshToken(refreshTokenDto.Token, refreshTokenDto.RefreshToken));
         }
     }
 }

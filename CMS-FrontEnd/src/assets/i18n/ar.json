@@ -18,5 +18,13 @@
   "Holiday": "عطلة",
   "Login": "تسجيل الدخول",
   "Username": "اسم المستخدم",
+  "Attendances": "الحضور",
+  "Courses": "المواد",
+  "Staffs": "الموظفون",
+  "Students": "الطلاب",
+  "Session Year": "الفصل الدراسي",
+  "Income transations": "حركات الدخل",
+  "Outcome transaction": "حركات الخرج",
+  "Salary Templates": "الرواتب",
   "Password": "كلمة المرور"
 }

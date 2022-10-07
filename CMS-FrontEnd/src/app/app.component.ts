@@ -1,3 +1,5 @@
+import { Menu } from './shared/interfaces/Menu';
+import { CommonService } from './shared/services/common.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatDrawer } from '@angular/material/sidenav';
@@ -9,9 +11,9 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.less'],
 })
 export class AppComponent implements OnInit, AfterViewInit {
-
   isLoggedIn: boolean;
-  constructor( private translate: TranslateService) {
+
+  constructor(private translate: TranslateService) {
     const token = localStorage.getItem('token');
     this.isLoggedIn = token != null && token != '';
 
@@ -19,9 +21,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     translate.use('ar');
   }
 
-  ngAfterViewInit(): void {
-
-  }
+  ngAfterViewInit(): void {}
   ngOnInit(): void {}
+
   title = 'Zade Akademi';
 }

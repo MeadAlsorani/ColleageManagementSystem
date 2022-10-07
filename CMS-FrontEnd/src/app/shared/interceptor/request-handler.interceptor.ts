@@ -7,7 +7,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable()
@@ -27,6 +27,13 @@ export class RequestHandlerInterceptor implements HttpInterceptor {
     }
     const authReq = req.clone({ headers: headers });
 
-    return next.handle(authReq);
+    return next.handle(authReq).pipe(
+      catchError((err) => {
+        console.log(err);
+        // console.log(err.);
+
+        return throwError(() => new Error(err));
+      })
+    );
   }
 }

@@ -1,8 +1,10 @@
 import { PaginationPayload } from './../interfaces/Request';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Menu } from '../interfaces/Menu';
+import { User } from '../interfaces/User';
 
 @Injectable({
   providedIn: 'root',
@@ -37,7 +39,14 @@ export class CommonService {
   Delete(id: number) {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
-  private getMenus() {
-    return this.http.get(`${environment.apiUrl}Common`);
+  getMenus(): Observable<Menu[]> {
+    return this.http
+      .get<{ [key: string]: Menu[] }>(`${environment.apiUrl}Common`)
+      .pipe(
+        map((response) => {
+          const user = JSON.parse(localStorage.getItem('userData')!) as User;
+          return response[user.role];
+        })
+      );
   }
 }

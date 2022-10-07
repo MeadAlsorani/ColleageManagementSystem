@@ -5,4 +5,5 @@ export interface User {
   token: string;
   role: string;
   fullName: string;
+  refreshToken?: string;
 }

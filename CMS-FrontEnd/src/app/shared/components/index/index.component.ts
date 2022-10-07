@@ -1,8 +1,10 @@
+import { CommonService } from './../../services/common.service';
 import { AuthService } from './../../../components/Authentication/auth.service';
 import { User } from './../../interfaces/User';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { Menu } from '../../interfaces/Menu';
 
 @Component({
   selector: 'app-index',
@@ -13,14 +15,27 @@ export class IndexComponent implements OnInit, AfterViewInit {
   @ViewChild('snav') drawer!: MatDrawer;
   mobileQuery!: MediaQueryList;
   userData: User;
-  constructor(media: MediaMatcher, private authService: AuthService) {
+  menus: Menu[] = [];
+  constructor(
+    media: MediaMatcher,
+    private authService: AuthService,
+    private commonService: CommonService
+  ) {
     this.userData = authService.userData;
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
   }
   ngAfterViewInit(): void {
-    this.drawer.open();
+    setTimeout(() => {
+      this.drawer.open();
+    }, 1000);
     // this.userData = this.authService.userData;
   }
-
-  ngOnInit() {}
+  getMenus() {
+    this.commonService.getMenus().subscribe((response) => {
+      this.menus = response;
+    });
+  }
+  ngOnInit() {
+    this.getMenus();
+  }
 }

@@ -19,6 +19,7 @@ export class AuthService {
   set userData(value: User) {
     this._userData.next(value);
     localStorage.setItem('token', value.token);
+    localStorage.setItem('refresh-token', value.refreshToken as string);
     localStorage.setItem('userData', JSON.stringify(value));
   }
   get userData() {

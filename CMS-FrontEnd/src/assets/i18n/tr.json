@@ -18,5 +18,13 @@
   "Holiday": "Tatil",
   "Login": "Giriş",
   "Username": "Kullancı adı",
-  "Password": "Şifre"
+  "Password": "Şifre",
+  "Attendances": "الحضور",
+  "Courses": "Sınıflar",
+  "Staffs": "Çalışanlar",
+  "Students": "öğrenciler",
+  "Session Year": "Dönem",
+  "Income transations": "Gelir hareketleri",
+  "Outcome transaction": "Çıkış hareketleri",
+  "Salary Templates": "Maaş"
 }
