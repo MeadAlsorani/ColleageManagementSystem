@@ -9,6 +9,8 @@ import {
   Output,
   Injector,
 } from '@angular/core';
+import { PaginationResponse } from '../../interfaces/Request';
+import { PaginationChangParams } from '../../interfaces/Table';
 
 @Component({
   selector: 'app-table',
@@ -20,9 +22,10 @@ export class TableComponent extends BaseComponent implements OnInit {
   displayColumns: string[] = [];
   _columns: string[] = [];
   @Output() deleteRecordEmitter = new EventEmitter();
+  @Output() paginationChangedEmitter = new EventEmitter();
   @Input() pageTitle = '';
   @Input() controllerName: string = '';
-  @Input() records: any[] = [];
+  @Input() records: PaginationResponse = { count: 0, records: [] };
   @Input() set columns(value: string[]) {
     this.displayColumns = [...[], ...value];
     this.displayColumns.push('actions');
@@ -57,7 +60,9 @@ export class TableComponent extends BaseComponent implements OnInit {
       this.deleteRecordEmitter.emit(record.id.toString());
     }
   }
-  paginationChanged(event: any) {
-    console.log(event);
+  paginationChanged(event: PaginationChangParams) {
+    this.pagination.PageSize = event.pageSize;
+    this.pagination.PageIndex = event.pageIndex;
+    this.paginationChangedEmitter.emit(event);
   }
 }

@@ -1,8 +1,10 @@
+import { PaginationChangParams } from './../../../shared/interfaces/Table';
 import { AnnouncementsService } from './../shared/announcements.service';
 import { BaseComponent } from './../../../shared/components/Base.component';
 import { Component, OnInit, Injector } from '@angular/core';
 import { AnnouncementList } from '../shared/Announcement';
 import { switchMap, tap } from 'rxjs';
+import { PaginationResponse } from 'src/app/shared/interfaces/Request';
 
 @Component({
   selector: 'app-announcements-list',
@@ -14,7 +16,7 @@ export class AnnouncementsListComponent
   implements OnInit
 {
   isLoading = true;
-  records: AnnouncementList[] = [];
+  records: PaginationResponse = { count: 0, records: [] };
   columns: string[] = [];
   constructor(injector: Injector, private service: AnnouncementsService) {
     super(injector);
@@ -34,6 +36,11 @@ export class AnnouncementsListComponent
         this.isLoading = false;
       })
     );
+  }
+  onPaginationChanged(event: PaginationChangParams) {
+    this.pagination.PageSize = event.pageSize;
+    this.pagination.PageIndex = event.pageIndex;
+    this.getAnnouncements().subscribe();
   }
   deleteRecord(id: number) {
     this.service

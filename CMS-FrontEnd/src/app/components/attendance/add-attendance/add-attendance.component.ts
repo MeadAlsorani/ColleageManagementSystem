@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { DropdownOption } from './../../../shared/interfaces/FormField';
 import { AttendanceService } from './../shared/attendance.service';
 import { BaseComponent } from './../../../shared/components/Base.component';
@@ -41,30 +42,33 @@ export class AddAttendanceComponent extends BaseComponent implements OnInit {
   valueChanged(event: any) {
     console.log(event);
     if (event.Type != null) {
+      let observable: Observable<any>;
       if (event.Type == 1) {
-        this.attencanceService.getStudents().subscribe((resp: any) => {
-          const students = resp as any[];
-          const options: DropdownOption[] = [];
-          students.forEach((student) => {
-            options.push({
-              code: student.id,
-              label: student.fullName,
-            });
-          });
-          this.fields = this.fields.filter((x) => x.code != 'StaffStudentId');
-          this.fields = [
-            ...this.fields,
-            {
-              code: 'StaffStudentId',
-              label: 'Student',
-              required: true,
-              type: FormFieldType.dropdown,
-              options: options,
-            },
-          ];
-        });
+        observable = this.attencanceService.getStudents();
       } else {
+        observable = this.attencanceService.getStaffs();
       }
+      observable.subscribe((resp: any) => {
+        const records = resp as any[];
+        const options: DropdownOption[] = [];
+        records.forEach((student) => {
+          options.push({
+            code: student.id,
+            label: student.fullName,
+          });
+        });
+        this.fields = this.fields.filter((x) => x.code != 'StaffStudentId');
+        this.fields = [
+          ...this.fields,
+          {
+            code: 'StaffStudentId',
+            label: event.Type == 1 ? 'Student' : 'Staff',
+            required: true,
+            type: FormFieldType.dropdown,
+            options: options,
+          },
+        ];
+      });
     }
   }
   submit(event: any) {

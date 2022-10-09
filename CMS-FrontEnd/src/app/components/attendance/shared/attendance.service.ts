@@ -14,4 +14,7 @@ export class AttendanceService extends CommonService {
   getStudents() {
     return this.http.get(`${environment.apiUrl}Student`);
   }
+  getStaffs() {
+    return this.http.get(`${environment.apiUrl}Staff`);
+  }
 }

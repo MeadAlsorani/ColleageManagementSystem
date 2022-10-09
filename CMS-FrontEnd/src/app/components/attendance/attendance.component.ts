@@ -3,6 +3,8 @@ import { AttendanceService } from './shared/attendance.service';
 import { BaseComponent } from './../../shared/components/Base.component';
 import { Component, OnInit, Injector } from '@angular/core';
 import { AttendanceList } from './shared/Attendance';
+import { PaginationResponse } from 'src/app/shared/interfaces/Request';
+import { PaginationChangParams } from 'src/app/shared/interfaces/Table';
 
 @Component({
   selector: 'app-attendance',
@@ -11,7 +13,7 @@ import { AttendanceList } from './shared/Attendance';
 })
 export class AttendanceComponent extends BaseComponent implements OnInit {
   isLoading = true;
-  records: AttendanceList[] = [];
+  records: PaginationResponse = { count: 0, records: [] };
   columns: string[] = [];
   constructor(
     injector: Injector,
@@ -33,5 +35,10 @@ export class AttendanceComponent extends BaseComponent implements OnInit {
         this.isLoading = false;
       })
     );
+  }
+  onPaginationChanged(event: PaginationChangParams) {
+    this.pagination.PageSize = event.pageSize;
+    this.pagination.PageIndex = event.pageIndex;
+    this.getAttendances().subscribe();
   }
 }

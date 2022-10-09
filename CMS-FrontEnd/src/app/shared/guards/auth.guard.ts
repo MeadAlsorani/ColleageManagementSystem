@@ -63,7 +63,7 @@ export class AuthGuard implements CanActivate {
         .pipe(
           tap((response: any) => {
             isRefreshToken = true;
-            localStorage.setItem('token', refreshRes.token);
+            localStorage.setItem('token', response.token);
 
             resolve(response);
           }),

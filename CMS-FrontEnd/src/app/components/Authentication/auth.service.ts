@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -25,7 +26,7 @@ export class AuthService {
   get userData() {
     return this._userData.value;
   }
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     const data = localStorage.getItem('userData');
     if (data != null && data != '') {
       this.userData = JSON.parse(data);
@@ -35,5 +36,16 @@ export class AuthService {
     return this.http.get(
       `${environment.apiUrl}Authentication?username=${username}&password=${password}`
     );
+  }
+  refreshToken(token: string, refreshToken: string) {
+    return this.http.post(`${environment.apiUrl}Authentication/RefreshToken`, {
+      Token: token,
+      RefreshToken: refreshToken,
+    });
+  }
+  logOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('refresh-token');
+    this.router.navigate(['/auth/login']);
   }
 }

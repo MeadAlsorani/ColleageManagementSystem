@@ -4,3 +4,8 @@ export interface PaginationPayload {
   Ascending: boolean;
   SortBy?: string;
 }
+
+export interface PaginationResponse {
+  count: number;
+  records: any[];
+}

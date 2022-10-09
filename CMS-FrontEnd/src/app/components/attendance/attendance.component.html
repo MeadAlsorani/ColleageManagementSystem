@@ -3,5 +3,6 @@
   [columns]="columns"
   [isLoading]="isLoading"
   [pageTitle]="'Attendance'"
+  (paginationChangedEmitter)="onPaginationChanged($event)"
   [controllerName]="'Attendances'"
 ></app-table>

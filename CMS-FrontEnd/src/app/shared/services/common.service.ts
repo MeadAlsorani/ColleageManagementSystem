@@ -1,4 +1,4 @@
-import { PaginationPayload } from './../interfaces/Request';
+import { PaginationPayload, PaginationResponse } from './../interfaces/Request';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { map, Observable, BehaviorSubject, tap } from 'rxjs';
@@ -29,8 +29,13 @@ export class CommonService {
   Get(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}`);
   }
-  GetWithPagination(payload: PaginationPayload) {
-    return this.http.post(`${this.baseUrl}/GetWithPagination`, payload);
+  GetWithPagination(
+    payload: PaginationPayload
+  ): Observable<PaginationResponse> {
+    return this.http.post<PaginationResponse>(
+      `${this.baseUrl}/GetWithPagination`,
+      payload
+    );
   }
   GetDetails(id: number) {
     return this.http.get(`${this.baseUrl}/${id}`);
