@@ -18,14 +18,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AddComponent extends BaseComponent implements OnInit {
   _fields: FormField[] = [];
   @Output() submitFormEmitter = new EventEmitter();
+  @Output() valueChangeEmitter = new EventEmitter();
   @Input() set fields(fields: FormField[]) {
     if (fields != null && fields.length > 0) {
       this._fields = fields;
-      this.formGroup = this.formBuilder.group({});
+      if (this.formGroup == null) this.formGroup = this.formBuilder.group({});
       fields.forEach((field) => {
-        this.formGroup.addControl(field.code, new FormControl(null));
-        if (field.required === true)
-          this.formGroup.get(field.code)?.addValidators(Validators.required);
+        if (!this.formGroup.contains(field.code)) {
+          this.formGroup.addControl(field.code, new FormControl(null));
+          if (field.required === true)
+            this.formGroup.get(field.code)?.addValidators(Validators.required);
+        }
       });
     }
   }
@@ -37,7 +40,11 @@ export class AddComponent extends BaseComponent implements OnInit {
     super(injector);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.formGroup.valueChanges.subscribe((change) => {
+      this.valueChangeEmitter.emit(change);
+    });
+  }
   submit() {
     this.submitFormEmitter.emit(this.formGroup.value);
   }

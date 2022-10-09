@@ -117,7 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Event" xml:space="preserve">
+    <value>Etkinlik</value>
+  </data>
+  <data name="Holiday" xml:space="preserve">
+    <value>Tatil</value>
+  </data>
   <data name="Notice" xml:space="preserve">
     <value>Not</value>
+  </data>
+  <data name="Staff" xml:space="preserve">
+    <value>Çalışan</value>
+  </data>
+  <data name="Student" xml:space="preserve">
+    <value>Öğrenci</value>
   </data>
 </root>

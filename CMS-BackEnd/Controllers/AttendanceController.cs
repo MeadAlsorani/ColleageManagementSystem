@@ -12,7 +12,6 @@ namespace CMS_BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Reciptionist")]
     public class AttendanceController : ControllerBase
     {
         private readonly IMediator mediator;
@@ -51,7 +50,7 @@ namespace CMS_BackEnd.Controllers
             });
             return Ok(record);
         }
-        [HttpGet("Staff/{id}")]
+        [HttpGet("Staff/{id}"),Authorize(Roles = "Reciptionist")]
         public async Task<ActionResult<IReadOnlyList<StudentAttendanceDto>>> GetStaffAttendances(int id, DateTime startDate, DateTime endDate)
         {
             var record = await mediator.Send(new GetStaffAtendancesListRequest()
@@ -64,6 +63,7 @@ namespace CMS_BackEnd.Controllers
         }
         // POST api/<AttendanceController>
         [HttpPost]
+        [Authorize(Roles = "Reciptionist")]
         public async Task<ActionResult> Post([FromBody] CreateAttendanceDto data)
         {
             await mediator.Send(new CreateAttendanceRequest() { CreateData = data });
@@ -71,7 +71,7 @@ namespace CMS_BackEnd.Controllers
         }
 
         // DELETE api/<AttendanceController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize(Roles = "Reciptionist")]
         public async Task<ActionResult> Delete(int id)
         {
             await mediator.Send(new DeleteAttendanceRequest() { Id = id });

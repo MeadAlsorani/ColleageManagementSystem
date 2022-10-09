@@ -28,6 +28,13 @@ const routes: Routes = [
             (x) => x.AnnouncementModule
           ),
       },
+      {
+        path: 'attendances',
+        loadChildren: () =>
+          import('./components/attendance/attendance.module').then(
+            (x) => x.AttendanceModule
+          ),
+      },
     ],
   },
 ];

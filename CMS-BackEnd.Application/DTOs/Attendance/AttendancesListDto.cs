@@ -10,7 +10,7 @@ namespace CMS_BackEnd.Application.DTOs.Attendance
     public class AttendancesListDto : BaseDto
     {
         public DateTime Date { get; set; }
-        public AttendanceType Type { get; set; }
+        public string Type { get; set; } = "";
         public string Name { get; set; } = null!;
     }
     public enum AttendanceType

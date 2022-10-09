@@ -18,6 +18,7 @@ export class AnnouncementsListComponent
   columns: string[] = [];
   constructor(injector: Injector, private service: AnnouncementsService) {
     super(injector);
+    this.columns = ['title', 'type', 'date'];
   }
 
   ngOnInit() {
@@ -29,9 +30,7 @@ export class AnnouncementsListComponent
     return this.service.GetWithPagination(this.pagination).pipe(
       tap((response: any) => {
         this.records = response;
-        this.columns = Object.keys(this.records[0]).filter(
-          (x) => x.toLowerCase() != 'id'
-        );
+
         this.isLoading = false;
       })
     );

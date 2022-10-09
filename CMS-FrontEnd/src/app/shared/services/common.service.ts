@@ -1,7 +1,7 @@
 import { PaginationPayload } from './../interfaces/Request';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, BehaviorSubject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Menu } from '../interfaces/Menu';
 import { User } from '../interfaces/User';
@@ -11,10 +11,18 @@ import { User } from '../interfaces/User';
 })
 export class CommonService {
   baseUrl = '';
+  menus$ = new BehaviorSubject<Menu[]>([]);
+  appMenus = this.menus$.asObservable();
+  public setMenus(values: Menu[]) {
+    this.menus$.next(values);
+  }
+  public getAppMenus() {
+    return this.appMenus;
+  }
   get entity() {
     return '';
   }
-  constructor(private http: HttpClient) {
+  constructor(public http: HttpClient) {
     this.baseUrl = environment.apiUrl + this.entity;
   }
 

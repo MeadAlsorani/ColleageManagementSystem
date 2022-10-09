@@ -33,6 +33,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
   getMenus() {
     this.commonService.getMenus().subscribe((response) => {
       this.menus = response;
+      this.commonService.setMenus(response);
     });
   }
   ngOnInit() {

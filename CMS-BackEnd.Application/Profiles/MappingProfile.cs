@@ -17,11 +17,17 @@ namespace CMS_BackEnd.Application.Profiles
 {
     public class MappingProfile : Profile
     {
+
         public MappingProfile()
         {
 
             #region Student
-            CreateMap<Student, StudentDto>().ReverseMap();
+            CreateMap<Student, StudentDto>()
+                .ForMember(dest => dest.FullName, opt =>
+                {
+                    opt.MapFrom(src => $"{src.FirstName} {src.LastName}");
+                })
+                .ReverseMap();
             CreateMap<Student, CreateStudentDto>().ForMember(dest => dest.StudentCoursesIds, opt =>
             {
                 opt.MapFrom((src, dest) =>
@@ -74,29 +80,66 @@ namespace CMS_BackEnd.Application.Profiles
             CreateMap<Attendance, StaffAttendanceDto>().ReverseMap();
             CreateMap<Attendance, StudentAttendanceDto>().ReverseMap();
             CreateMap<Attendance, AttendancesListDto>()
-                .ForMember(dest => dest.Name, opt =>
+               .ForMember(dest => dest.Name, opt =>
+               {
+                   opt.MapFrom((src, dest) =>
+                   {
+                       if (src.Staff != null)
+                       {
+                           dest.Type = AttendanceType.Staff.ToString();
+                           return $"{src.Staff?.FirstName} {src.Staff?.LastName}";
+                       }
+                       else if (src.Student != null)
+                       {
+                           dest.Type = AttendanceType.Student.ToString();
+                           return $"{src.Student?.FirstName} {src.Student?.LastName}";
+                       }
+                       return "";
+                   });
+               })
+               .ForMember(dest => dest.Type, opt =>
+               {
+                   opt.MapFrom<TranslationResolver, string>(src => src.Staff != null ? "Staff" : "Student");
+
+               });
+            CreateMap<CreateAttendanceDto, Attendance>()
+                .ForAllMembers(opt =>
                 {
                     opt.MapFrom((src, dest) =>
                     {
-                        if (src.Staff != null)
+                        if (src.Type == AttendanceType.Staff)
                         {
-                            dest.Type = AttendanceType.Staff;
-                            return $"{src.Staff?.FirstName} {src.Staff?.LastName}";
+                            dest.StaffId = src.StaffStudentId;
                         }
-                        else if (src.Student != null)
+                        else
                         {
-                            dest.Type = AttendanceType.Student;
-                            return $"{src.Student?.FirstName} {src.Student?.LastName}";
+                            dest.StudentId = src.StaffStudentId;
                         }
-                        return "";
+                        return dest;
                     });
                 });
+            CreateMap<Attendance, CreateAttendanceDto>().ForMember(dest => dest.Type, opt =>
+            {
+                opt.MapFrom((src, dest) =>
+                {
+                    AttendanceType value;
+                    if (src.StudentId != null)
+                    {
+                        value = AttendanceType.Student;
+                    }
+                    else
+                    {
+                        value = AttendanceType.Staff;
+                    }
+                    return value;
+                });
+            });
             #endregion
 
             #region Announcement
             CreateMap<Announcement, AnnouncementListDto>().ForMember(dest => dest.Type, opt =>
             {
-                opt.MapFrom<TranslationResolver,string>(src => src.Type.ToString());
+                opt.MapFrom<TranslationResolver, string>(src => src.Type.ToString());
             });
             CreateMap<Announcement, AnnouncementRecordDto>().ReverseMap();
             #endregion

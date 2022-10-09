@@ -1,6 +1,7 @@
 <div class="page-header">
   <h2>{{ pageTitle | translate }}</h2>
   <button
+    *ngIf="tableConstraints.AllowAdd"
     mat-raised-button
     color="primary"
     [routerLink]="['..', 'add']"
@@ -17,6 +18,7 @@
         <mat-grid-list cols="2">
           <mat-grid-tile>
             <button
+              *ngIf="tableConstraints.AllowDelete"
               mat-icon-button
               color="warn"
               (click)="deleteRecord(element)"
@@ -26,6 +28,7 @@
           </mat-grid-tile>
           <mat-grid-tile>
             <button
+              *ngIf="tableConstraints.AllowEdit"
               mat-icon-button
               color="accent"
               [routerLink]="['..', 'edit', element.id]"

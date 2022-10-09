@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using CMS_Backend.Persistence.ExtensionMethods;
 using CMS_Backend.Persistence.Repositories.Base;
 using CMS_BackEnd.Application.Contracts.Features;
 using CMS_BackEnd.Application.DTOs.Attendance;
 using CMS_BackEnd.Application.DTOs.Student;
+using CMS_BackEnd.Application.Features.Common;
 using CMS_BackEnd.Domain;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -27,6 +29,11 @@ namespace CMS_Backend.Persistence.Repositories
             var records = await dbContext.Attendances.Include(x => x.Student).Include(x => x.Staff).AsNoTracking().ToListAsync();
             return records;
         }
+        public override async Task<IReadOnlyList<Attendance>> GetAllWithPagination(ListPaginationRequest request)
+        {
+            var records = await dbContext.Attendances.AsNoTracking().ApplyPagination(request).Include(x => x.Student).Include(x => x.Staff).ToListAsync();
+            return records;
+        }
         public async Task<IReadOnlyList<StaffAttendanceDto>> StaffAttendances(int staffId)
         {
             var list = await dbContext.Attendances.Include(x => x.Student).Include(x => x.Staff).AsNoTracking().Where(x => x.StaffId == staffId).ToListAsync();
@@ -34,9 +41,9 @@ namespace CMS_Backend.Persistence.Repositories
             return mapped;
         }
 
-        public async Task<IReadOnlyList<StaffAttendanceDto>> StaffAttendancesByDate(DateTime start, DateTime end,int staffId)
+        public async Task<IReadOnlyList<StaffAttendanceDto>> StaffAttendancesByDate(DateTime start, DateTime end, int staffId)
         {
-            var records =await StaffAttendances(staffId);
+            var records = await StaffAttendances(staffId);
             var list = records.Where(x => x.Date >= start && x.Date <= end).ToList();
             return list;
         }
@@ -47,7 +54,7 @@ namespace CMS_Backend.Persistence.Repositories
             return mapper.Map<List<StudentAttendanceDto>>(list);
         }
 
-        public async Task<IReadOnlyList<StudentAttendanceDto>> StudentAttendancesByDate(DateTime start, DateTime end,int studentId)
+        public async Task<IReadOnlyList<StudentAttendanceDto>> StudentAttendancesByDate(DateTime start, DateTime end, int studentId)
         {
             var records = await StudentAttendances(studentId);
             var list = records.Where(x => x.Date >= start && x.Date <= end).ToList();

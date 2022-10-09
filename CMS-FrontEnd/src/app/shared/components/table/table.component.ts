@@ -1,3 +1,4 @@
+import { Menu } from './../../interfaces/Menu';
 import { BaseComponent } from './../Base.component';
 import { TranslateService } from '@ngx-translate/core';
 import {
@@ -30,11 +31,24 @@ export class TableComponent extends BaseComponent implements OnInit {
   get columns() {
     return this._columns;
   }
+  tableConstraints: {
+    AllowAdd: boolean;
+    AllowDelete: boolean;
+    AllowEdit: boolean;
+  } = { AllowAdd: false, AllowDelete: false, AllowEdit: false };
   constructor(injector: Injector) {
     super(injector);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.commonService.getAppMenus().subscribe((menus: Menu[]) => {
+      const menu = menus.find((x) => x.title == this.controllerName);
+      this.tableConstraints.AllowAdd = menu?.actions.includes('add') ?? false;
+      this.tableConstraints.AllowEdit = menu?.actions.includes('edit') ?? false;
+      this.tableConstraints.AllowDelete =
+        menu?.actions.includes('delete') ?? false;
+    });
+  }
   navigateToEdit() {}
   deleteRecord(record: any) {
     if (

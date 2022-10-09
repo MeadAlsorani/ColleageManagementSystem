@@ -3,6 +3,7 @@ using CMS_Backend.Persistence.Repositories.Base;
 using CMS_BackEnd.Application.Contracts.Base;
 using CMS_BackEnd.Application.Contracts.Features;
 using CMS_BackEnd.Application.Models;
+using CMS_BackEnd.Application.Profiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

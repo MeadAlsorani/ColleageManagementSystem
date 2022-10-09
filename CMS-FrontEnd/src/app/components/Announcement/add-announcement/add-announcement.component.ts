@@ -72,6 +72,7 @@ export class AddAnnouncementComponent extends BaseComponent implements OnInit {
         horizontalPosition: 'center',
         verticalPosition: 'top',
         duration: 4000,
+        panelClass: 'success-panel',
       }
     );
   }

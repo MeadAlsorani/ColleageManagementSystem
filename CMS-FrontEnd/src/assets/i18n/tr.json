@@ -26,5 +26,9 @@
   "Session Year": "Dönem",
   "Income transations": "Gelir hareketleri",
   "Outcome transaction": "Çıkış hareketleri",
-  "Salary Templates": "Maaş"
+  "Salary Templates": "Maaş",
+  "name":"İsim",
+  "Staff":"Çalışan",
+  "Student":"Öğrenci",
+  "Attendance": "Katılmak"
 }
