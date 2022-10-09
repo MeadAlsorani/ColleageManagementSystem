@@ -14,10 +14,12 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   declarations: [],
   imports: [],
   exports: [
+    MatPaginatorModule,
     MatCardModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,

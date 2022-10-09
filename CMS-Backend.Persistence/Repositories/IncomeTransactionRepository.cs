@@ -2,6 +2,7 @@
 using CMS_Backend.Persistence.ExtensionMethods;
 using CMS_Backend.Persistence.Repositories.Base;
 using CMS_BackEnd.Application.Contracts.Features;
+using CMS_BackEnd.Application.DTOs.Common;
 using CMS_BackEnd.Application.DTOs.IncomingTransaction;
 using CMS_BackEnd.Application.Features.Common;
 using CMS_BackEnd.Domain;
@@ -33,12 +34,13 @@ namespace CMS_Backend.Persistence.Repositories
             var records = await dbContext.IncomeTransactions.AsNoTracking().Include(x => x.Student).Include(x => x.Course).ToListAsync();
             return records;
         }
-        public override async Task<IReadOnlyList<IncomeTransaction>> GetAllWithPagination(ListPaginationRequest request)
+        public override async Task<PaginationResponse<IncomeTransaction>> GetAllWithPagination(ListPaginationRequest request)
         {
             var records = await dbContext.IncomeTransactions.AsNoTracking()
                 .Include(x => x.Student).Include(x => x.Course)
                 .ApplyPagination(request).ToListAsync();
-            return records;
+            var counts = await dbContext.IncomeTransactions.AsNoTracking().CountAsync();
+            return new PaginationResponse<IncomeTransaction> { Count = counts, Records = records };
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CMS_BackEnd.Application.Contracts.Features;
 using CMS_BackEnd.Application.DTOs.Attendance;
+using CMS_BackEnd.Application.DTOs.Common;
 using CMS_BackEnd.Application.Features.Attendance.Requests.Queries;
 using MediatR;
 using System;
@@ -11,25 +12,33 @@ using System.Threading.Tasks;
 
 namespace CMS_BackEnd.Application.Features.Attendance.Handlers.Queries
 {
-    public class GetAttendancesRequestHandler : BaseRequestHandler, IRequestHandler<GetAttendancesRequest, IReadOnlyList<AttendancesListDto>>
+    public class GetAttendancesRequestHandler : BaseRequestHandler, IRequestHandler<GetAttendancesRequest, PaginationResponse<AttendancesListDto>>
     {
         public GetAttendancesRequestHandler(IAttendanceRepository attendanceRepository, IMapper mapper) : base(attendanceRepository, mapper)
         {
         }
 
-        public async Task<IReadOnlyList<AttendancesListDto>> Handle(GetAttendancesRequest request, CancellationToken cancellationToken)
+        public async Task<PaginationResponse<AttendancesListDto>> Handle(GetAttendancesRequest request, CancellationToken cancellationToken)
         {
+            PaginationResponse<AttendancesListDto> paginationResponse = new PaginationResponse<AttendancesListDto>();
             IReadOnlyList<Domain.Attendance> records;
             if (request.pagination != null)
             {
-                records = await attendanceRepository.GetAllWithPagination(request.pagination);
+
+                var paginationResult = await attendanceRepository.GetAllWithPagination(request.pagination);
+                records = paginationResult.Records;
+                var result = mapper.Map<IReadOnlyList<AttendancesListDto>>(records);
+                paginationResponse.Records = result;
+                paginationResponse.Count = paginationResult.Count;
             }
             else
             {
                 records = await attendanceRepository.GetAll();
+                var result = mapper.Map<IReadOnlyList<AttendancesListDto>>(records);
+                paginationResponse.Records = result;
+                paginationResponse.Count = result.Count;
             }
-            var mappedRecords = mapper.Map<IReadOnlyList<AttendancesListDto>>(records);
-            return mappedRecords;
+            return paginationResponse;
         }
     }
 }

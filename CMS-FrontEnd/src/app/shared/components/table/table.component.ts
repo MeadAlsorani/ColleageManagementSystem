@@ -57,4 +57,7 @@ export class TableComponent extends BaseComponent implements OnInit {
       this.deleteRecordEmitter.emit(record.id.toString());
     }
   }
+  paginationChanged(event: any) {
+    console.log(event);
+  }
 }

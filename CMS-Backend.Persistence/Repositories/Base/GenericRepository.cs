@@ -1,5 +1,6 @@
 ﻿using CMS_Backend.Persistence.ExtensionMethods;
 using CMS_BackEnd.Application.Contracts.Base;
+using CMS_BackEnd.Application.DTOs.Common;
 using CMS_BackEnd.Application.Features.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -48,10 +49,11 @@ namespace CMS_Backend.Persistence.Repositories.Base
             return await dbContext.Set<T>().AsNoTracking().ToListAsync();
         }
 
-        public virtual async Task<IReadOnlyList<T>> GetAllWithPagination(ListPaginationRequest request)
+        public virtual async Task<PaginationResponse<T>> GetAllWithPagination(ListPaginationRequest request)
         {
             var records = await dbContext.Set<T>().AsNoTracking().ApplyPagination(request).ToListAsync();
-            return records;
+            var count = await dbContext.Set<T>().AsNoTracking().CountAsync();
+            return new PaginationResponse<T> { Count = count, Records = records };
         }
 
         public virtual async Task Update(T entity)

@@ -41,7 +41,7 @@ namespace CMS_BackEnd.Controllers
         public async Task<ActionResult> GetWithPagination(ListPaginationRequest listPagination)
         {
             var records = await mediator.Send(new AnnouncementListRequest() { request = listPagination });
-            foreach (var record in records)
+            foreach (var record in records.Records)
             {
                 record.Type = localizer[record.Type].Value;
             }

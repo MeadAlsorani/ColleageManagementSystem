@@ -1,4 +1,5 @@
-﻿using CMS_BackEnd.Application.DTOs.IncomingTransaction;
+﻿using CMS_BackEnd.Application.DTOs.Common;
+using CMS_BackEnd.Application.DTOs.IncomingTransaction;
 using CMS_BackEnd.Application.Features.Common;
 using MediatR;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CMS_BackEnd.Application.Features.IncomeTransaction.Requests.Queries
 {
-    public class IncomingTransactionsListRequest : IRequest<IReadOnlyList<IncomingTransactionsListDto>>
+    public class IncomingTransactionsListRequest : IRequest<PaginationResponse<IncomingTransactionsListDto>>
     {
         public ListPaginationRequest? Pagination { get; set; }
     }

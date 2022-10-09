@@ -1,4 +1,5 @@
-﻿using CMS_BackEnd.Domain;
+﻿using CMS_Backend.Persistence.Configurations;
+using CMS_BackEnd.Domain;
 using CMS_BackEnd.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,16 +16,18 @@ namespace CMS_Backend.Persistence
         { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ColleageManagementDbContext).Assembly);
+            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(ColleageManagementDbContext).Assembly);
+            modelBuilder.ApplyConfiguration(new EducationClassesConfiguration());
+            modelBuilder.ApplyConfiguration(new CoursesConfiguration());
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             foreach (var entry in base.ChangeTracker.Entries<BaseModelClass>()
-                .Where(x=>x.State==EntityState.Added||x.State==EntityState.Modified))
+                .Where(x => x.State == EntityState.Added || x.State == EntityState.Modified))
             {
                 entry.Entity.ModificationDate = DateTime.Now;
-                if (entry.State==EntityState.Added)
+                if (entry.State == EntityState.Added)
                 {
                     entry.Entity.CreationDate = DateTime.Now;
                 }

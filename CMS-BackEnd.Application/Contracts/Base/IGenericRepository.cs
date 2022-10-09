@@ -1,4 +1,5 @@
-﻿using CMS_BackEnd.Application.Features.Common;
+﻿using CMS_BackEnd.Application.DTOs.Common;
+using CMS_BackEnd.Application.Features.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace CMS_BackEnd.Application.Contracts.Base
     {
         Task<T> Get(int id);
         Task<IReadOnlyList<T>> GetAll();
-        Task<IReadOnlyList<T>> GetAllWithPagination(ListPaginationRequest request);
+        Task<PaginationResponse<T>> GetAllWithPagination(ListPaginationRequest request);
         Task<bool> Exists(int id);
         Task<T> Add(T entity);
         Task Update(T entity);

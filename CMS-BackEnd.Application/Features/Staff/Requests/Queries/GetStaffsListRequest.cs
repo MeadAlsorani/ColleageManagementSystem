@@ -1,4 +1,5 @@
-﻿using CMS_BackEnd.Application.DTOs.Staff;
+﻿using CMS_BackEnd.Application.DTOs.Common;
+using CMS_BackEnd.Application.DTOs.Staff;
 using CMS_BackEnd.Application.Features.Common;
 using MediatR;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CMS_BackEnd.Application.Features.Staff.Requests.Queries
 {
-    public class GetStaffsListRequest:IRequest<IReadOnlyList<StaffListDto>>
+    public class GetStaffsListRequest:IRequest<PaginationResponse<StaffListDto>>
     {
         public ListPaginationRequest? pagination { get; set; }
     }

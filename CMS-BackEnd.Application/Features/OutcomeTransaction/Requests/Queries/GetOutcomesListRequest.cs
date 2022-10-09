@@ -1,4 +1,5 @@
-﻿using CMS_BackEnd.Application.DTOs.OutcomeTransaction;
+﻿using CMS_BackEnd.Application.DTOs.Common;
+using CMS_BackEnd.Application.DTOs.OutcomeTransaction;
 using CMS_BackEnd.Application.Features.Common;
 using MediatR;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CMS_BackEnd.Application.Features.OutcomeTransaction.Requests.Queries
 {
-    public class GetOutcomesListRequest : IRequest<IReadOnlyList<OutcomeListDto>>
+    public class GetOutcomesListRequest : IRequest<PaginationResponse<OutcomeListDto>>
     {
         public ListPaginationRequest? pagination { get; set; }
     }

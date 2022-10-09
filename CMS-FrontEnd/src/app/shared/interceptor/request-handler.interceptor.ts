@@ -18,7 +18,8 @@ export class RequestHandlerInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     let headers = new HttpHeaders();
-    headers = headers.append('Authorization', `Bearer ${environment.token}`);
+    const token = localStorage.getItem('token');
+    headers = headers.append('Authorization', `Bearer ${token}`);
     if (!req.url.includes('i18n')) {
       headers = headers.append(
         'Accept-Language',

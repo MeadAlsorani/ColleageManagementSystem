@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CMS_BackEnd.Application.Contracts.Features;
+using CMS_BackEnd.Application.DTOs.Common;
 using CMS_BackEnd.Application.DTOs.Staff;
 using CMS_BackEnd.Application.Features.Staff.Requests.Queries;
 using MediatR;
@@ -11,26 +12,33 @@ using System.Threading.Tasks;
 
 namespace CMS_BackEnd.Application.Features.Staff.Handlers.Queries
 {
-    public class GetStaffsListRequestHandler : BaseRequestHandler, IRequestHandler<GetStaffsListRequest, IReadOnlyList<StaffListDto>>
+    public class GetStaffsListRequestHandler : BaseRequestHandler, IRequestHandler<GetStaffsListRequest, PaginationResponse<StaffListDto>>
     {
         public GetStaffsListRequestHandler(IStaffRepository repo, IMapper mapper) : base(repo, mapper)
         {
         }
 
-        public async Task<IReadOnlyList<StaffListDto>> Handle(GetStaffsListRequest request, CancellationToken cancellationToken)
+        public async Task<PaginationResponse<StaffListDto>> Handle(GetStaffsListRequest request, CancellationToken cancellationToken)
         {
             IReadOnlyList<Domain.Staff> records;
 
-            if (request.pagination!=null)
+            PaginationResponse<StaffListDto> paginationResponse = new PaginationResponse<StaffListDto>();
+            if (request.pagination != null)
             {
-                records = await repository.GetAllWithPagination(request.pagination);
+                var paginationResult = await repository.GetAllWithPagination(request.pagination);
+                records = paginationResult.Records;
+                var result = mapper.Map<IReadOnlyList<StaffListDto>>(records);
+                paginationResponse.Records = result;
+                paginationResponse.Count = paginationResult.Count;
             }
             else
             {
                 records = await repository.GetAll();
+                var result = mapper.Map<IReadOnlyList<StaffListDto>>(records);
+                paginationResponse.Records = result;
+                paginationResponse.Count = result.Count;
             }
-
-            return mapper.Map<IReadOnlyList<StaffListDto>>(records);
+            return paginationResponse;
         }
     }
 }

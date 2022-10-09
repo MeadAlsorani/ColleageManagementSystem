@@ -3,6 +3,7 @@ using CMS_Backend.Persistence.ExtensionMethods;
 using CMS_Backend.Persistence.Repositories.Base;
 using CMS_BackEnd.Application.Contracts.Features;
 using CMS_BackEnd.Application.DTOs.Attendance;
+using CMS_BackEnd.Application.DTOs.Common;
 using CMS_BackEnd.Application.DTOs.Student;
 using CMS_BackEnd.Application.Features.Common;
 using CMS_BackEnd.Domain;
@@ -29,10 +30,11 @@ namespace CMS_Backend.Persistence.Repositories
             var records = await dbContext.Attendances.Include(x => x.Student).Include(x => x.Staff).AsNoTracking().ToListAsync();
             return records;
         }
-        public override async Task<IReadOnlyList<Attendance>> GetAllWithPagination(ListPaginationRequest request)
+        public override async Task<PaginationResponse<Attendance>> GetAllWithPagination(ListPaginationRequest request)
         {
             var records = await dbContext.Attendances.AsNoTracking().ApplyPagination(request).Include(x => x.Student).Include(x => x.Staff).ToListAsync();
-            return records;
+            var count = await dbContext.Attendances.AsNoTracking().CountAsync();
+            return new PaginationResponse<Attendance> { Count = count, Records = records };
         }
         public async Task<IReadOnlyList<StaffAttendanceDto>> StaffAttendances(int staffId)
         {
