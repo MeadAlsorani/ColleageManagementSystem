@@ -23,14 +23,12 @@ namespace CMS_BackEnd.Controllers
         }
         // GET: api/<StudentController>
         [HttpGet]
-        [Authorize(Roles = "Admin,Reciptionist")]
         public async Task<ActionResult> GetAll()
         {
             var records = await mediator.Send(new StudentsListRequest());
             return Ok(records);
         }
         [HttpPost("GetWithPagination")]
-        [Authorize(Roles = "Admin,Reciptionist")]
         public async Task<ActionResult> GetWithPagination(ListPaginationRequest pagination)
         {
             var recods = await mediator.Send(new StudentsListRequest() { pagination = pagination });
@@ -39,13 +37,11 @@ namespace CMS_BackEnd.Controllers
 
         // GET api/<StudentController>/5
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin,Reciptionist")]
         public async Task<ActionResult> Get(int id)
         {
             return Ok(await mediator.Send(new StudentDetailsRequest() { Id = id }));
         }
         [HttpGet("WithCourses/{id}")]
-        [Authorize(Roles = "Admin,Reciptionist")]
         public async Task<ActionResult> GetWithCourses(int id)
         {
             return Ok(await mediator.Send(new GetStudentWithCoursesRequest() { Id = id }));

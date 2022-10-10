@@ -34,9 +34,12 @@ namespace CMS_BackEnd.Application.Features.Staff.Handlers.Queries
             else
             {
                 records = await repository.GetAll();
-                var result = mapper.Map<IReadOnlyList<StaffListDto>>(records);
-                paginationResponse.Records = result;
-                paginationResponse.Count = result.Count;
+                List<StaffListDto> staffs = new List<StaffListDto>();
+                foreach (var record in records)
+                    staffs.Add(mapper.Map<StaffListDto>(record));
+                //var result = mapper.Map<IReadOnlyList<StaffListDto>>(records);
+                paginationResponse.Records = staffs;
+                paginationResponse.Count = staffs.Count;
             }
             return paginationResponse;
         }

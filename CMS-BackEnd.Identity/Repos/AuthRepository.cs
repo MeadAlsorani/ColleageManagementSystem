@@ -89,7 +89,7 @@ namespace CMS_BackEnd.Identity.Repos
                 Id = user.Id,
                 FullName = $"{user.FirstName} {user.LastName}",
                 Role = (await userManager.GetRolesAsync(user)).First(),
-                RefreshToken = refreshToken
+                RefreshToken = newRefreshToken
             };
         }
         public async Task<AuthResponse> Login(string username, string password)

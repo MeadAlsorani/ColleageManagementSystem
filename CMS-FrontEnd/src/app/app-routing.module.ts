@@ -35,6 +35,13 @@ const routes: Routes = [
             (x) => x.AttendanceModule
           ),
       },
+      {
+        path: 'student',
+        loadChildren: () =>
+          import('./components/student/student.module').then(
+            (x) => x.StudentModule
+          ),
+      },
     ],
   },
 ];

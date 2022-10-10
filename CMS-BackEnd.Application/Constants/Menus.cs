@@ -38,7 +38,7 @@ namespace CMS_BackEnd.Application.Constants
             menus.Add("Reciptionist", new List<Menu>
             {
                 new Menu{Route="/app/announcements",Title="Announcements",Icon="announcement",Actions=new List<string>{"add","edit","delete" } },
-                new Menu{Route="/app/attendances",Title="Attendances",Icon="date_range",Actions=new List<string>{"add", "edit", "delete" } },
+                new Menu{Route="/app/attendances",Title="Attendances",Icon="date_range",Actions=new List<string>{"add", "delete" } },
                 new Menu{Route="/app/student",Title="Students",Icon="school",Actions=new List<string>{"add","edit","delete" } }
             });
         }

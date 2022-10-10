@@ -30,5 +30,18 @@
   "name": "اسم",
   "Staff": "موظف",
   "Student": "طالب",
-  "Attendance": "الحضور"
+  "Attendance": "الحضور",
+  "fullName": "الاسم",
+  "guardianName": "ولي الامر",
+  "phoneNumber": "رقم الموبايل",
+  "classLevel": "المرحلة الدارسية",
+  "schoolName": "المدرسة",
+  "registerationDate": "تاريخ التسجيل",
+  "First Name": "الاسم",
+  "Last Name": "الكنية",
+  "Guardian Name": "ولي الامر",
+  "Phone Number": "رقم الموبايل",
+  "Address": "العنوان",
+  "Class Level": "المرحلة الدراسية",
+  "School Name": "اسم المدرسة"
 }

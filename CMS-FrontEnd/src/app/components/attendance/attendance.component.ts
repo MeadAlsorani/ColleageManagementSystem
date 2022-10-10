@@ -41,4 +41,10 @@ export class AttendanceComponent extends BaseComponent implements OnInit {
     this.pagination.PageIndex = event.pageIndex;
     this.getAttendances().subscribe();
   }
+  deleteAttendence(event: any) {
+    this.attendanceService.Delete(event).subscribe(() => {
+      this.openNotification();
+      this.getAttendances().subscribe();
+    });
+  }
 }

@@ -24,7 +24,6 @@ namespace CMS_BackEnd.Controllers
         }
         // GET: api/<StaffController>
         [HttpGet]
-        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Get()
         {
             var records = await mediator.Send(new GetStaffsListRequest());
@@ -32,7 +31,6 @@ namespace CMS_BackEnd.Controllers
         }
 
         [HttpPost("GetWithPagination")]
-        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> GetWithPagination([FromBody] ListPaginationRequest pagination)
         {
             var records = await mediator.Send(new GetStaffsListRequest() { pagination = pagination });
@@ -40,7 +38,6 @@ namespace CMS_BackEnd.Controllers
         }
         // GET api/<StaffController>/5
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Get(int id)
         {
             return Ok(await mediator.Send(new GetStaffDetailsRequest() { Id = id }));

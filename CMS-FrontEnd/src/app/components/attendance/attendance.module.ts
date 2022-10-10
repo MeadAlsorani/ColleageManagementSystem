@@ -1,3 +1,4 @@
+import { EditAttendanceComponent } from './edit-attendance/edit-attendance.component';
 import { AddAttendanceComponent } from './add-attendance/add-attendance.component';
 import { AttendanceService } from './shared/attendance.service';
 import { SharedModule } from 'src/app/shared/sharedModule.module';
@@ -8,7 +9,11 @@ import { AttendanceRoutes } from './attendance.routing';
 
 @NgModule({
   imports: [CommonModule, SharedModule, AttendanceRoutes],
-  declarations: [AttendanceComponent, AddAttendanceComponent],
+  declarations: [
+    AttendanceComponent,
+    AddAttendanceComponent,
+    EditAttendanceComponent,
+  ],
   providers: [AttendanceService],
 })
 export class AttendanceModule {}

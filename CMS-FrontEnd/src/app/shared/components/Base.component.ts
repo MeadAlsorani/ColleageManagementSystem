@@ -36,4 +36,16 @@ export class BaseComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
+  openNotification() {
+    this.snackBar.open(
+      this.translateService.instant('Operation succeeded'),
+      undefined,
+      {
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+        duration: 4000,
+        panelClass: 'success-panel',
+      }
+    );
+  }
 }

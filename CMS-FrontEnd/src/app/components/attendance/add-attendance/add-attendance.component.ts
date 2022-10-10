@@ -49,7 +49,7 @@ export class AddAttendanceComponent extends BaseComponent implements OnInit {
         observable = this.attencanceService.getStaffs();
       }
       observable.subscribe((resp: any) => {
-        const records = resp as any[];
+        const records = resp.records as any[];
         const options: DropdownOption[] = [];
         records.forEach((student) => {
           options.push({

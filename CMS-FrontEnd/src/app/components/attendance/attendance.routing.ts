@@ -1,3 +1,4 @@
+import { EditAttendanceComponent } from './edit-attendance/edit-attendance.component';
 import { AddAttendanceComponent } from './add-attendance/add-attendance.component';
 import { AttendanceComponent } from './attendance.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'add',
     component: AddAttendanceComponent,
+  },
+  {
+    path: ':id',
+    component: EditAttendanceComponent,
   },
 ];
 

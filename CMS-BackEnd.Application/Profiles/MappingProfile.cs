@@ -34,21 +34,24 @@ namespace CMS_BackEnd.Application.Profiles
                 {
                     return dest.StudentCoursesIds = src.StudentCourses.Select(x => x.CourseId).ToList();
                 });
-            })
-                .ReverseMap().ForMember(dest => dest.StudentCourses, opt =>
-            {
-                opt.MapFrom((src, dest) =>
-                {
-                    foreach (int id in src.StudentCoursesIds)
-                    {
-                        dest.StudentCourses.Add(new StudentCourse
-                        {
-                            CourseId = id
-                        });
-                    }
-                    return dest;
-                });
             });
+            CreateMap<CreateStudentDto, Student>().ForMember(dest => dest.StudentCourses, opt =>
+             {
+                 opt.MapFrom((src, dest) =>
+                 {
+                     if (src.StudentCoursesIds != null)
+                     {
+                         foreach (int id in src.StudentCoursesIds)
+                         {
+                             dest.StudentCourses.Add(new StudentCourse
+                             {
+                                 CourseId = id
+                             });
+                         }
+                     }
+                     return dest.StudentCourses;
+                 });
+             });
             CreateMap<Student, UpdateStudentDto>().ForMember(dest => dest.StudentCoursesIds, opt =>
             {
                 opt.MapFrom(src => src.StudentCourses.Select(x => x.CourseId));
@@ -69,11 +72,6 @@ namespace CMS_BackEnd.Application.Profiles
                         return dest;
                     });
                 });
-            #endregion
-
-            #region Staff
-            CreateMap<Staff, StaffListDto>().ReverseMap();
-
             #endregion
 
             #region Attendance
@@ -126,10 +124,12 @@ namespace CMS_BackEnd.Application.Profiles
                     if (src.StudentId != null)
                     {
                         value = AttendanceType.Student;
+                        dest.StaffStudentId = (int)src.StudentId;
                     }
                     else
                     {
                         value = AttendanceType.Staff;
+                        dest.StaffStudentId = (int)src.StaffId!;
                     }
                     return value;
                 });
@@ -161,7 +161,16 @@ namespace CMS_BackEnd.Application.Profiles
             #region Staff
             CreateMap<CreateStaffDto, Staff>().ReverseMap();
             CreateMap<StaffDetailsDto, Staff>().ReverseMap();
-            CreateMap<StaffListDto, Staff>().ReverseMap();
+            CreateMap<StaffListDto, Staff>()
+                .ReverseMap()
+                .ForMember(dest => dest.FullName, opt =>
+                {
+                    opt.MapFrom((src, dest) =>
+                    {
+                        dest.FullName = $"{src.FirstName} {src.LastName}";
+                        return $"{src.FirstName} {src.LastName}";
+                    });
+                });
             CreateMap<UpdateStaffDto, Staff>().ReverseMap();
             #endregion
 

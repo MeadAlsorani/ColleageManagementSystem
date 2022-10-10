@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CMS_BackEnd.Application.DTOs.Student
 {
-    public class StudentDto:BaseDto
+    public class StudentDto : BaseDto
     {
         public string FullName { get; set; }
         public string GuardianName { get; set; }

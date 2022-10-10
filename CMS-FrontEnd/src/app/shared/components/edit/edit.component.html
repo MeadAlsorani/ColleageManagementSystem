@@ -52,10 +52,20 @@
       </mat-grid-tile>
     </mat-grid-list>
     <div>
-      <button style="width: 50%" mat-raised-button color="primary">
+      <button
+        style="width: 50%"
+        mat-raised-button
+        color="primary"
+        type="submit"
+      >
         {{ "Save" | translate }}
       </button>
-      <button style="width: 50%" mat-raised-button>
+      <button
+        style="width: 50%"
+        mat-raised-button
+        type="button"
+        [routerLink]="['../../list']"
+      >
         {{ "Cancel" | translate }}
       </button>
     </div>

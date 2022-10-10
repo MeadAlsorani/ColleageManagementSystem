@@ -52,7 +52,9 @@ export class TableComponent extends BaseComponent implements OnInit {
         menu?.actions.includes('delete') ?? false;
     });
   }
-  navigateToEdit() {}
+  navigateToEdit(id: number) {
+    this.router.navigate(['..', id], { relativeTo: this.route });
+  }
   deleteRecord(record: any) {
     if (
       confirm(this.translateService.instant('Are you sure delete this record'))

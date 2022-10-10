@@ -14,7 +14,7 @@ namespace CMS_BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Reciptionist,Admin")]
+    [Authorize]
     public class AnnouncementsController : ControllerBase
     {
         private readonly IMediator mediator;
@@ -57,6 +57,7 @@ namespace CMS_BackEnd.Controllers
 
         // POST api/<AnnouncementsController>
         [HttpPost]
+        [Authorize(Roles = "Reciptionist,Admin")]
         public async Task<ActionResult> Post([FromBody] AnnouncementRecordDto announcement)
         {
             var record = await mediator.Send(new CreateAnnouncementRequest() { announcement = announcement });
@@ -65,6 +66,7 @@ namespace CMS_BackEnd.Controllers
 
         // PUT api/<AnnouncementsController>/5
         [HttpPut("{id}")]
+        [Authorize(Roles = "Reciptionist,Admin")]
         public async Task<ActionResult> Put(int id, [FromBody] AnnouncementRecordDto announcement)
         {
             await mediator.Send(new UpdateAnnouncementRequest() { record = announcement });
@@ -73,6 +75,7 @@ namespace CMS_BackEnd.Controllers
 
         // DELETE api/<AnnouncementsController>/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Reciptionist,Admin")]
         public async Task<ActionResult> Delete(int id)
         {
             await mediator.Send(new DeleteAnnouncementRequest() { Id = id });

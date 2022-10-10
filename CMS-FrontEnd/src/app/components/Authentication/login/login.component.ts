@@ -24,7 +24,15 @@ export class LoginComponent implements OnInit {
         .login(formValue.username, formValue.password)
         .pipe(
           tap((response: any) => {
-            this.authService.userData = response;
+            try {
+              this.authService.userData = response;
+            } catch {
+              localStorage.setItem('token', response.token);
+              localStorage.setItem(
+                'refresh-token',
+                response.refreshToken as string
+              );
+            }
             this.router.navigate(['/']);
           })
         )
