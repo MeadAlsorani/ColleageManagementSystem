@@ -9,6 +9,10 @@ namespace CMS_BackEnd.Domain
 {
     public class Student : BaseModelClass
     {
+        public Student()
+        {
+            StudentCourses = new List<StudentCourse>();
+        }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string GuardianName { get; set; }

@@ -4,3 +4,8 @@ export interface PaginationChangParams {
   pageSize: number;
   length: number;
 }
+export interface Action {
+  code: string;
+  label: string;
+  icon: string;
+}

@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using CMS_Backend.Persistence.ExtensionMethods;
 using CMS_Backend.Persistence.Repositories.Base;
 using CMS_BackEnd.Application.Contracts.Features;
+using CMS_BackEnd.Application.DTOs.Common;
 using CMS_BackEnd.Application.DTOs.Course;
 using CMS_BackEnd.Application.DTOs.Student;
+using CMS_BackEnd.Application.Features.Common;
 using CMS_BackEnd.Domain;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -51,10 +54,43 @@ namespace CMS_Backend.Persistence.Repositories
             student.Coureses = mapper.Map<IReadOnlyList<CourseListDto>>(records?.StudentCourses.Select(z => z.Course));
             return student;
         }
-
-        public override Task Update(Student entity)
+        public override async Task<PaginationResponse<Student>> GetAllWithPagination(ListPaginationRequest request)
         {
-            return base.Update(entity);
+            var records = await dbContext.Students.AsNoTracking().ApplyPagination(request).Include(x => x.StudentCourses).ToListAsync();
+            var count = await dbContext.Students.CountAsync();
+            return new PaginationResponse<Student>() { Count = count, Records = records };
+        }
+        public override async Task<IReadOnlyList<Student>> GetAll()
+        {
+            var records = await dbContext.Students.AsNoTracking().Include(x => x.StudentCourses).ToListAsync();
+            return records;
+        }
+        public override async Task<Student> Get(int id)
+        {
+            var records = await dbContext.Students.AsNoTracking().Include(x => x.StudentCourses).FirstOrDefaultAsync(x => x.Id == id);
+            return records;
+        }
+        public override async Task Update(Student entity)
+        {
+            var old = dbContext.StudentCourses.Where(x => x.StudentId == entity.Id).AsNoTracking();
+
+            if (old.Count() > 0)
+            {
+                dbContext.StudentCourses.RemoveRange(old);
+                //dbContext.Entry(old).State = EntityState.Deleted;
+                await dbContext.SaveChangesAsync();
+            }
+
+            dbContext.Update(entity);
+            await dbContext.SaveChangesAsync();
+            //foreach (var item in entity.StudentCourses)
+            //{
+            //    item.StudentId = entity.Id;
+            //}
+            //dbContext.StudentCourses.AddRange(entity.StudentCourses);
+            //await dbContext.SaveChangesAsync();
+
+            return;
         }
     }
 }

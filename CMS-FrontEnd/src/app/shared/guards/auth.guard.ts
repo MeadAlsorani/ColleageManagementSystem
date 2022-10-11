@@ -35,7 +35,7 @@ export class AuthGuard implements CanActivate {
       isRefreshToken = await this.TryRefreshToken(token!);
     } catch {}
     if (!isRefreshToken) this.router.navigate(['/auth/login']);
-    return isRefreshToken;
+    return token != null ? true : false;
   }
 
   private async TryRefreshToken(token: string): Promise<boolean> {
@@ -54,6 +54,7 @@ export class AuthGuard implements CanActivate {
       userName: '',
       refreshToken: '',
     };
+    console.log('refresh from guard');
     refreshRes = await new Promise<User>((resolve, reject) => {
       this.http
         .post(`${environment.apiUrl}Authentication/RefreshToken`, {
@@ -62,6 +63,7 @@ export class AuthGuard implements CanActivate {
         })
         .pipe(
           tap((response: any) => {
+            console.log('refresh from guard', response);
             isRefreshToken = true;
             localStorage.setItem('token', response.token);
             localStorage.setItem('refresh-token', response.refreshToken);

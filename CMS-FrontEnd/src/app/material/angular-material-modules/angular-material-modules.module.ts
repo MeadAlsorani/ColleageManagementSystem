@@ -15,10 +15,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [],
   imports: [],
   exports: [
+    MatMenuModule,
+    MatCheckboxModule,
     MatPaginatorModule,
     MatCardModule,
     MatProgressSpinnerModule,

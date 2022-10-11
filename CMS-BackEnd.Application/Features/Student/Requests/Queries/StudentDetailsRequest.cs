@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CMS_BackEnd.Application.Features.Student.Requests.Queries
 {
-    public class StudentDetailsRequest : IRequest<StudentDto>
+    public class StudentDetailsRequest : IRequest<UpdateStudentDto>
     {
         public int Id { get; set; }
     }

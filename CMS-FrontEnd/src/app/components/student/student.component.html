@@ -3,6 +3,9 @@
   [controllerName]="'Students'"
   [isLoading]="isLoading"
   [records]="records"
+  [buttons]="actions"
   (deleteRecordEmitter)="deleteStudent($event)"
   (paginationChangedEmitter)="onChangePagination($event)"
-></app-table>
+  (executeAction)="executeAction($event)"
+>
+</app-table>

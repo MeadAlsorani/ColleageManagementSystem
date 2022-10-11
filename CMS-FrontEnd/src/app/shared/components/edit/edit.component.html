@@ -51,7 +51,8 @@
         <!-- <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error> -->
       </mat-grid-tile>
     </mat-grid-list>
-    <div>
+    <ng-content select="[additionalForm]"></ng-content>
+    <div style="padding: 20px; height: 100px">
       <button
         style="width: 50%"
         mat-raised-button

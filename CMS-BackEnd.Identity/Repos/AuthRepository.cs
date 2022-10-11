@@ -78,8 +78,8 @@ namespace CMS_BackEnd.Identity.Repos
                 throw new SecurityTokenException("token expired");
 
             var newToken = await GenerateToken(user);
-            var newRefreshToken = GenerateRefreshToken();
-            user.RefreshToken = newRefreshToken;
+            //var newRefreshToken = GenerateRefreshToken();
+            //user.RefreshToken = newRefreshToken;
             context.SaveChanges();
             return new AuthResponse
             {
@@ -89,7 +89,7 @@ namespace CMS_BackEnd.Identity.Repos
                 Id = user.Id,
                 FullName = $"{user.FirstName} {user.LastName}",
                 Role = (await userManager.GetRolesAsync(user)).First(),
-                RefreshToken = newRefreshToken
+                RefreshToken = refreshToken
             };
         }
         public async Task<AuthResponse> Login(string username, string password)

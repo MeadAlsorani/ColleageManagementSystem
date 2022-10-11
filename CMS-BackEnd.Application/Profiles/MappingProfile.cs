@@ -27,12 +27,14 @@ namespace CMS_BackEnd.Application.Profiles
                 {
                     opt.MapFrom(src => $"{src.FirstName} {src.LastName}");
                 })
+                .ForMember(dest => dest.Approved, opt => opt.MapFrom<TranslationResolver,string>(src => src.Approved ? "Approved" : "Not Approved"))
                 .ReverseMap();
             CreateMap<Student, CreateStudentDto>().ForMember(dest => dest.StudentCoursesIds, opt =>
             {
                 opt.MapFrom((src, dest) =>
                 {
-                    return dest.StudentCoursesIds = src.StudentCourses.Select(x => x.CourseId).ToList();
+                    dest.StudentCoursesIds = src.StudentCourses.Select(x => x.CourseId).ToList();
+                    return dest.StudentCoursesIds;
                 });
             });
             CreateMap<CreateStudentDto, Student>().ForMember(dest => dest.StudentCourses, opt =>
@@ -54,7 +56,12 @@ namespace CMS_BackEnd.Application.Profiles
              });
             CreateMap<Student, UpdateStudentDto>().ForMember(dest => dest.StudentCoursesIds, opt =>
             {
-                opt.MapFrom(src => src.StudentCourses.Select(x => x.CourseId));
+                //opt.MapFrom(src => src.StudentCourses.Select(x => x.CourseId));
+                opt.MapFrom((src, dest) =>
+                {
+                    dest.StudentCoursesIds = src.StudentCourses.Select(x => x.CourseId).ToList();
+                    return dest.StudentCoursesIds;
+                });
             })
                 .ReverseMap()
                 .ForMember(dest => dest.StudentCourses, opt =>
@@ -69,9 +76,11 @@ namespace CMS_BackEnd.Application.Profiles
                                 StudentId = src.Id
                             });
                         }
-                        return dest;
+                        return dest.StudentCourses;
                     });
                 });
+
+
             #endregion
 
             #region Attendance
@@ -146,7 +155,9 @@ namespace CMS_BackEnd.Application.Profiles
 
             #region Course
             CreateMap<Course, CourseDetailsDto>().ReverseMap();
-            CreateMap<Course, CourseListDto>().ReverseMap();
+            CreateMap<Course, CourseListDto>()
+                .ForMember(dest => dest.ClassName, opt => opt.MapFrom(src => src.Class != null ? src.Class.Name : ""))
+                .ReverseMap();
             CreateMap<Course, CreateCourseDto>()
                 .ForMember(dest => dest.TeacherId, opt => opt.MapFrom(src => src.StaffId))
                 .ReverseMap();

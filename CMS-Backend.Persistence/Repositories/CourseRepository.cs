@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
+using CMS_Backend.Persistence.ExtensionMethods;
 using CMS_Backend.Persistence.Repositories.Base;
 using CMS_BackEnd.Application.Contracts.Features;
+using CMS_BackEnd.Application.DTOs.Common;
 using CMS_BackEnd.Application.DTOs.Course;
 using CMS_BackEnd.Application.DTOs.Student;
+using CMS_BackEnd.Application.Features.Common;
 using CMS_BackEnd.Domain;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -22,9 +25,20 @@ namespace CMS_Backend.Persistence.Repositories
             this.mapper = mapper;
         }
 
+        public override async Task<IReadOnlyList<Course>> GetAll()
+        {
+            var records = await dbContext.Courses.AsNoTracking().Include(x => x.Class).Include(x => x.Staff).ToListAsync();
+            return records;
+        }
+        public override async Task<PaginationResponse<Course>> GetAllWithPagination(ListPaginationRequest request)
+        {
+            var records = await dbContext.Courses.AsNoTracking().ApplyPagination(request).Include(x => x.Class).Include(x => x.Staff).ToListAsync();
+            var count = await dbContext.Courses.AsNoTracking().CountAsync();
+            return new PaginationResponse<Course> { Count = count, Records = records };
+        }
         public async Task<CourseDetailsDto> GetCourseWithStudents(int courseId)
         {
-            var course = await dbContext.Courses.Include(x => x.StudentCourses).AsNoTracking()
+            var course = await dbContext.Courses.Include(x => x.StudentCourses).Include(x => x.Class).Include(x => x.Staff).AsNoTracking()
                 .SingleOrDefaultAsync(z => z.Id == courseId);
             var students = await dbContext.Students.Where(x => course.StudentCourses.Select(z => z.StudentId).Contains(x.Id)).ToListAsync();
             var mappedCourse = mapper.Map<CourseDetailsDto>(course);

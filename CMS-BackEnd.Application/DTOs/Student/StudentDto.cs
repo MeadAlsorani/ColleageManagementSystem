@@ -16,5 +16,6 @@ namespace CMS_BackEnd.Application.DTOs.Student
         public int ClassLevel { get; set; }
         public string SchoolName { get; set; }
         public DateTime RegisterationDate { get; set; }
+        public string Approved { get; set; } = "";
     }
 }

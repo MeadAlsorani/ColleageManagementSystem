@@ -10,7 +10,7 @@ import {
   Injector,
 } from '@angular/core';
 import { PaginationResponse } from '../../interfaces/Request';
-import { PaginationChangParams } from '../../interfaces/Table';
+import { Action, PaginationChangParams } from '../../interfaces/Table';
 
 @Component({
   selector: 'app-table',
@@ -25,7 +25,9 @@ export class TableComponent extends BaseComponent implements OnInit {
   @Output() paginationChangedEmitter = new EventEmitter();
   @Input() pageTitle = '';
   @Input() controllerName: string = '';
+  @Input() buttons: Action[] = [];
   @Input() records: PaginationResponse = { count: 0, records: [] };
+  @Output() executeAction = new EventEmitter();
   @Input() set columns(value: string[]) {
     this.displayColumns = [...[], ...value];
     this.displayColumns.push('actions');
@@ -53,7 +55,7 @@ export class TableComponent extends BaseComponent implements OnInit {
     });
   }
   navigateToEdit(id: number) {
-    this.router.navigate(['..', id], { relativeTo: this.route });
+    this.router.navigate(['../edit', id], { relativeTo: this.route });
   }
   deleteRecord(record: any) {
     if (
@@ -66,5 +68,9 @@ export class TableComponent extends BaseComponent implements OnInit {
     this.pagination.PageSize = event.pageSize;
     this.pagination.PageIndex = event.pageIndex;
     this.paginationChangedEmitter.emit(event);
+  }
+
+  emitAction(data: any, code: string) {
+    this.executeAction.emit({ code, data });
   }
 }

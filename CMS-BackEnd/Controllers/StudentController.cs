@@ -34,7 +34,12 @@ namespace CMS_BackEnd.Controllers
             var recods = await mediator.Send(new StudentsListRequest() { pagination = pagination });
             return Ok(recods);
         }
-
+        [HttpGet("ApproveStudent/{id}")]
+        public async Task<ActionResult> ApproveStudent(int id)
+        {
+            await mediator.Send(new ApproveStudentRequest() { Id = id });
+            return Ok();
+        }
         // GET api/<StudentController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(int id)
