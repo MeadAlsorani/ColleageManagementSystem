@@ -44,5 +44,16 @@
   "Address": "Adres",
   "Class Level": "Sınıf seviyesi",
   "School Name": "Okul Adı",
-  "approved": "Durum"
+  "approved": "Durum",
+  "Approve": "Onay",
+  "className": "Kurs adı",
+  "teacher": "Öğretment",
+  "startDate": "Başlangıç tarihi",
+  "endDate": "Bitiş tarihi",
+  "Teacher": "المدرس",
+  "Start Date": "Başlangıç tarihi",
+  "End Date": "Bitiş tarihi",
+  "price": "Fiyat",
+  "Price": "Fiyat",
+  "Lesson Duration": "Ders süresi"
 }

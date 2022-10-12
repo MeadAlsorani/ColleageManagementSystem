@@ -36,6 +36,13 @@ namespace CMS_Backend.Persistence.Repositories
             var count = await dbContext.Courses.AsNoTracking().CountAsync();
             return new PaginationResponse<Course> { Count = count, Records = records };
         }
+
+        public async Task<IReadOnlyList<ClassListDto>> GetClassList()
+        {
+            var records = await dbContext.EducationClass.AsNoTracking().ToListAsync();
+            return mapper.Map<IReadOnlyList<ClassListDto>>(records);
+        }
+
         public async Task<CourseDetailsDto> GetCourseWithStudents(int courseId)
         {
             var course = await dbContext.Courses.Include(x => x.StudentCourses).Include(x => x.Class).Include(x => x.Staff).AsNoTracking()

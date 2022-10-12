@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 
 namespace CMS_BackEnd.Application.DTOs.Course
 {
-    public class CourseDetailsDto:BaseDto
+    public class CourseDetailsDto : BaseDto
     {
         public string Name { get; set; }
-        public string TeacherName { get; set; }
+        public int TeacherId { get; set; }
+        public int ClassId { get; set; }
         public int LessonDuration { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

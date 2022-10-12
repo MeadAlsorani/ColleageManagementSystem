@@ -44,7 +44,12 @@ namespace CMS_BackEnd.Controllers
             var record = await mediator.Send(new CourseDetailsRequest { Id = id });
             return Ok(record);
         }
-
+        [HttpGet("GetClassesList")]
+        public async Task<ActionResult> GetClasses()
+        {
+            var records = await mediator.Send(new GetClassesRequest());
+            return Ok(records);
+        }
         // POST api/<CourseController>
         [HttpPost]
         [Authorize(Roles = "Admin,Manager")]

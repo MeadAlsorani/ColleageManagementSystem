@@ -1,0 +1,11 @@
+<app-table
+  [columns]="columns"
+  [buttons]="buttons"
+  [controllerName]="'Courses'"
+  [isLoading]="isLoading"
+  [records]="records"
+  pageTitle="Courses"
+  (deleteRecordEmitter)="deleteCourse($event)"
+  (executeAction)="executeAction($event)"
+  (paginationChangedEmitter)="paginationChanged($event)"
+></app-table>

@@ -27,7 +27,7 @@ namespace CMS_BackEnd.Application.Profiles
                 {
                     opt.MapFrom(src => $"{src.FirstName} {src.LastName}");
                 })
-                .ForMember(dest => dest.Approved, opt => opt.MapFrom<TranslationResolver,string>(src => src.Approved ? "Approved" : "Not Approved"))
+                .ForMember(dest => dest.Approved, opt => opt.MapFrom<TranslationResolver, string>(src => src.Approved ? "Approved" : "Not Approved"))
                 .ReverseMap();
             CreateMap<Student, CreateStudentDto>().ForMember(dest => dest.StudentCoursesIds, opt =>
             {
@@ -154,13 +154,16 @@ namespace CMS_BackEnd.Application.Profiles
             #endregion
 
             #region Course
-            CreateMap<Course, CourseDetailsDto>().ReverseMap();
+            CreateMap<Course, CourseDetailsDto>()
+                .ForMember(dest => dest.TeacherId, opt => opt.MapFrom(src => src.StaffId))
+                .ReverseMap();
             CreateMap<Course, CourseListDto>()
                 .ForMember(dest => dest.ClassName, opt => opt.MapFrom(src => src.Class != null ? src.Class.Name : ""))
                 .ReverseMap();
             CreateMap<Course, CreateCourseDto>()
                 .ForMember(dest => dest.TeacherId, opt => opt.MapFrom(src => src.StaffId))
                 .ReverseMap();
+            CreateMap<EducationClass, ClassListDto>().ReverseMap();
             #endregion
 
             #region SessionYear

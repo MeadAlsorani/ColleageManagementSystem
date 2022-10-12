@@ -48,49 +48,49 @@ export class RequestHandlerInterceptor implements HttpInterceptor {
     );
   }
 
-  // refreshToken(): Observable<any> {
-    // console.log('refresh from interceptor');
+  refreshToken(): Observable<any> {
+    console.log('refresh from interceptor');
 
-    // const refreshToken = localStorage.getItem('refresh-token')!;
-    // const token = localStorage.getItem('token')!;
-    // if (this.refreshTokenInProgress) {
-    //   return new Observable((observer) => {
-    //     this.authService
-    //       .refreshToken(token, refreshToken)
-    //       .pipe(
-    //         tap((response: any) => {
-    //           console.log('refresh from interceptor', response);
-    //           localStorage.setItem('token', response.token);
-    //           localStorage.setItem(
-    //             'refresh-token',
-    //             response.refreshToken as string
-    //           );
-    //           observer.next();
-    //           observer.complete();
-    //         })
-    //       )
-    //       .subscribe();
-    //   });
-    // } else {
-    //   this.refreshTokenInProgress = true;
+    const refreshToken = localStorage.getItem('refresh-token')!;
+    const token = localStorage.getItem('token')!;
+    if (this.refreshTokenInProgress) {
+      return new Observable((observer) => {
+        this.authService
+          .refreshToken(token, refreshToken)
+          .pipe(
+            tap((response: any) => {
+              console.log('refresh from interceptor', response);
+              localStorage.setItem('token', response.token);
+              localStorage.setItem(
+                'refresh-token',
+                response.refreshToken as string
+              );
+              observer.next();
+              observer.complete();
+            })
+          )
+          .subscribe();
+      });
+    } else {
+      this.refreshTokenInProgress = true;
 
-    //   return this.authService.refreshToken(token, refreshToken).pipe(
-    //     tap((response: any) => {
-    //       localStorage.setItem('token', response.token);
-    //       localStorage.setItem(
-    //         'refresh-token',
-    //         response.refreshToken as string
-    //       );
-    //       this.refreshTokenInProgress = false;
-    //     }),
-    //     catchError(() => {
-    //       this.refreshTokenInProgress = false;
-    //       this.authService.logOut();
-    //       return throwError(() => new Error());
-    //     })
-    //   );
-    // }
-  // }
+      return this.authService.refreshToken(token, refreshToken).pipe(
+        tap((response: any) => {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem(
+            'refresh-token',
+            response.refreshToken as string
+          );
+          this.refreshTokenInProgress = false;
+        }),
+        catchError(() => {
+          this.refreshTokenInProgress = false;
+          this.authService.logOut();
+          return throwError(() => new Error());
+        })
+      );
+    }
+  }
 
   addHeaders(req: HttpRequest<any>) {
     let headers = new HttpHeaders();
@@ -118,20 +118,20 @@ export class RequestHandlerInterceptor implements HttpInterceptor {
 
     // Invalid token error
     else if (error.status === 401) {
-      // return this.refreshToken().pipe(
-      //   switchMap(() => {
-      //     request = this.addHeaders(request!);
-      //     return next!.handle(request);
-      //   }),
-      //   catchError((e: any) => {
-      //     if (e.status !== 401) {
-      //       return this.handleResponseError(e);
-      //     } else {
-      //       this.authService.logOut();
-      //       return new Observable();
-      //     }
-      //   })
-      // );
+      return this.refreshToken().pipe(
+        switchMap(() => {
+          request = this.addHeaders(request!);
+          return next!.handle(request);
+        }),
+        catchError((e: any) => {
+          if (e.status !== 401) {
+            return this.handleResponseError(e);
+          } else {
+            this.authService.logOut();
+            return new Observable();
+          }
+        })
+      );
     }
 
     // Access denied error

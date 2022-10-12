@@ -45,6 +45,7 @@ namespace CMS_Backend.Persistence
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<StudentCourse> StudentCourses { get; set; }
+        public DbSet<EducationClass> EducationClass { get; set; }
 
     }
 }

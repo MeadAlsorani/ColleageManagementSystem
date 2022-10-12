@@ -39,4 +39,7 @@ export class IndexComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.getMenus();
   }
+  logout() {
+    this.authService.logOut();
+  }
 }

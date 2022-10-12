@@ -28,6 +28,7 @@
   "Salary Templates": "الرواتب",
   "Password": "كلمة المرور",
   "name": "اسم",
+  "Name": "اسم",
   "Staff": "موظف",
   "Student": "طالب",
   "Attendance": "الحضور",
@@ -44,5 +45,16 @@
   "Address": "العنوان",
   "Class Level": "المرحلة الدراسية",
   "School Name": "اسم المدرسة",
-  "approved":"الحالة"
+  "approved": "الحالة",
+  "Approve": "تأكيد",
+  "className": "الكورس",
+  "teacher": "المدرس",
+  "Teacher": "المدرس",
+  "startDate": "تاريخ البدء",
+  "endDate": "تاريخ الانتهاء",
+  "Start Date": "تاريخ البدء",
+  "End Date": "تاريخ الانتهاء",
+  "price": "السعر",
+  "Price": "السعر",
+  "Lesson Duration": "مدة الدرس"
 }

@@ -11,6 +11,7 @@ namespace CMS_BackEnd.Application.DTOs.Course
     {
         public string Name { get; set; }
         public int TeacherId { get; set; }
+        public int ClassId { get; set; }
         public int LessonDuration { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
