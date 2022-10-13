@@ -55,5 +55,10 @@
   "End Date": "Bitiş tarihi",
   "price": "Fiyat",
   "Price": "Fiyat",
-  "Lesson Duration": "Ders süresi"
+  "Lesson Duration": "Ders süresi",
+  "start": "Başlangiç",
+  "end": "Bitiş",
+  "email":"E-Posta",
+  "address":"Adres",
+  "role":"Rol"
 }

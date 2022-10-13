@@ -1,0 +1,10 @@
+<app-table
+  [pageTitle]="'Session Year'"
+  [buttons]="buttons"
+  [columns]="columns"
+  [controllerName]="'Session Year'"
+  [isLoading]="isLoading"
+  [records]="records"
+  (deleteRecordEmitter)="deleteRecord($event)"
+  (paginationChangedEmitter)="paginationChanged($event)"
+></app-table>

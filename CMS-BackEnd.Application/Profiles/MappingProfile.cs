@@ -167,9 +167,24 @@ namespace CMS_BackEnd.Application.Profiles
             #endregion
 
             #region SessionYear
-            CreateMap<SessionYear, UpdateSessionYearDto>().ReverseMap();
-            CreateMap<SessionYear, CreateSessionYearDto>().ReverseMap();
-            CreateMap<SessionYear, SessionYearListDto>().ReverseMap();
+            CreateMap<SessionYear, UpdateSessionYearDto>()
+                .ForMember(dest => dest.End, opt => opt.MapFrom(src => src.FinishDate))
+                .ForMember(dest => dest.Start, opt => opt.MapFrom(src => src.StartDate))
+                .ReverseMap()
+                .ForMember(dest => dest.FinishDate, opt => opt.MapFrom(src => src.End))
+                .ForMember(dest => dest.FinishDate, opt => opt.MapFrom(src => src.Start));
+            CreateMap<SessionYear, CreateSessionYearDto>()
+                .ForMember(dest => dest.End, opt => opt.MapFrom(src => src.FinishDate))
+                .ForMember(dest => dest.Start, opt => opt.MapFrom(src => src.StartDate))
+                .ReverseMap()
+                .ForMember(dest => dest.FinishDate, opt => opt.MapFrom(src => src.End))
+                .ForMember(dest => dest.FinishDate, opt => opt.MapFrom(src => src.Start));
+            CreateMap<SessionYear, SessionYearListDto>()
+                .ForMember(dest => dest.End, opt => opt.MapFrom(src => src.FinishDate))
+                .ForMember(dest => dest.Start, opt => opt.MapFrom(src => src.StartDate))
+                .ReverseMap()
+                .ForMember(dest => dest.FinishDate, opt => opt.MapFrom(src => src.End))
+                .ForMember(dest => dest.FinishDate, opt => opt.MapFrom(src => src.Start));
             #endregion
 
             #region Staff
@@ -184,7 +199,8 @@ namespace CMS_BackEnd.Application.Profiles
                         dest.FullName = $"{src.FirstName} {src.LastName}";
                         return $"{src.FirstName} {src.LastName}";
                     });
-                });
+                })
+                .ForMember(dest => dest.Role, opt => opt.MapFrom<TranslationResolver, string>(src => src.Role.ToString()));
             CreateMap<UpdateStaffDto, Staff>().ReverseMap();
             #endregion
 

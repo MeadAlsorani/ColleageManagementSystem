@@ -1,0 +1,11 @@
+<app-table
+  [records]="records"
+  [buttons]="buttons"
+  [columns]="columns"
+  [controllerName]="'Staffs'"
+  [pageTitle]="'Staffs'"
+  [isLoading]="isLoading"
+  (deleteRecordEmitter)="deleteStaff($event)"
+  (executeAction)="executeAction($event)"
+  (paginationChangedEmitter)="paginationChanged($event)"
+></app-table>

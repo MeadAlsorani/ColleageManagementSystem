@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Admin" xml:space="preserve">
+    <value>Yönetici</value>
+  </data>
   <data name="Approved" xml:space="preserve">
     <value>Onaylı</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Çalışan</value>
   </data>
   <data name="Event" xml:space="preserve">
     <value>Etkinlik</value>
@@ -137,5 +143,8 @@
   </data>
   <data name="Student" xml:space="preserve">
     <value>Öğrenci</value>
+  </data>
+  <data name="Teacher" xml:space="preserve">
+    <value>Öğretmen</value>
   </data>
 </root>

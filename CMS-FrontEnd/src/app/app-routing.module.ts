@@ -49,6 +49,18 @@ const routes: Routes = [
             (x) => x.CourseModule
           ),
       },
+      {
+        path: 'session-year',
+        loadChildren: () =>
+          import('./components/session-year/session-year.module').then(
+            (x) => x.SessionYearModule
+          ),
+      },
+      {
+        path: 'staff',
+        loadChildren: () =>
+          import('./components/staff/staff.module').then((x) => x.StaffModule),
+      },
     ],
   },
 ];
