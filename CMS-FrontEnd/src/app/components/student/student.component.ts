@@ -1,9 +1,13 @@
+import { AttendanceDialogComponent } from './shared/attendance-dialog/attendance-dialog.component';
+import { AttendanceComponent } from './../attendance/attendance.component';
 import { Action, PaginationChangParams } from './../../shared/interfaces/Table';
 import { switchMap, tap } from 'rxjs';
 import { StudentService } from './shared/student.service';
 import { BaseComponent } from './../../shared/components/Base.component';
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { PaginationResponse } from 'src/app/shared/interfaces/Request';
+import { MatDialog } from '@angular/material/dialog';
+import { ComponentType } from '@angular/cdk/portal';
 
 @Component({
   selector: 'app-student',
@@ -11,17 +15,28 @@ import { PaginationResponse } from 'src/app/shared/interfaces/Request';
   styleUrls: ['./student.component.less'],
 })
 export class StudentComponent extends BaseComponent implements OnInit {
+  @ViewChild('attendanceTemp') attendanceTemp?: ComponentType<any>;
   columns: string[];
   isLoading = true;
+  selectedId = 0;
   actions: Action[] = [
     {
       code: 'approve',
       label: 'Approve',
       icon: 'check_circle_outline',
     },
+    {
+      code: 'attendance',
+      label: 'Attendance',
+      icon: 'show_attendances',
+    },
   ];
   records: PaginationResponse = { count: 0, records: [] };
-  constructor(injector: Injector, private studentService: StudentService) {
+  constructor(
+    injector: Injector,
+    private studentService: StudentService,
+    private dialog: MatDialog
+  ) {
     super(injector);
     this.columns = [
       'fullName',
@@ -70,6 +85,9 @@ export class StudentComponent extends BaseComponent implements OnInit {
           switchMap(() => this.getStudents())
         )
         .subscribe();
+    } else if (data.code === 'attendance') {
+      this.selectedId = data.data.id;
+      this.dialog.open(this.attendanceTemp!);
     }
   }
 }

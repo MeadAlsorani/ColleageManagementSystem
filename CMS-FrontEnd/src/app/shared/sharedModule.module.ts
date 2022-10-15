@@ -8,6 +8,7 @@ import { AngularMaterialModulesModule } from '../material/angular-material-modul
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { AttendanceDialogComponent } from '../components/student/shared/attendance-dialog/attendance-dialog.component';
 
 @NgModule({
   imports: [
@@ -18,9 +19,16 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterModule,
     TranslateModule.forChild({ extend: true }),
   ],
-  declarations: [TableComponent, DateParserPipe, AddComponent, EditComponent],
+  declarations: [
+    TableComponent,
+    AttendanceDialogComponent,
+    DateParserPipe,
+    AddComponent,
+    EditComponent,
+  ],
   exports: [
     TableComponent,
+    AttendanceDialogComponent,
     DateParserPipe,
     AddComponent,
     EditComponent,

@@ -1,4 +1,5 @@
 ﻿using CMS_BackEnd.Application.DTOs.Attendance;
+using CMS_BackEnd.Application.DTOs.Common;
 using CMS_BackEnd.Application.Features.Attendance.Requests.Commands;
 using CMS_BackEnd.Application.Features.Attendance.Requests.Queries;
 using CMS_BackEnd.Application.Features.Common;
@@ -23,7 +24,7 @@ namespace CMS_BackEnd.Controllers
         }
         // GET: api/<AttendanceController>
         [HttpGet]
-        
+
         public async Task<ActionResult<IReadOnlyList<AttendancesListDto>>> Get()
         {
             var records = await mediator.Send(new GetAttendancesRequest());
@@ -31,7 +32,7 @@ namespace CMS_BackEnd.Controllers
         }
 
         [HttpPost("GetWithPagination")]
-        
+
         public async Task<ActionResult<IReadOnlyList<AttendancesListDto>>> Get(ListPaginationRequest request)
         {
             var records = await mediator.Send(new GetAttendancesRequest() { pagination = request });
@@ -39,15 +40,15 @@ namespace CMS_BackEnd.Controllers
         }
 
         // GET api/<AttendanceController>/5
-        [HttpGet("Student/{id}")]
+        [HttpPost("Student/{id}")]
         [Authorize(Roles = "Reciptionist,Admin,Manager")]
-        public async Task<ActionResult<IReadOnlyList<StudentAttendanceDto>>> GetStudentAttendances(int id, DateTime startDate, DateTime endDate)
+        public async Task<ActionResult<IReadOnlyList<StudentAttendanceDto>>> GetStudentAttendances(int id, [FromBody] DateRange dateRange)
         {
             var record = await mediator.Send(new GetStudentAttendancesListRequest()
             {
                 StudentId = id,
-                EndDate = endDate,
-                StartDate = startDate
+                EndDate = dateRange.EndDate,
+                StartDate = dateRange.StartDate
             });
             return Ok(record);
         }
@@ -57,14 +58,15 @@ namespace CMS_BackEnd.Controllers
             var record = await mediator.Send(new GetAttendanceDetailsRequest() { Id = id });
             return Ok(record);
         }
-        [HttpGet("Staff/{id}"), Authorize(Roles = "Reciptionist")]
-        public async Task<ActionResult<IReadOnlyList<StudentAttendanceDto>>> GetStaffAttendances(int id, DateTime startDate, DateTime endDate)
+        [Authorize(Roles = "Reciptionist,Admin,Manager")]
+        [HttpPost("Staff/{id}")]
+        public async Task<ActionResult<IReadOnlyList<StudentAttendanceDto>>> GetStaffAttendances(int id, [FromBody] DateRange dateRange)
         {
             var record = await mediator.Send(new GetStaffAtendancesListRequest()
             {
                 StaffId = id,
-                EndDate = endDate,
-                StartDate = startDate
+                EndDate = dateRange.EndDate,
+                StartDate = dateRange.StartDate
             });
             return Ok(record);
         }

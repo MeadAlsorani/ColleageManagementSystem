@@ -37,7 +37,7 @@ namespace CMS_Backend.Persistence.Repositories
         public override async Task<PaginationResponse<IncomeTransaction>> GetAllWithPagination(ListPaginationRequest request)
         {
             var records = await dbContext.IncomeTransactions.AsNoTracking()
-                .Include(x => x.Student).Include(x => x.Course)
+                .Include(x => x.Student).Include(x => x.Course).ThenInclude(z => z.Class)
                 .ApplyPagination(request).ToListAsync();
             var counts = await dbContext.IncomeTransactions.AsNoTracking().CountAsync();
             return new PaginationResponse<IncomeTransaction> { Count = counts, Records = records };

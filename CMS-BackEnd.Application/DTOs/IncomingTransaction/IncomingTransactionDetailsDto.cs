@@ -13,7 +13,7 @@ namespace CMS_BackEnd.Application.DTOs.IncomingTransaction
     {
         public double Amount { get; set; }
         public DateTime Date { get; set; }
-        public StudentDto Student { get; set; } = null!;
-        public CourseListDto? Course { get; set; }
+        public int StudentId { get; set; }
+        public int CourseId { get; set; }
     }
 }

@@ -12,7 +12,8 @@ namespace CMS_BackEnd.Application.Features.OutcomeTransaction.Handlers.Commands
 
         public async Task<Unit> Handle(UpdateOutcomeTransactionRequest request, CancellationToken cancellationToken)
         {
-            await repository.Update(mapper.Map<Domain.OutcomeTransaction>(request.Data));
+            var data = mapper.Map<Domain.OutcomeTransaction>(request.Data);
+            await repository.Update(data);
             return Unit.Value;
         }
     }

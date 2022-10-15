@@ -31,8 +31,9 @@ namespace CMS_BackEnd.Application.Constants
             });
             menus.Add("Accountant", new List<Menu>
             {
-                new Menu{Route="/app/income",Title="Income transations",Icon="attach_money",Actions=new List<string>{"add","edit","delete" } },
-                new Menu{Route="/app/outcome",Title="Outcome transaction",Icon="attach_money",Actions=new List<string>{"add","edit","delete" } },
+                new Menu{Route="/app/income",Title="Income transactions",Icon="attach_money",Actions=new List<string>{"add","edit" } },
+                new Menu{Route="/app/outcome",Title="Outcome transaction",Icon="attach_money",Actions=new List<string>{"add","edit" } },
+                new Menu{Route="/app/staff",Title="Staffs",Icon="work",Actions=new List<string>{} },
                 new Menu{Route="/app/salary",Title="Salary Templates",Icon="attach_money",Actions=new List<string>{"add","edit","delete" } }
             });
             menus.Add("Reciptionist", new List<Menu>

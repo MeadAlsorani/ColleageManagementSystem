@@ -52,7 +52,7 @@ namespace CMS_Backend.Persistence.Repositories
 
         public async Task<IReadOnlyList<StudentAttendanceDto>> StudentAttendances(int studentId)
         {
-            var list = await dbContext.Attendances.Include(x => x.Student).Include(x => x.Staff).AsNoTracking().Where(x => x.StaffId == studentId).ToListAsync();
+            var list = await dbContext.Attendances.Include(x => x.Student).Include(x => x.Staff).AsNoTracking().Where(x => x.StudentId == studentId).ToListAsync();
             return mapper.Map<List<StudentAttendanceDto>>(list);
         }
 

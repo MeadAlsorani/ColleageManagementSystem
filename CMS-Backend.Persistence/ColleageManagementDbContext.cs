@@ -16,6 +16,7 @@ namespace CMS_Backend.Persistence
         { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             //modelBuilder.ApplyConfigurationsFromAssembly(typeof(ColleageManagementDbContext).Assembly);
             modelBuilder.ApplyConfiguration(new EducationClassesConfiguration());
             modelBuilder.ApplyConfiguration(new CoursesConfiguration());

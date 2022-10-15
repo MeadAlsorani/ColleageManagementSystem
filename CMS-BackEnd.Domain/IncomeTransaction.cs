@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace CMS_BackEnd.Domain
 {
-    public class IncomeTransaction : StudentCourse
+    public class IncomeTransaction : BaseModelClass
     {
         public double Amount { get; set; }
         public DateTime Date { get; set; }
-
+        public int StudentId { get; set; }
+        public Student? Student { get; set; }
+        public int CourseId { get; set; }
+        public Course? Course { get; set; }
     }
 }

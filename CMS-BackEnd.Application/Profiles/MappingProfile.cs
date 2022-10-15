@@ -1,4 +1,5 @@
 ﻿
+
 using AutoMapper;
 using CMS_BackEnd.Application.DTOs.Announcement;
 using CMS_BackEnd.Application.DTOs.Attendance;
@@ -245,7 +246,7 @@ namespace CMS_BackEnd.Application.Profiles
                 {
                     opt.MapFrom((src, dest) =>
                     {
-                        return src.Course?.Name;
+                        return $"{src.Course?.Class?.Name} - {src.Course?.Name}";
                     });
                 })
                 .ForMember(dest => dest.StudentName, opt =>

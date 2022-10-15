@@ -1,3 +1,4 @@
+import { AttendanceDialogComponent } from './shared/attendance-dialog/attendance-dialog.component';
 import { EditStudentComponent } from './edit-student/edit-student.component';
 import { AddStudentComponent } from './add-student/add-student.component';
 import { StudentService } from './shared/student.service';

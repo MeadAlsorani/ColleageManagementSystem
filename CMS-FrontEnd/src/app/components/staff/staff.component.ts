@@ -1,9 +1,11 @@
 import { tap, switchMap } from 'rxjs';
 import { BaseComponent } from './../../shared/components/Base.component';
 import { PaginationResponse } from './../../shared/interfaces/Request';
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { Action, PaginationChangParams } from 'src/app/shared/interfaces/Table';
 import { StaffService } from './shared/staff.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ComponentType } from '@angular/cdk/portal';
 
 @Component({
   selector: 'app-staff',
@@ -12,10 +14,22 @@ import { StaffService } from './shared/staff.service';
 })
 export class StaffComponent extends BaseComponent implements OnInit {
   records: PaginationResponse = { count: 0, records: [] };
-  buttons: Action[] = [];
+  buttons: Action[] = [
+    {
+      code: 'attendance',
+      label: 'Attendance',
+      icon: 'show_attendances',
+    },
+  ];
   columns: string[] = [];
   isLoading = true;
-  constructor(injector: Injector, private staffService: StaffService) {
+  selectedId = 0;
+  @ViewChild('attendanceTemp') attendanceTemp?: ComponentType<any>;
+  constructor(
+    injector: Injector,
+    private staffService: StaffService,
+    private dialog: MatDialog
+  ) {
     super(injector);
     this.columns = ['fullName', 'email', 'phoneNumber', 'address', 'role'];
   }
@@ -45,7 +59,12 @@ export class StaffComponent extends BaseComponent implements OnInit {
       })
     );
   }
-  executeAction(data: any) {}
+  executeAction(data: any) {
+    if (data.code === 'attendance') {
+      this.selectedId = data.data.id;
+      this.dialog.open(this.attendanceTemp!);
+    }
+  }
   paginationChanged(data: PaginationChangParams) {
     this.pagination.PageIndex = data.pageIndex;
     this.pagination.PageSize = data.pageSize;

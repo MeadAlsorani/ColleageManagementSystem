@@ -61,6 +61,20 @@ const routes: Routes = [
         loadChildren: () =>
           import('./components/staff/staff.module').then((x) => x.StaffModule),
       },
+      {
+        path: 'income',
+        loadChildren: () =>
+          import('./components/income/income.module').then(
+            (x) => x.IncomeModule
+          ),
+      },
+      {
+        path: 'outcome',
+        loadChildren: () =>
+          import('./components/outcome/outcome.module').then(
+            (x) => x.OutcomeModule
+          ),
+      },
     ],
   },
 ];

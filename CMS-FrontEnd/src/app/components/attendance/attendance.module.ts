@@ -6,6 +6,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AttendanceComponent } from './attendance.component';
 import { AttendanceRoutes } from './attendance.routing';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { DialogParams } from './shared/dialog-params';
 
 @NgModule({
   imports: [CommonModule, SharedModule, AttendanceRoutes],
@@ -14,6 +16,9 @@ import { AttendanceRoutes } from './attendance.routing';
     AddAttendanceComponent,
     EditAttendanceComponent,
   ],
-  providers: [AttendanceService],
+  providers: [
+    AttendanceService,
+    { provide: MAT_DIALOG_DATA, useClass: DialogParams },
+  ],
 })
 export class AttendanceModule {}

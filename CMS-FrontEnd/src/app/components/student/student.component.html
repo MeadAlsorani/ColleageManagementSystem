@@ -9,3 +9,9 @@
   (executeAction)="executeAction($event)"
 >
 </app-table>
+
+<ng-template #attendanceTemp>
+  <app-attendance-dialog
+    [data]="{ id: selectedId, type: 'student' }"
+  ></app-attendance-dialog>
+</ng-template>

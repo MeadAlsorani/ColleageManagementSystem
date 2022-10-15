@@ -13,6 +13,7 @@ namespace CMS_Backend.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Course> builder)
         {
+            
             int id = 0;
             builder.HasData(
             #region Kindergarten

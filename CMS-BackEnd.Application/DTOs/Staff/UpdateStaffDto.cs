@@ -15,5 +15,6 @@ namespace CMS_BackEnd.Application.DTOs.Staff
         public string? PhoneNumber { get; set; }
         public string Address { get; set; }
         public int Salary { get; set; }
+        public int Role { get; set; }
     }
 }

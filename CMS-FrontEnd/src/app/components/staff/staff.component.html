@@ -9,3 +9,8 @@
   (executeAction)="executeAction($event)"
   (paginationChangedEmitter)="paginationChanged($event)"
 ></app-table>
+<ng-template #attendanceTemp>
+  <app-attendance-dialog
+    [data]="{ id: selectedId, type: 'staff' }"
+  ></app-attendance-dialog>
+</ng-template>
