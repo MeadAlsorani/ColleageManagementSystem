@@ -1,0 +1,22 @@
+﻿using AutoMapper;
+using CMS_BackEnd.Application.Contracts.Features;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CMS_BackEnd.Application.Features.SalaryTemplate.Handlers
+{
+    public class BaseRequestHandler
+    {
+        public readonly ISalaryTemplateRepository repository;
+        public readonly IMapper mapper;
+
+        public BaseRequestHandler(ISalaryTemplateRepository repo, IMapper mapper)
+        {
+            this.repository = repo;
+            this.mapper = mapper;
+        }
+    }
+}

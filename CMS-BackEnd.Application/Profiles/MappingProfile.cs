@@ -7,11 +7,12 @@ using CMS_BackEnd.Application.DTOs.Course;
 using CMS_BackEnd.Application.DTOs.IncomingTransaction;
 using CMS_BackEnd.Application.DTOs.Loan;
 using CMS_BackEnd.Application.DTOs.OutcomeTransaction;
+using CMS_BackEnd.Application.DTOs.SalaryTemplate;
 using CMS_BackEnd.Application.DTOs.SessionYear;
 using CMS_BackEnd.Application.DTOs.Staff;
 using CMS_BackEnd.Application.DTOs.Student;
+using CMS_BackEnd.Application.Resources;
 using CMS_BackEnd.Domain;
-using CMS_BackEnd.Resources;
 using Microsoft.Extensions.Localization;
 
 namespace CMS_BackEnd.Application.Profiles
@@ -265,6 +266,15 @@ namespace CMS_BackEnd.Application.Profiles
                         return src.Course?.Name;
                     });
                 });
+            #endregion
+
+            #region  Salary Template
+            CreateMap<SalaryTemplate, SalaryTemplatesListDto>()
+                .ForMember(dest => dest.Staff, opt =>
+                {
+                    opt.MapFrom(src => $"{src.Staff!.FirstName} {src.Staff!.LastName}");
+                })
+                .ReverseMap();
             #endregion
 
         }

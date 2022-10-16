@@ -17,6 +17,5 @@ namespace CMS_BackEnd.Application.DTOs.Staff
         public string Address { get; set; }
         public UserRole Role { get; set; }
         public int Salary { get; set; }
-        public IReadOnlyList<LoanListDto> Loans { get; set; }
     }
 }

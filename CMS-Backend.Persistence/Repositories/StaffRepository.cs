@@ -17,7 +17,7 @@ namespace CMS_Backend.Persistence.Repositories
         }
         public override async Task<Staff> Get(int id)
         {
-            var record=await dbContext.Staffs.Include(x=>x.Loans).AsNoTracking().FirstOrDefaultAsync(z=>z.Id==id);
+            var record = await dbContext.Staffs.AsNoTracking().FirstOrDefaultAsync(z => z.Id == id);
             return record;
         }
     }

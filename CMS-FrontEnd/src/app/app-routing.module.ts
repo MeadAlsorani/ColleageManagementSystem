@@ -75,6 +75,13 @@ const routes: Routes = [
             (x) => x.OutcomeModule
           ),
       },
+      {
+        path: 'salary',
+        loadChildren: () =>
+          import('./components/salary-template/salary-template.module').then(
+            (x) => x.SalaryTemplateModule
+          ),
+      },
     ],
   },
 ];

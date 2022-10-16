@@ -12,6 +12,6 @@ namespace CMS_BackEnd.Application.Features.Loan.Requests.Queries
 {
     public class GetLoansListRequest : IRequest<PaginationResponse<LoanListDto>>
     {
-        public ListPaginationRequest? pagination { get; set; }
+        public int Id { get; set; }
     }
 }

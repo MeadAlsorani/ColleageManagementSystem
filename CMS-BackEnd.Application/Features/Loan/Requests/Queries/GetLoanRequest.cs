@@ -1,5 +1,4 @@
-﻿using CMS_BackEnd.Application.DTOs.Loan;
-using MediatR;
+﻿using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace CMS_BackEnd.Application.Features.Loan.Requests.Queries
 {
-    public class GetStaffLoansRequest : IRequest<IReadOnlyList<LoanRecordDto>>
+    public class GetLoanRequest:IRequest<Domain.Loan>
     {
-        public int StaffId { get; set; }
+        public int Id { get; set; }
     }
 }

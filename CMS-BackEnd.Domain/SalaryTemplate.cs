@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace CMS_BackEnd.Domain
 {
-    public class SalaryTemplate:BaseModelClass
+    public class SalaryTemplate : BaseModelClass
     {
         public int StaffId { get; set; }
-        public double OverTimePerHour { get; set; }
+        public Staff? Staff { get; set; }
+        public double SalaryPerHour { get; set; }
         public int TotalDuration { get; set; }
-
+        public int BasicSalary { get; set; }
+        public ICollection<Loan>? Loans { get; set; }
     }
 }

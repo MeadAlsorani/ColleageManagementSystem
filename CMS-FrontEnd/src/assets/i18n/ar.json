@@ -71,5 +71,9 @@
   "course": "الكورس",
   "description": "الوصف",
   "Purchase": "شراء",
-  "Other": "اخرى"
+  "Other": "اخرى",
+  "salaryPerHour": "الراتب الساعي",
+  "totalDuration": "المدة الكلية",
+  "basicSalary": "الراتب الاساسي",
+  "staff": "الموظف"
 }

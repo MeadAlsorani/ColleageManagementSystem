@@ -22,21 +22,12 @@ namespace CMS_BackEnd.Application.Features.Loan.Handlers.Queries
         {
             PaginationResponse<LoanListDto> paginationResponse = new PaginationResponse<LoanListDto>();
             IReadOnlyList<Domain.Loan> records;
-            if (request.pagination != null)
-            {
-                var paginationResult = await repository.GetAllWithPagination(request.pagination);
-                records = paginationResult.Records;
-                var result = mapper.Map<IReadOnlyList<LoanListDto>>(records);
-                paginationResponse.Records = result;
-                paginationResponse.Count = paginationResult.Count;
-            }
-            else
-            {
-                records = await repository.GetAll();
-                var result = mapper.Map<IReadOnlyList<LoanListDto>>(records);
-                paginationResponse.Records = result;
-                paginationResponse.Count = result.Count;
-            }
+
+            records = await repository.GetAll(request.Id);
+            var result = mapper.Map<IReadOnlyList<LoanListDto>>(records);
+            paginationResponse.Records = result;
+            paginationResponse.Count = result.Count;
+
             return paginationResponse;
         }
     }

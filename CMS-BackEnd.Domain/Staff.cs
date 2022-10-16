@@ -13,7 +13,7 @@ namespace CMS_BackEnd.Domain
         public string? Password { get; set; }
         public UserRole? Role { get; set; }
         public int Salary { get; set; }
-        public ICollection<Loan>? Loans { get; set; }
+        //public ICollection<Loan>? Loans { get; set; }
     }
 
     public enum UserRole

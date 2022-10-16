@@ -70,5 +70,9 @@
   "course": "Kurs",
   "description": "Açıklama",
   "Purchase": "Satın alma",
-  "Other": "Başka"
+  "Other": "Başka",
+  "salaryPerHour": "saat başına maaş",
+  "totalDuration": "Toplam Süre",
+  "basicSalary": "temel maaş",
+  "staff":"Çalışan"
 }

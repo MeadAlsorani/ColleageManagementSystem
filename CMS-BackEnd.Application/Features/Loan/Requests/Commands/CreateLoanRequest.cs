@@ -10,6 +10,6 @@ namespace CMS_BackEnd.Application.Features.Loan.Requests.Commands
 {
     public class CreateLoanRequest : IRequest<Unit>
     {
-        public CreateLoanDto Data { get; set; } = null!;
+        public Domain.Loan Data { get; set; } = null!;
     }
 }

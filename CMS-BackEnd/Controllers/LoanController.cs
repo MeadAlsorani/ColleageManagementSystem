@@ -2,6 +2,7 @@
 using CMS_BackEnd.Application.Features.Common;
 using CMS_BackEnd.Application.Features.Loan.Requests.Commands;
 using CMS_BackEnd.Application.Features.Loan.Requests.Queries;
+using CMS_BackEnd.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,27 +24,14 @@ namespace CMS_BackEnd.Controllers
         }
         // GET: api/<LoanController>
         [HttpGet]
-        public async Task<ActionResult> Get()
+        public async Task<ActionResult> Get([FromQuery] int salaryTemplateId)
         {
-            var records = await mediator.Send(new GetLoansListRequest());
+            var records = await mediator.Send(new GetLoansListRequest() { Id = salaryTemplateId });
             return Ok(records);
         }
-
-        [HttpPost("GetWithPagination")]
-        public async Task<ActionResult> GetWithPagination(ListPaginationRequest pagination)
-        {
-            return Ok(await mediator.Send(new GetLoansListRequest() { pagination = pagination }));
-        }
-        // GET api/<LoanController>/5
-        [HttpGet("{staffId}")]
-        public async Task<ActionResult> Get(int staffId)
-        {
-            return Ok(await mediator.Send(new GetStaffLoansRequest { StaffId = staffId }));
-        }
-
         // POST api/<LoanController>
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] CreateLoanDto data)
+        public async Task<ActionResult> Post([FromBody] Loan data)
         {
             await mediator.Send(new CreateLoanRequest { Data = data });
             return Ok();
@@ -51,9 +39,16 @@ namespace CMS_BackEnd.Controllers
 
         // PUT api/<LoanController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] UpdateLoanDto data)
+        public async Task<ActionResult> Put(int id, [FromBody] Loan data)
         {
             await mediator.Send(new UpdateLoanRequest { Data = data });
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            await mediator.Send(new DeleteLoanRequest { Id = id });
             return Ok();
         }
     }

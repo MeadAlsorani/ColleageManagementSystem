@@ -1,4 +1,4 @@
-﻿namespace CMS_BackEnd.Resources
+﻿namespace CMS_BackEnd.Application.Resources
 {
     public class Resource
     {

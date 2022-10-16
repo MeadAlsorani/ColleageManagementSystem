@@ -18,8 +18,7 @@ namespace CMS_BackEnd.Application.Features.Loan.Handlers.Commands
 
         public async Task<Unit> Handle(CreateLoanRequest request, CancellationToken cancellationToken)
         {
-            var rawRecord = mapper.Map<Domain.Loan>(request.Data);
-            await repository.Add(rawRecord);
+            await repository.PostSalaryTemplate(request.Data);
             return Unit.Value;
         }
     }

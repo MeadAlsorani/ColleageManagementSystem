@@ -13,7 +13,7 @@ namespace CMS_BackEnd.Application.DTOs.Staff
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
         public string Address { get; set; }
-        public UserRole Role { get; set; }
+        public int Role { get; set; }
         public int Salary { get; set; }
     }
 }

@@ -36,7 +36,7 @@ export class TableComponent extends BaseComponent implements OnInit {
   get columns() {
     return this._columns;
   }
-  tableConstraints: {
+  @Input() tableConstraints: {
     AllowAdd: boolean;
     AllowDelete: boolean;
     AllowEdit: boolean;
@@ -48,10 +48,12 @@ export class TableComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.commonService.getAppMenus().subscribe((menus: Menu[]) => {
       const menu = menus.find((x) => x.title == this.controllerName);
-      this.tableConstraints.AllowAdd = menu?.actions.includes('add') ?? false;
-      this.tableConstraints.AllowEdit = menu?.actions.includes('edit') ?? false;
+      this.tableConstraints.AllowAdd =
+        menu?.actions.includes('add') ?? this.tableConstraints.AllowAdd;
+      this.tableConstraints.AllowEdit =
+        menu?.actions.includes('edit') ?? this.tableConstraints.AllowEdit;
       this.tableConstraints.AllowDelete =
-        menu?.actions.includes('delete') ?? false;
+        menu?.actions.includes('delete') ?? this.tableConstraints.AllowDelete;
     });
   }
   navigateToEdit(id: number) {

@@ -1,0 +1,10 @@
+<app-table
+  [columns]="columns"
+  [buttons]="buttons"
+  [records]="records"
+  [isLoading]="isLoading"
+  [pageTitle]="'Salary Templates'"
+  [controllerName]="'Salary Templates'"
+  (paginationChangedEmitter)="paginationChanged($event)"
+  (executeAction)="executeAction($event)"
+></app-table>

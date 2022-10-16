@@ -10,8 +10,8 @@ namespace CMS_BackEnd.Domain
     public class Loan : BaseModelClass
     {
         public double Amount { get; set; }
-        public int StaffId { get; set; }
-        public Staff? Staff { get; set; }
+        public int SalaryTemplateId { get; set; }
+        public SalaryTemplate? SalaryTemplate { get; set; }
         public DateTime Date { get; set; }
     }
 }

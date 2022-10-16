@@ -9,8 +9,13 @@ using System.Threading.Tasks;
 
 namespace CMS_BackEnd.Application.Contracts.Features
 {
-    public interface ILoanRepository : IGenericRepository<Loan>
+    public interface ILoanRepository
     {
-        public Task<IReadOnlyList<LoanRecordDto>> GetStaffLoans(int staffId);
+        public Task<Loan> Get(int id);
+        public Task<IReadOnlyList<Loan>> GetAll(int salaryTemplateId);
+        public Task PostSalaryTemplate(Loan loan);
+        public Task PutSalaryTemplate(Loan loan);
+        public Task DeleteSalaryTemplate(int id);
+
     }
 }
