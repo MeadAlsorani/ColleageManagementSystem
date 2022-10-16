@@ -12,5 +12,6 @@ namespace CMS_BackEnd.Application.Contracts.Features
     public interface IIncomingTransactionRepository : IGenericRepository<IncomeTransaction>
     {
         public Task<IReadOnlyList<StudentIncomingTransactionsDto>> GetStudentIncomingTransactions(int studentId, DateTime? start, DateTime? end);
+        public Task<IncomingTransactionAmounts> GetIncomingTransactionAmounts(int studentId,int courseId);
     }
 }

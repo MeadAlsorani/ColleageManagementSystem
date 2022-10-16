@@ -41,7 +41,11 @@ namespace CMS_BackEnd.Controllers
             var record = await mediator.Send(new IncomingTransactionDetailsRequest() { Id = id });
             return Ok(record);
         }
-
+        [HttpGet("amounts")]
+        public async Task<ActionResult> GetIncomeTransactionAmounts(int studentId, int courseId)
+        {
+            return Ok(await mediator.Send(new GetIncomeTransactionAmountsRequest() { CourseId = courseId, StudentId = studentId }));
+        }
         [HttpGet("GetStudentIncomingTransactions")]
         public async Task<ActionResult> GetStudentIncomingTransactions(int studentId, DateTime? start, DateTime? end)
         {

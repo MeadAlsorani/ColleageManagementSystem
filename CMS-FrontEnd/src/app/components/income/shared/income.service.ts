@@ -13,8 +13,17 @@ export class IncomeService extends CommonService {
   constructor(http: HttpClient) {
     super(http);
   }
+
+  getIncomeAmounts(studentId: number, courseId: number) {
+    return this.http.get(
+      `${environment.apiUrl}IncomeTransaction/amounts?studentId=${studentId}&courseId=${courseId}`
+    );
+  }
   getStudents(): Observable<PaginationResponse> {
     return this.http.get<PaginationResponse>(`${environment.apiUrl}Student`);
+  }
+  getStudentWithCourses(id: number) {
+    return this.http.get(`${environment.apiUrl}Student/WithCourses/${id}`);
   }
   getCourses(): Observable<PaginationResponse> {
     return this.http.get<PaginationResponse>(`${environment.apiUrl}Course`);

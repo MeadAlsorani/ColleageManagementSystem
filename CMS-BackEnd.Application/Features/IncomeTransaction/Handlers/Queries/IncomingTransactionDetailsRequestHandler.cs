@@ -21,7 +21,9 @@ namespace CMS_BackEnd.Application.Features.IncomeTransaction.Handlers.Queries
         public async Task<IncomingTransactionDetailsDto> Handle(IncomingTransactionDetailsRequest request, CancellationToken cancellationToken)
         {
             var record = await repository.Get(request.Id);
-            return mapper.Map<IncomingTransactionDetailsDto>(record);
+            var mapped = mapper.Map<IncomingTransactionDetailsDto>(record);
+            mapped.transactionAmounts = await repository.GetIncomingTransactionAmounts(mapped.StudentId, mapped.CourseId);
+            return mapped;
         }
     }
 }

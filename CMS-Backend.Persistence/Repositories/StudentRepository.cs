@@ -48,6 +48,7 @@ namespace CMS_Backend.Persistence.Repositories
             var records = await dbContext.Students
                 .Include(x => x.StudentCourses)
                 .ThenInclude(v => v.Course)
+                .ThenInclude(z=>z.Class)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(z => z.Id == id);
             var student = mapper.Map<StudentCoursesDto>(records);

@@ -15,5 +15,7 @@ namespace CMS_BackEnd.Application.DTOs.IncomingTransaction
         public DateTime Date { get; set; }
         public int StudentId { get; set; }
         public int CourseId { get; set; }
+
+        public IncomingTransactionAmounts? transactionAmounts { get; set; }
     }
 }

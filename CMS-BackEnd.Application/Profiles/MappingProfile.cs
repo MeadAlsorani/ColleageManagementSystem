@@ -82,7 +82,8 @@ namespace CMS_BackEnd.Application.Profiles
                     });
                 });
 
-
+            CreateMap<Student, StudentCoursesDto>()
+                .ForMember(dest=>dest.FullName,opt=>opt.MapFrom(src=>$"{src.FirstName} {src.LastName}"));
             #endregion
 
             #region Attendance

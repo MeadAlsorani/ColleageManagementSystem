@@ -42,5 +42,15 @@ namespace CMS_Backend.Persistence.Repositories
             var counts = await dbContext.IncomeTransactions.AsNoTracking().CountAsync();
             return new PaginationResponse<IncomeTransaction> { Count = counts, Records = records };
         }
+
+        public async Task<IncomingTransactionAmounts> GetIncomingTransactionAmounts(int studentId, int courseId)
+        {
+
+            var agreedAmount = dbContext.Courses.AsNoTracking().FirstOrDefault(x => x.Id == courseId)?.Price ?? 0;
+            var paidToDate = await dbContext.IncomeTransactions.AsNoTracking().Where(x => x.StudentId == studentId && x.CourseId == courseId).SumAsync(x => x.Amount);
+
+            var remaining = agreedAmount - paidToDate;
+            return new IncomingTransactionAmounts() { AgreedAmount = agreedAmount, PaidToDate = Convert.ToInt32(paidToDate), RemainingAmount = Convert.ToInt32(remaining) };
+        }
     }
 }

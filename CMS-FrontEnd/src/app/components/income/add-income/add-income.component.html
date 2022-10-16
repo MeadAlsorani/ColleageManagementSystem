@@ -1,1 +1,22 @@
-<app-add [fields]="fields" (submitFormEmitter)="submit($event)"></app-add>
+<app-add
+  [fields]="fields"
+  (valueChangeEmitter)="valueChanged($event)"
+  (submitFormEmitter)="submit($event)"
+>
+  <ng-container additional>
+    <div class="additional-section" *ngIf="showAdditional">
+      <span>
+        <span>{{ "paid" | translate }} :</span>
+        <span>{{ amounts.paid }}</span>
+      </span>
+      <span>
+        <span>{{ "agreed" | translate }} :</span>
+        <span>{{ amounts.agreed }}</span>
+      </span>
+      <span>
+        <span>{{ "remaining" | translate }} :</span>
+        <span>{{ amounts.remaining }}</span>
+      </span>
+    </div>
+  </ng-container>
+</app-add>

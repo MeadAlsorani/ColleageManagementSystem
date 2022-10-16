@@ -74,5 +74,8 @@
   "salaryPerHour": "saat başına maaş",
   "totalDuration": "Toplam Süre",
   "basicSalary": "temel maaş",
-  "staff":"Çalışan"
+  "staff": "Çalışan",
+  "agreed": "Toplam tutar",
+  "paid": "Ödenmiş tutar",
+  "remaining": "Kalan tutar"
 }

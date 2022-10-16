@@ -13,29 +13,18 @@ import { Component, Injector, OnInit } from '@angular/core';
   styleUrls: ['./add-income.component.less'],
 })
 export class AddIncomeComponent extends BaseComponent implements OnInit {
+  showAdditional = false;
+  courseId: number = 0;
+  amounts = {
+    paid: 0,
+    agreed: 0,
+    remaining: 0,
+  };
   fields: FormField[] = [
-    {
-      code: 'amount',
-      label: 'amount',
-      required: true,
-      type: FormFieldType.number,
-    },
-    {
-      code: 'date',
-      label: 'date',
-      required: true,
-      type: FormFieldType.date,
-    },
     {
       code: 'studentId',
       label: 'Student',
       required: true,
-      type: FormFieldType.dropdown,
-    },
-    {
-      code: 'courseId',
-      label: 'course',
-      required: false,
       type: FormFieldType.dropdown,
     },
   ];
@@ -56,14 +45,6 @@ export class AddIncomeComponent extends BaseComponent implements OnInit {
           field!.options = response.records.map((r) => {
             return { code: r.id, label: r.fullName };
           });
-        }),
-        switchMap(() => this.incomeService.getCourses()),
-        tap((resp) => {
-          console.log(resp);
-          const field = this.fields.find((x) => x.code == 'courseId');
-          field!.options = resp.records.map((r) => {
-            return { code: r.id, label: `${r.className}-${r.name}` };
-          });
         })
       )
       .subscribe();
@@ -73,5 +54,61 @@ export class AddIncomeComponent extends BaseComponent implements OnInit {
       this.openNotification();
       this.router.navigate(['../list'], { relativeTo: this.route });
     });
+  }
+  valueChanged(event: any) {
+    const course = this.fields.find((x) => x.code == 'courseId');
+    if (event.studentId != null && course == null) {
+      this.incomeService
+        .getStudentWithCourses(event.studentId)
+        .subscribe((response: any) => {
+          const field: FormField = {
+            code: 'courseId',
+            label: 'course',
+            required: false,
+            type: FormFieldType.dropdown,
+          };
+          field!.options = (response.coureses as any[]).map((r) => {
+            return { code: r.id, label: `${r.className}-${r.name}` };
+          });
+          this.fields = this.fields.filter((x) => x.code !== 'courseId');
+          this.fields = [...this.fields, field];
+        });
+    }
+    if (
+      (event.courseId != null &&
+        event.studentId != null &&
+        this.showAdditional === false) ||
+      (event.courseId != null &&
+        this.courseId != null &&
+        this.courseId != event.courseId)
+    ) {
+      this.incomeService
+        .getIncomeAmounts(event.studentId, event.courseId)
+        .subscribe((response: any) => {
+          const field: FormField = {
+            code: 'date',
+            label: 'date',
+            required: false,
+            type: FormFieldType.date,
+          };
+          const amountField: FormField = {
+            code: 'amount',
+            label: 'amount',
+            required: false,
+            type: FormFieldType.number,
+          };
+          this.fields = this.fields.filter(
+            (x) => x.code !== 'date' && x.code !== 'amount'
+          );
+          this.courseId = event.courseId;
+          this.fields = [...this.fields, field, amountField];
+          this.amounts = {
+            paid: response.paidToDate,
+            agreed: response.agreedAmount,
+            remaining: response.remainingAmount,
+          };
+          this.showAdditional = true;
+        });
+    }
   }
 }
