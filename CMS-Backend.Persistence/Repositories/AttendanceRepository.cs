@@ -32,7 +32,7 @@ namespace CMS_Backend.Persistence.Repositories
         }
         public override async Task<PaginationResponse<Attendance>> GetAllWithPagination(ListPaginationRequest request)
         {
-            var records = await dbContext.Attendances.AsNoTracking().ApplyPagination(request).Include(x => x.Student).Include(x => x.Staff).ToListAsync();
+            var records = await dbContext.Attendances.AsNoTracking().ApplyPagination(request).OrderByDescending(x => x.CreationDate).Include(x => x.Student).Include(x => x.Staff).ToListAsync();
             var count = await dbContext.Attendances.AsNoTracking().CountAsync();
             return new PaginationResponse<Attendance> { Count = count, Records = records };
         }

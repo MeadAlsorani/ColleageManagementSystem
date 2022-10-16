@@ -38,7 +38,7 @@ namespace CMS_Backend.Persistence.Repositories
         {
             var records = await dbContext.IncomeTransactions.AsNoTracking()
                 .Include(x => x.Student).Include(x => x.Course).ThenInclude(z => z.Class)
-                .ApplyPagination(request).ToListAsync();
+                .ApplyPagination(request).OrderByDescending(x => x.CreationDate).ToListAsync();
             var counts = await dbContext.IncomeTransactions.AsNoTracking().CountAsync();
             return new PaginationResponse<IncomeTransaction> { Count = counts, Records = records };
         }

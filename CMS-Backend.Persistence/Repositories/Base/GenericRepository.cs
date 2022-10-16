@@ -3,9 +3,12 @@ using CMS_BackEnd.Application.Contracts.Base;
 using CMS_BackEnd.Application.DTOs.Common;
 using CMS_BackEnd.Application.Features.Common;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,7 +54,8 @@ namespace CMS_Backend.Persistence.Repositories.Base
 
         public virtual async Task<PaginationResponse<T>> GetAllWithPagination(ListPaginationRequest request)
         {
-            var records = await dbContext.Set<T>().AsNoTracking().ApplyPagination(request).ToListAsync();
+
+            var records = await dbContext.Set<T>().OrderByDescending("CreationDate").AsNoTracking().ApplyPagination(request).ToListAsync();
             var count = await dbContext.Set<T>().AsNoTracking().CountAsync();
             return new PaginationResponse<T> { Count = count, Records = records };
         }
