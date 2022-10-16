@@ -22,6 +22,18 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        loadChildren: () =>
+          import('./components/dashboards/dashboards.module').then(
+            (x) => x.DashboardsModule
+          ),
+      },
+      {
         path: 'announcements',
         loadChildren: () =>
           import('./components/Announcement/Announcement.module').then(
