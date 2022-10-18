@@ -1,3 +1,4 @@
+import { DashboardService } from './../shared/dashboard.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import {
   CalendarEvent,
@@ -5,7 +6,7 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
-import { Subject } from 'rxjs';
+import { Subject, tap } from 'rxjs';
 
 @Component({
   selector: 'app-calendar',
@@ -51,10 +52,35 @@ export class CalendarComponent implements OnInit {
     },
   };
 
-  constructor() {}
+  constructor(private dashboardService: DashboardService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAnnounements(this.viewDate.getMonth() + 1);
+  }
 
+  getAnnounements(month: number) {
+    this.dashboardService
+      .getAnnouncements(month)
+      .pipe(
+        tap((response: any) => {
+          const announcements: {
+            title: string;
+            date: Date;
+            type: string;
+            id: number;
+          }[] = response;
+          this.events = announcements.map((x) => {
+            return {
+              start: new Date(x.date),
+              title: x.title,
+              id: x.id,
+              allDay: true,
+            };
+          });
+        })
+      )
+      .subscribe();
+  }
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     // if (isSameMonth(date, this.viewDate)) {
     //   if (
@@ -74,6 +100,8 @@ export class CalendarComponent implements OnInit {
     newStart,
     newEnd,
   }: CalendarEventTimesChangedEvent): void {
+    console.log(event, newStart, newEnd);
+
     this.events = this.events.map((iEvent) => {
       if (iEvent === event) {
         return {
@@ -88,4 +116,8 @@ export class CalendarComponent implements OnInit {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {}
+  monthChanged(data: any) {
+    const date = this.viewDate.getMonth() + 1;
+    this.getAnnounements(date);
+  }
 }

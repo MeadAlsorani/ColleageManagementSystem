@@ -1,1 +1,25 @@
-<app-calendar></app-calendar>
+<div class="dashboard-container" *ngIf="role != ''">
+  <mat-grid-list
+    cols="2"
+    rowHeight="300px"
+    *ngIf="role == 'Accountant' || role == 'Admin' || role == 'Reciptionist'"
+  >
+    <mat-grid-tile colspan="1" *ngIf="role == 'Accountant' || role == 'Admin'"
+      ><app-incomes-chart-card></app-incomes-chart-card
+    ></mat-grid-tile>
+    <mat-grid-tile colspan="1" *ngIf="role == 'Accountant' || role == 'Admin'"
+      ><app-outcomes-chart-card></app-outcomes-chart-card
+    ></mat-grid-tile>
+    <mat-grid-tile
+      colspan="2"
+      *ngIf="role == 'Reciptionist' || role == 'Admin'"
+    >
+      <app-counts-card style="width: 100%"></app-counts-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <app-calendar></app-calendar>
+  <app-attendance-chart
+    style="height: 400px; width: 100%"
+    *ngIf="role == 'Reciptionist' || role == 'Admin' || role == 'Manager'"
+  ></app-attendance-chart>
+</div>

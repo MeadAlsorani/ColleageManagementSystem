@@ -15,10 +15,11 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(private translate: TranslateService) {
     const token = localStorage.getItem('token');
+    const lang = localStorage.getItem('language') ?? 'ar';
     this.isLoggedIn = token != null && token != '';
 
     translate.setDefaultLang('ar');
-    translate.use('ar');
+    translate.use(lang);
   }
 
   ngAfterViewInit(): void {}

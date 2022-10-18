@@ -10,5 +10,6 @@ namespace CMS_BackEnd.Application.Contracts.Features
 {
     public interface IAnnouncementRepository : IGenericRepository<Announcement>
     {
+        public Task<IReadOnlyList<Announcement>> GetByMonth(int month);
     }
 }

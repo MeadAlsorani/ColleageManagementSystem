@@ -78,5 +78,13 @@
   "staff": "الموظف",
   "agreed": "المبلغ الكلي",
   "paid": "المبلغ المدفوع",
-  "remaining": "المبلغ المتبقي"
+  "remaining": "المبلغ المتبقي",
+  "Previous": "السابق",
+  "Today": "اليوم",
+  "Next": "التالي",
+  "Incomes": "الواردات",
+  "Total": "المجموع",
+  "staffs count": "عدد الطلاب",
+  "students count": "عدد الموظفين",
+  "Outcomes": "الصادرات"
 }

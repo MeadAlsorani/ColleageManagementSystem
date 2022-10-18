@@ -1,0 +1,12 @@
+<div
+  *ngIf="single.length > 0 && (single[0].value != 0 || single[1].value != 0)"
+>
+  <ngx-charts-tree-map
+    [scheme]="colorScheme"
+    [results]="single"
+    [gradient]="false"
+    [animations]="true"
+    (select)="onSelect($event)"
+  >
+  </ngx-charts-tree-map>
+</div>

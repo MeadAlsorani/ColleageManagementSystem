@@ -25,6 +25,10 @@
       [fixedInViewport]="mobileQuery.matches"
       fixedTopGap="56"
     >
+      <div style="position: absolute; bottom: 10px; color: white">
+        <button mat-button (click)="changeLanguage('ar')">العربية</button>
+        <button mat-button (click)="changeLanguage('tr')">Türkçe</button>
+      </div>
       <mat-nav-list>
         <a
           mat-list-item

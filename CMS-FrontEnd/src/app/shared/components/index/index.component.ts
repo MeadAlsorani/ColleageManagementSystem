@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { CommonService } from './../../services/common.service';
 import { AuthService } from './../../../components/Authentication/auth.service';
 import { User } from './../../interfaces/User';
@@ -19,7 +20,8 @@ export class IndexComponent implements OnInit, AfterViewInit {
   constructor(
     media: MediaMatcher,
     private authService: AuthService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private translateService: TranslateService
   ) {
     this.userData = authService.userData;
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -41,5 +43,10 @@ export class IndexComponent implements OnInit, AfterViewInit {
   }
   logout() {
     this.authService.logOut();
+  }
+  changeLanguage(lang: string) {
+    this.translateService.use(lang);
+    localStorage.setItem('language', lang);
+    window.location.reload();
   }
 }

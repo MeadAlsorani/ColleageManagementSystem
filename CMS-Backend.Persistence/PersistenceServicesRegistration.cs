@@ -37,6 +37,7 @@ namespace CMS_Backend.Persistence
             services.AddScoped<IIncomingTransactionRepository, IncomeTransactionRepository>();
             services.AddScoped<ILoanRepository, LoanRepository>();
             services.AddScoped<ISalaryTemplateRepository, SalaryTemplateRepository>();
+            services.AddScoped<IDashboardRepository, DashbordRepository>();
             return services;
         }
     }
