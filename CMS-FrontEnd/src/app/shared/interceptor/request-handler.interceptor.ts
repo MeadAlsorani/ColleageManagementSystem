@@ -95,7 +95,8 @@ export class RequestHandlerInterceptor implements HttpInterceptor {
   addHeaders(req: HttpRequest<any>) {
     let headers = new HttpHeaders();
     const token = localStorage.getItem('token');
-    headers = headers.append('Authorization', `Bearer ${token}`);
+    if (token) headers = headers.append('Authorization', `Bearer ${token}`);
+    headers = headers.append('Content-Type', `application/json`);
     if (!req.url.includes('i18n')) {
       headers = headers.append(
         'Accept-Language',
@@ -117,22 +118,22 @@ export class RequestHandlerInterceptor implements HttpInterceptor {
     }
 
     // Invalid token error
-    else if (error.status === 401) {
-      return this.refreshToken().pipe(
-        switchMap(() => {
-          request = this.addHeaders(request!);
-          return next!.handle(request);
-        }),
-        catchError((e: any) => {
-          if (e.status !== 401) {
-            return this.handleResponseError(e);
-          } else {
-            this.authService.logOut();
-            return new Observable();
-          }
-        })
-      );
-    }
+    // else if (error.status === 401) {
+    //   return this.refreshToken().pipe(
+    //     switchMap(() => {
+    //       request = this.addHeaders(request!);
+    //       return next!.handle(request);
+    //     }),
+    //     catchError((e: any) => {
+    //       if (e.status !== 401) {
+    //         return this.handleResponseError(e);
+    //       } else {
+    //         this.authService.logOut();
+    //         return new Observable();
+    //       }
+    //     })
+    //   );
+    // }
 
     // Access denied error
     else if (error.status === 403) {

@@ -10,7 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(opt =>
+{
+    //opt.EnableEndpointRouting = false;
+    //opt.
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
@@ -59,7 +63,8 @@ builder.Services.Configure<RequestLocalizationOptions>(opt =>
 builder.Services.AddCors(o =>
 {
     o.AddPolicy("CorsPolicy",
-        builder => builder.AllowAnyOrigin()
+        builder =>
+        builder.AllowAnyOrigin()
         .AllowAnyMethod()
         .AllowAnyHeader());
 });
@@ -76,11 +81,29 @@ if (app.Environment.IsDevelopment())
 }
 app.UseCors("CorsPolicy");
 app.UseHttpsRedirection();
+app.Use(async (context, next) => {
+    await next();
+    if (context.Response.StatusCode == 404 &&
+       !Path.HasExtension(context.Request.Path.Value) &&
+       !context.Request.Path.Value.StartsWith("/api/"))
+    {
+        context.Request.Path = "/index.html";
+        await next();
+    }
+});
+//app.UseMvcWithDefaultRoute();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
 app.UseAuthentication();
 
 app.UseAuthorization();
-
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+    context.Response.Headers.Add("Access-Control-Allow-Methods", "*");
+    await next();
+});
 app.MapControllers();
 
 app.Run();

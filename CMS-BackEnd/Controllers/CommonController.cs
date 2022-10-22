@@ -7,7 +7,7 @@ namespace CMS_BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class CommonController : ControllerBase
     {
         public CommonController()
