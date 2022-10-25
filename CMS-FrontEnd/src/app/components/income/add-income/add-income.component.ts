@@ -70,6 +70,8 @@ export class AddIncomeComponent extends BaseComponent implements OnInit {
           field!.options = (response.coureses as any[]).map((r) => {
             return { code: r.id, label: `${r.className}-${r.name}` };
           });
+          if (field.options.length == 0)
+            this.openNotification('No courses', 'warning');
           this.fields = this.fields.filter((x) => x.code !== 'courseId');
           this.fields = [...this.fields, field];
         });

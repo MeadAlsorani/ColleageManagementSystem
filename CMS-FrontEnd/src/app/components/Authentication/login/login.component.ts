@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,11 @@ export class LoginComponent implements OnInit {
     username: new FormControl(''),
     password: new FormControl(''),
   });
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private translateService: TranslateService
+  ) {}
 
   ngOnInit() {}
   submit() {
@@ -38,5 +43,10 @@ export class LoginComponent implements OnInit {
         )
         .subscribe();
     }
+  }
+  changeLanguage(lang: string) {
+    this.translateService.use(lang);
+    localStorage.setItem('language', lang);
+    window.location.reload();
   }
 }

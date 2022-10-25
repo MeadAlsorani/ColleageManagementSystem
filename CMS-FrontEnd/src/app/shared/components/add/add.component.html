@@ -12,6 +12,7 @@
         <ng-container *ngIf="field.type === 1">
           <mat-form-field>
             <mat-label>{{ field.label | translate }}</mat-label>
+            <!-- <span matSuffix>Tl</span> -->
             <input matInput type="number" [formControlName]="field.code" />
           </mat-form-field>
         </ng-container>

@@ -84,14 +84,13 @@ namespace CMS_Backend.Persistence.Repositories
 
             dbContext.Update(entity);
             await dbContext.SaveChangesAsync();
-            //foreach (var item in entity.StudentCourses)
-            //{
-            //    item.StudentId = entity.Id;
-            //}
-            //dbContext.StudentCourses.AddRange(entity.StudentCourses);
-            //await dbContext.SaveChangesAsync();
-
             return;
+        }
+        public override Task Delete(int key)
+        {
+            var attendances=dbContext.Attendances.Where(x => x.StudentId == key);
+            dbContext.RemoveRange(attendances);
+            return base.Delete(key);
         }
     }
 }

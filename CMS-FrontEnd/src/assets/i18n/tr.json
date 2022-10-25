@@ -85,5 +85,8 @@
   "Total": "Toplam",
   "staffs count": "Personel Sayısı",
   "students count": "Öğrenciler sayısı",
-  "Outcomes": "Harç"
+  "Outcomes": "Harç",
+  "Home":"Ana Sayfa",
+  "No courses":"Seçilen öğrenci için ders yok",
+  "Loans":"Krediler"
 }

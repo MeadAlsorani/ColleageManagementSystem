@@ -1,3 +1,4 @@
+import { tap, switchMap } from 'rxjs';
 import { LoansListComponent } from './loan/loans-list/loans-list.component';
 import { BaseComponent } from './../../shared/components/Base.component';
 import { PaginationResponse } from 'src/app/shared/interfaces/Request';
@@ -36,21 +37,21 @@ export class SalaryTemplateComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getData();
+    this.getData().subscribe();
   }
   getData() {
     this.isLoading = true;
-    this.salaryService
-      .GetWithPagination(this.pagination)
-      .subscribe((response) => {
+    return this.salaryService.GetWithPagination(this.pagination).pipe(
+      tap((response: any) => {
         this.isLoading = false;
         this.records = response;
-      });
+      })
+    );
   }
   paginationChanged(event: PaginationChangParams) {
     this.pagination.PageIndex = event.pageIndex;
     this.pagination.PageSize = event.pageSize;
-    this.getData();
+    this.getData().subscribe();
   }
   executeAction(event: { data: any; code: string }) {
     if (event.code === 'loans') {
@@ -58,5 +59,16 @@ export class SalaryTemplateComponent extends BaseComponent implements OnInit {
         relativeTo: this.route,
       });
     }
+  }
+  deleteSalaryTemplate(key: any) {
+    this.salaryService
+      .Delete(key)
+      .pipe(
+        tap(() => {
+          this.openNotification();
+        }),
+        switchMap(() => this.getData())
+      )
+      .subscribe();
   }
 }

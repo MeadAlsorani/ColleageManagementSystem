@@ -59,21 +59,10 @@ export class AddAnnouncementComponent extends BaseComponent implements OnInit {
       .Post(data)
       .pipe(
         tap((response) => {
-          this.openSnackBar();
+          this.openNotification();
+          this.router.navigate(['../list'], { relativeTo: this.route });
         })
       )
       .subscribe();
-  }
-  openSnackBar() {
-    this.snackBar.open(
-      this.translateService.instant('Operation succeeded'),
-      undefined,
-      {
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-        duration: 4000,
-        panelClass: 'success-panel',
-      }
-    );
   }
 }

@@ -29,10 +29,10 @@ namespace CMS_Backend.Persistence.Repositories.Base
             return entity;
         }
 
-        public async Task Delete(int key)
+        public virtual async Task Delete(int key)
         {
             var entity = await dbContext.Set<T>().FindAsync(key);
-            dbContext.Set<T>().Remove(entity!);
+            dbContext.Remove(entity!);
             await dbContext.SaveChangesAsync();
         }
 
