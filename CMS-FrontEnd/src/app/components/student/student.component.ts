@@ -51,7 +51,12 @@ export class StudentComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.getStudents().subscribe();
   }
-
+  search(event: string) {
+    if(true){
+      this.pagination.SearchStatement = event;
+      this.getStudents().subscribe();
+    }
+  }
   getStudents() {
     this.isLoading = true;
     return this.studentService.GetWithPagination(this.pagination).pipe(

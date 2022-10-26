@@ -37,7 +37,12 @@ export class StaffComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.getdata().subscribe();
   }
-
+  search(event: string) {
+    if(true){
+      this.pagination.SearchStatement = event;
+      this.getdata().subscribe();
+    }
+  }
   deleteStaff(id: number) {
     return this.staffService
       .Delete(id)

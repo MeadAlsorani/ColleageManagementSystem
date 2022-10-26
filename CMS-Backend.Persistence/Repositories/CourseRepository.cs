@@ -32,7 +32,18 @@ namespace CMS_Backend.Persistence.Repositories
         }
         public override async Task<PaginationResponse<Course>> GetAllWithPagination(ListPaginationRequest request)
         {
-            var records = await dbContext.Courses.AsNoTracking().ApplyPagination(request).Include(x => x.Class).Include(x => x.Staff).ToListAsync();
+            var records = await dbContext.Courses
+                .AsNoTracking()
+                .Where(x => string.IsNullOrWhiteSpace(request.SearchStatement) ? 1 == 1 : (
+                x.LessonDuration.ToString() == request.SearchStatement ||
+                x.Price.ToString() == request.SearchStatement ||
+                x.Class!.Name.ToLower().Contains(request.SearchStatement)||
+                x.Name.ToLower().Contains(request.SearchStatement)
+                ))
+                .ApplyPagination(request)
+                .Include(x => x.Class)
+                .Include(x => x.Staff)
+                .ToListAsync();
             var count = await dbContext.Courses.AsNoTracking().CountAsync();
             return new PaginationResponse<Course> { Count = count, Records = records };
         }

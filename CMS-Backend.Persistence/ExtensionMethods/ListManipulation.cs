@@ -15,7 +15,28 @@ namespace CMS_Backend.Persistence.ExtensionMethods
         {
             return data.Skip(request.PageSize * request.PageIndex).Take(request.PageSize);
         }
+        private static Expression<Func<T, bool>> GetExpression<T>(Dictionary<string, object> keyValuePairs)
+        {
+            var param = Expression.Parameter(typeof(T), "x");
+            Expression expression = null;
+            foreach (var key in keyValuePairs.Keys)
+            {
+                var arg = Expression.Property(param, key);
+                var t = Expression.Call(arg, "ToString", Type.EmptyTypes);
+                var exp = Expression.Equal(t, Expression.Constant(keyValuePairs[key].ToString()));
+                if (expression is null)
+                {
+                    expression = exp;
+                }
+                else
+                {
+                    expression = Expression.And(expression, exp);
+                }
+            }
+            var func = Expression.Lambda<Func<T, bool>>(expression!, param);
+            return func;
 
+        }
         public static IOrderedQueryable<T> OrderBy<T>(
     this IQueryable<T> source,
     string property)

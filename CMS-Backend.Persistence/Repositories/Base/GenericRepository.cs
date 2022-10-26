@@ -54,8 +54,10 @@ namespace CMS_Backend.Persistence.Repositories.Base
 
         public virtual async Task<PaginationResponse<T>> GetAllWithPagination(ListPaginationRequest request)
         {
-
-            var records = await dbContext.Set<T>().OrderByDescending("CreationDate").AsNoTracking().ApplyPagination(request).ToListAsync();
+            List<T> records = await dbContext.Set<T>().OrderByDescending("CreationDate")
+                    .AsNoTracking()
+                    .ApplyPagination(request)
+                    .ToListAsync();
             var count = await dbContext.Set<T>().AsNoTracking().CountAsync();
             return new PaginationResponse<T> { Count = count, Records = records };
         }
@@ -66,5 +68,7 @@ namespace CMS_Backend.Persistence.Repositories.Base
             await dbContext.SaveChangesAsync();
             return;
         }
+
+
     }
 }

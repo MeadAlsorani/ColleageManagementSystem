@@ -26,7 +26,12 @@ export class AttendanceComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.getAttendances().subscribe();
   }
-
+  search(event: string) {
+    if(true){
+      this.pagination.SearchStatement = event;
+      this.getAttendances().subscribe();
+    }
+  }
   getAttendances() {
     this.isLoading = true;
     return this.attendanceService.GetWithPagination(this.pagination).pipe(

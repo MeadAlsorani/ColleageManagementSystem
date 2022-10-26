@@ -11,6 +11,17 @@
   </button>
 </div>
 <div *ngIf="!isLoading" style="max-height: 70vh; overflow-y: scroll">
+  <div style="display: flex; justify-content: space-around" *ngIf="ShowSearch">
+    <ng-container>
+      <mat-form-field style="width: 100%; padding-inline: 5%">
+        <mat-label translate>Search</mat-label>
+        <input matInput [(ngModel)]="searchStatment" />
+        <button mat-button matSuffix (click)="search()">
+          {{ "Search" | translate }}
+        </button>
+      </mat-form-field>
+    </ng-container>
+  </div>
   <table
     mat-table
     [dataSource]="records.records"

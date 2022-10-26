@@ -62,4 +62,10 @@ export class AnnouncementsListComponent
       )
       .subscribe();
   }
+  search(event: string) {
+    if(true){
+      this.pagination.SearchStatement = event;
+      this.getAnnouncements().subscribe();
+    }
+  }
 }

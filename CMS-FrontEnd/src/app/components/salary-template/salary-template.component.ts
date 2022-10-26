@@ -60,6 +60,12 @@ export class SalaryTemplateComponent extends BaseComponent implements OnInit {
       });
     }
   }
+  search(event: string) {
+    if(true){
+      this.pagination.SearchStatement = event;
+      this.getData().subscribe();
+    }
+  }
   deleteSalaryTemplate(key: any) {
     this.salaryService
       .Delete(key)

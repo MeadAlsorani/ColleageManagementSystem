@@ -41,4 +41,10 @@ export class IncomeComponent extends BaseComponent implements OnInit {
     this.pagination.PageSize = event.pageSize;
     this.getIncomeTransactions().subscribe();
   }
+  search(event: string) {
+    if(true){
+      this.pagination.SearchStatement = event;
+      this.getIncomeTransactions().subscribe();
+    }
+  }
 }

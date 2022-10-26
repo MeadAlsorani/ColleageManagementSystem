@@ -20,7 +20,19 @@ namespace CMS_Backend.Persistence.Repositories
         }
         public override async Task<PaginationResponse<SalaryTemplate>> GetAllWithPagination(ListPaginationRequest request)
         {
-            var records = await dbContext.SalaryTemplates.AsNoTracking().ApplyPagination(request).Include(x => x.Staff).Include(x => x.Loans).ToListAsync();
+            var records = await dbContext.SalaryTemplates
+                .AsNoTracking()
+                .Where(x => string.IsNullOrWhiteSpace(request.SearchStatement) ? 1 == 1 :
+                (
+                string.Concat(x.Staff!.FirstName, " ", x.Staff!.LastName).Contains(request.SearchStatement) ||
+                x.BasicSalary.ToString().Contains(request.SearchStatement) ||
+                x.SalaryPerHour.ToString().Contains(request.SearchStatement) ||
+                x.TotalDuration.ToString() == request.SearchStatement
+                ))
+                .ApplyPagination(request)
+                .Include(x => x.Staff)
+                .Include(x => x.Loans)
+                .ToListAsync();
             foreach (var record in records)
             {
                 record.BasicSalary = record.BasicSalary - Convert.ToInt32(record.Loans?.Sum(x => x.Amount) ?? 0);

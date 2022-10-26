@@ -19,6 +19,7 @@ import { Action, PaginationChangParams } from '../../interfaces/Table';
 })
 export class TableComponent extends BaseComponent implements OnInit {
   @Input() isLoading = true;
+  @Input() ShowSearch = true;
   displayColumns: string[] = [];
   _columns: string[] = [];
   @Output() deleteRecordEmitter = new EventEmitter();
@@ -28,6 +29,7 @@ export class TableComponent extends BaseComponent implements OnInit {
   @Input() buttons: Action[] = [];
   @Input() records: PaginationResponse = { count: 0, records: [] };
   @Output() executeAction = new EventEmitter();
+  @Output() searchEmit = new EventEmitter();
   @Input() set columns(value: string[]) {
     this.displayColumns = [...[], ...value];
     this.displayColumns.push('actions');
@@ -41,6 +43,7 @@ export class TableComponent extends BaseComponent implements OnInit {
     AllowDelete: boolean;
     AllowEdit: boolean;
   } = { AllowAdd: false, AllowDelete: false, AllowEdit: false };
+  searchStatment = '';
   constructor(injector: Injector) {
     super(injector);
   }
@@ -74,5 +77,9 @@ export class TableComponent extends BaseComponent implements OnInit {
 
   emitAction(data: any, code: string) {
     this.executeAction.emit({ code, data });
+  }
+
+  search() {
+    this.searchEmit.emit(this.searchStatment);
   }
 }

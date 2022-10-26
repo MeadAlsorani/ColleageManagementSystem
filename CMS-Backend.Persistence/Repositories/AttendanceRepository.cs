@@ -32,7 +32,16 @@ namespace CMS_Backend.Persistence.Repositories
         }
         public override async Task<PaginationResponse<Attendance>> GetAllWithPagination(ListPaginationRequest request)
         {
-            var records = await dbContext.Attendances.AsNoTracking().ApplyPagination(request).OrderByDescending(x => x.CreationDate).Include(x => x.Student).Include(x => x.Staff).ToListAsync();
+            var records = await dbContext.Attendances
+                .AsNoTracking()
+                .Where(x => string.IsNullOrWhiteSpace(request.SearchStatement) ? 1 == 1 : (
+                x.Student == null ? 1 == 1 : string.Concat(x.Student!.FirstName, " ", x.Student!.LastName).Contains(request.SearchStatement) ||
+                x.Staff == null ? 1 == 1 : string.Concat(x.Staff!.FirstName, " ", x.Staff.LastName).Contains(request.SearchStatement)
+                ))
+                .ApplyPagination(request)
+                .OrderByDescending(x => x.CreationDate)
+                .Include(x => x.Student)
+                .Include(x => x.Staff).ToListAsync();
             var count = await dbContext.Attendances.AsNoTracking().CountAsync();
             return new PaginationResponse<Attendance> { Count = count, Records = records };
         }

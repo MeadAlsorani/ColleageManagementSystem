@@ -3,6 +3,7 @@ export interface PaginationPayload {
   PageIndex: number;
   Ascending: boolean;
   SortBy?: string;
+  SearchStatement?: string;
 }
 
 export interface PaginationResponse {

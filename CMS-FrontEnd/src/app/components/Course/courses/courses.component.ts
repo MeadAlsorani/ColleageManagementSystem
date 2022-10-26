@@ -30,6 +30,12 @@ export class CoursesComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.getCourses().subscribe();
   }
+  search(event: string) {
+    if(true){
+      this.pagination.SearchStatement = event;
+      this.getCourses().subscribe();
+    }
+  }
   getCourses() {
     this.isLoading = true;
     return this.courseService.GetWithPagination(this.pagination).pipe(

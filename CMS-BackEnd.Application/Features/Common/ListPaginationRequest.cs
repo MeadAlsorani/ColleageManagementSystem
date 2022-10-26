@@ -14,10 +14,12 @@ namespace CMS_BackEnd.Application.Features.Common
             PageIndex = 0;
             Ascending = true;
             SortBy = "Id";
+            SearchStatement = "";
         }
         public int PageSize { get; set; }
         public int PageIndex { get; set; }
         public bool Ascending { get; set; }
         public string? SortBy { get; set; }
+        public string SearchStatement { get; set; }
     }
 }

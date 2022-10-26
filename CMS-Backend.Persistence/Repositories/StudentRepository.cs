@@ -48,7 +48,7 @@ namespace CMS_Backend.Persistence.Repositories
             var records = await dbContext.Students
                 .Include(x => x.StudentCourses)
                 .ThenInclude(v => v.Course)
-                .ThenInclude(z=>z.Class)
+                .ThenInclude(z => z.Class)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(z => z.Id == id);
             var student = mapper.Map<StudentCoursesDto>(records);
@@ -57,7 +57,18 @@ namespace CMS_Backend.Persistence.Repositories
         }
         public override async Task<PaginationResponse<Student>> GetAllWithPagination(ListPaginationRequest request)
         {
-            var records = await dbContext.Students.AsNoTracking().ApplyPagination(request).Include(x => x.StudentCourses).ToListAsync();
+            var records = await dbContext.Students.AsNoTracking()
+                .Where(x => string.IsNullOrWhiteSpace(request.SearchStatement) ? 1 == 1 : (
+                string.Concat(x.FirstName, " ", x.LastName).Contains(request.SearchStatement) ||
+                (!string.IsNullOrWhiteSpace(x.Address) && x.Address.Contains(request.SearchStatement)) ||
+                x.ClassLevel.ToString() == request.SearchStatement ||
+                (!string.IsNullOrWhiteSpace(x.PhoneNumber) && x.PhoneNumber.Contains(request.SearchStatement)) ||
+                (!string.IsNullOrWhiteSpace(x.GuardianName) && x.GuardianName.Contains(request.SearchStatement)) ||
+                (!string.IsNullOrWhiteSpace(x.SchoolName) && x.SchoolName.Contains(request.SearchStatement)) 
+                ))
+                .ApplyPagination(request)
+                .Include(x => x.StudentCourses)
+                .ToListAsync();
             var count = await dbContext.Students.CountAsync();
             return new PaginationResponse<Student>() { Count = count, Records = records };
         }
@@ -88,7 +99,7 @@ namespace CMS_Backend.Persistence.Repositories
         }
         public override Task Delete(int key)
         {
-            var attendances=dbContext.Attendances.Where(x => x.StudentId == key);
+            var attendances = dbContext.Attendances.Where(x => x.StudentId == key);
             dbContext.RemoveRange(attendances);
             return base.Delete(key);
         }

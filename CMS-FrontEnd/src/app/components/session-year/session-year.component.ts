@@ -26,7 +26,12 @@ export class SessionYearComponent extends BaseComponent implements OnInit {
   ngOnInit() {
     this.getSessions().subscribe();
   }
-
+  search(event: string) {
+    if(true){
+      this.pagination.SearchStatement = event;
+      this.getSessions().subscribe();
+    }
+  }
   deleteRecord(id: number) {
     this.SessionYearService.Delete(id)
       .pipe(

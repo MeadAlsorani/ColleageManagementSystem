@@ -36,4 +36,10 @@ export class OutcomeComponent extends BaseComponent implements OnInit {
     this.pagination.PageSize = event.pageSize;
     this.getData().subscribe();
   }
+  search(event: string) {
+    if(true){
+      this.pagination.SearchStatement = event;
+      this.getData().subscribe();
+    }
+  }
 }
