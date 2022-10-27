@@ -57,7 +57,7 @@ namespace CMS_BackEnd.Controllers
 
         // POST api/<AnnouncementsController>
         [HttpPost]
-        [Authorize(Roles = "Reciptionist,Admin")]
+        [Authorize(Roles = "Reciptionist,Admin,Manager")]
         public async Task<ActionResult> Post([FromBody] AnnouncementRecordDto announcement)
         {
             var record = await mediator.Send(new CreateAnnouncementRequest() { announcement = announcement });

@@ -19,6 +19,7 @@ import {
 } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RetryConfig } from 'rxjs/internal/operators/retry';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class RequestHandlerInterceptor implements HttpInterceptor {
@@ -26,7 +27,8 @@ export class RequestHandlerInterceptor implements HttpInterceptor {
 
   constructor(
     private translationService: TranslateService,
-    private authService: AuthService
+    private authService: AuthService,
+    private snackbar: MatSnackBar
   ) {}
   intercept(
     req: HttpRequest<any>,
@@ -139,7 +141,8 @@ export class RequestHandlerInterceptor implements HttpInterceptor {
     else if (error.status === 403) {
       // Show message
       // Logout
-      this.authService.logOut();
+      // this.authService.logOut();
+      this.openNotification('Unallowed method', 'warning');
     }
 
     // Server error
@@ -154,5 +157,37 @@ export class RequestHandlerInterceptor implements HttpInterceptor {
     }
 
     return throwError(() => new Error(error));
+  }
+  openNotification(message?: string, type?: string) {
+    if (message != null && message != '') {
+      switch (type) {
+        case 'warning':
+          this.snackbar.open(
+            this.translationService.instant(message),
+            undefined,
+            {
+              horizontalPosition: 'center',
+              verticalPosition: 'top',
+              duration: 4000,
+              panelClass: 'warning-panel',
+            }
+          );
+          break;
+
+        default:
+          break;
+      }
+    } else {
+      this.snackbar.open(
+        this.translationService.instant('Operation succeeded'),
+        undefined,
+        {
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+          duration: 4000,
+          panelClass: 'success-panel',
+        }
+      );
+    }
   }
 }

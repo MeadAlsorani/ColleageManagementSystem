@@ -7,6 +7,7 @@ import {
   CalendarView,
 } from 'angular-calendar';
 import { Subject, tap } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-calendar',
@@ -52,7 +53,10 @@ export class CalendarComponent implements OnInit {
     },
   };
 
-  constructor(private dashboardService: DashboardService) {}
+  constructor(
+    private dashboardService: DashboardService,
+    private matDialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.getAnnounements(this.viewDate.getMonth() + 1);
@@ -82,17 +86,12 @@ export class CalendarComponent implements OnInit {
       .subscribe();
   }
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    // if (isSameMonth(date, this.viewDate)) {
-    //   if (
-    //     (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-    //     events.length === 0
-    //   ) {
-    //     this.activeDayIsOpen = false;
-    //   } else {
-    //     this.activeDayIsOpen = true;
-    //   }
-    //   this.viewDate = date;
-    // }
+    console.log(date);
+    console.log(events);
+    this.matDialog.open(this.modalContent!, {
+      data: { events, date },
+      width: '30%',
+    });
   }
 
   eventTimesChanged({
@@ -115,7 +114,9 @@ export class CalendarComponent implements OnInit {
     this.handleEvent('Dropped or resized', event);
   }
 
-  handleEvent(action: string, event: CalendarEvent): void {}
+  handleEvent(action: string, event: CalendarEvent): void {
+    console.log(event);
+  }
   monthChanged(data: any) {
     const date = this.viewDate.getMonth() + 1;
     this.getAnnounements(date);

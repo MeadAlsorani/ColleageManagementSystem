@@ -15,6 +15,7 @@ import { Component, Injector, OnInit } from '@angular/core';
 export class AddIncomeComponent extends BaseComponent implements OnInit {
   showAdditional = false;
   courseId: number = 0;
+  studentId = 0;
   amounts = {
     paid: 0,
     agreed: 0,
@@ -57,22 +58,32 @@ export class AddIncomeComponent extends BaseComponent implements OnInit {
   }
   valueChanged(event: any) {
     const course = this.fields.find((x) => x.code == 'courseId');
-    if (event.studentId != null && course == null) {
+    if (
+      (event.studentId != null && course == null) ||
+      (event.studentId != null && event.studentId != this.studentId)
+    ) {
       this.incomeService
         .getStudentWithCourses(event.studentId)
         .subscribe((response: any) => {
+          this.studentId = event.studentId;
+
           const field: FormField = {
             code: 'courseId',
             label: 'course',
             required: false,
             type: FormFieldType.dropdown,
           };
+
           field!.options = (response.coureses as any[]).map((r) => {
             return { code: r.id, label: `${r.className}-${r.name}` };
           });
           if (field.options.length == 0)
             this.openNotification('No courses', 'warning');
-          this.fields = this.fields.filter((x) => x.code !== 'courseId');
+          this.fields = this.fields.filter(
+            (x) =>
+              x.code !== 'courseId' && x.code !== 'date' && x.code !== 'amount'
+          );
+          this.showAdditional = false;
           this.fields = [...this.fields, field];
         });
     }

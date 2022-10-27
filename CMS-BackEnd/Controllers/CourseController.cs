@@ -11,7 +11,6 @@ namespace CMS_BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class CourseController : ControllerBase
     {
         private readonly IMediator mediator;
@@ -24,13 +23,14 @@ namespace CMS_BackEnd.Controllers
         }
         // GET: api/<CourseController>
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<List<CourseListDto>>> Get()
         {
             var records = await mediator.Send(new CoursesListRequest());
             return Ok(records);
         }
 
-
+        [Authorize]
         [HttpPost("GetWithPagination")]
         public async Task<ActionResult<List<CourseListDto>>> GetWithPagination(ListPaginationRequest request)
         {
@@ -38,12 +38,14 @@ namespace CMS_BackEnd.Controllers
             return Ok(records);
         }
         // GET api/<CourseController>/5
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<CourseDetailsDto>> Get(int id)
         {
             var record = await mediator.Send(new CourseDetailsRequest { Id = id });
             return Ok(record);
         }
+        [Authorize]
         [HttpGet("GetClassesList")]
         public async Task<ActionResult> GetClasses()
         {

@@ -15,8 +15,17 @@
     <ng-container>
       <mat-form-field style="width: 100%; padding-inline: 5%">
         <mat-label translate>Search</mat-label>
-        <input matInput [(ngModel)]="searchStatment" />
-        <button mat-button matSuffix (click)="search()">
+        <input
+          matInput
+          [(ngModel)]="searchStatment"
+          (keyup)="$event.keyCode == 13 ? search() : null"
+        />
+        <button
+          mat-button
+          matSuffix
+          color="warn"
+          (click)="search()"
+        >
           {{ "Search" | translate }}
         </button>
       </mat-form-field>
@@ -53,6 +62,7 @@
           </mat-grid-tile>
           <mat-grid-tile>
             <button
+              *ngIf="buttons.length > 0"
               mat-icon-button
               [matMenuTriggerFor]="menu"
               aria-label="Example icon-button with a menu"

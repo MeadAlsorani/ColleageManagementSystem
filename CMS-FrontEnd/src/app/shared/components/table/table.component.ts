@@ -82,4 +82,7 @@ export class TableComponent extends BaseComponent implements OnInit {
   search() {
     this.searchEmit.emit(this.searchStatment);
   }
+  keyup(event: any) {
+    console.log(event);
+  }
 }
