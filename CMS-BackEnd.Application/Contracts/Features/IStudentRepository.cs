@@ -1,4 +1,5 @@
 ﻿using CMS_BackEnd.Application.Contracts.Base;
+using CMS_BackEnd.Application.DTOs.Course;
 using CMS_BackEnd.Application.DTOs.Student;
 using CMS_BackEnd.Domain;
 using System;
@@ -14,5 +15,6 @@ namespace CMS_BackEnd.Application.Contracts.Features
         public Task<StudentCoursesDto> GetStudentWithCourses(int id);
         public Task CreateStudentWithCourses(CreateStudentDto student);
         public Task ApproveStudent(int id);
+        public Task<IReadOnlyList<CourseBalanceDto>> GetCourseBalances(int id);
     }
 }

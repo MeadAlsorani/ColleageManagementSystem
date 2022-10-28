@@ -1,5 +1,6 @@
 ﻿
 
+
 using AutoMapper;
 using CMS_BackEnd.Application.DTOs.Announcement;
 using CMS_BackEnd.Application.DTOs.Attendance;
@@ -56,7 +57,8 @@ namespace CMS_BackEnd.Application.Profiles
                      return dest.StudentCourses;
                  });
              });
-            CreateMap<Student, UpdateStudentDto>().ForMember(dest => dest.StudentCoursesIds, opt =>
+            CreateMap<Student, UpdateStudentDto>()
+                .ForMember(dest => dest.StudentCoursesIds, opt =>
             {
                 //opt.MapFrom(src => src.StudentCourses.Select(x => x.CourseId));
                 opt.MapFrom((src, dest) =>
@@ -65,7 +67,9 @@ namespace CMS_BackEnd.Application.Profiles
                     return dest.StudentCoursesIds;
                 });
             })
+                .ForMember(dest => dest.RegisterationDate, opt => opt.MapFrom(src => src.RegisterationDate))
                 .ReverseMap()
+                .ForMember(dest => dest.RegisterationDate, opt => opt.MapFrom(src => src.RegisterationDate))
                 .ForMember(dest => dest.StudentCourses, opt =>
                 {
                     opt.MapFrom((src, dest) =>
@@ -83,7 +87,7 @@ namespace CMS_BackEnd.Application.Profiles
                 });
 
             CreateMap<Student, StudentCoursesDto>()
-                .ForMember(dest=>dest.FullName,opt=>opt.MapFrom(src=>$"{src.FirstName} {src.LastName}"));
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"));
             #endregion
 
             #region Attendance

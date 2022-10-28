@@ -64,7 +64,7 @@ namespace CMS_Backend.Persistence.Repositories
                 x.ClassLevel.ToString() == request.SearchStatement ||
                 (!string.IsNullOrWhiteSpace(x.PhoneNumber) && x.PhoneNumber.Contains(request.SearchStatement)) ||
                 (!string.IsNullOrWhiteSpace(x.GuardianName) && x.GuardianName.Contains(request.SearchStatement)) ||
-                (!string.IsNullOrWhiteSpace(x.SchoolName) && x.SchoolName.Contains(request.SearchStatement)) 
+                (!string.IsNullOrWhiteSpace(x.SchoolName) && x.SchoolName.Contains(request.SearchStatement))
                 ))
                 .ApplyPagination(request)
                 .Include(x => x.StudentCourses)
@@ -102,6 +102,30 @@ namespace CMS_Backend.Persistence.Repositories
             var attendances = dbContext.Attendances.Where(x => x.StudentId == key);
             dbContext.RemoveRange(attendances);
             return base.Delete(key);
+        }
+
+        public async Task<IReadOnlyList<CourseBalanceDto>> GetCourseBalances(int id)
+        {
+            var courses = await dbContext.Courses
+                .Include(x => x.StudentCourses)
+                .Include(x => x.Class)
+                .AsNoTracking()
+                .Where(x => x.StudentCourses.Any(z => z.StudentId == id))
+                .ToListAsync();
+            List<CourseBalanceDto> result = new List<CourseBalanceDto>();
+            foreach (var course in courses)
+            {
+                var paid = dbContext.IncomeTransactions.Where(x => x.StudentId == id && x.CourseId == course.Id).Sum(x => x.Amount);
+                var remains = course.Price - paid;
+                result.Add(new CourseBalanceDto
+                {
+                    Name = $"{course.Class!.Name} - {course.Name}",
+                    Price = course.Price,
+                    Paid = Convert.ToInt32(paid),
+                    Remains = Convert.ToInt32(remains)
+                });
+            }
+            return result;
         }
     }
 }

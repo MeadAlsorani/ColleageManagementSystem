@@ -52,6 +52,12 @@ namespace CMS_BackEnd.Controllers
             return Ok(await mediator.Send(new GetStudentWithCoursesRequest() { Id = id }));
         }
 
+        [HttpGet("CoursesBalance/{id}")]
+        public async Task<IActionResult> GetCoursesBalance(int id)
+        {
+            return Ok(await mediator.Send(new GetCoursesBalancesRequest() { Id = id }));
+        }
+
         // POST api/<StudentController>
         [HttpPost]
         [Authorize(Roles = "Admin,Reciptionist")]
