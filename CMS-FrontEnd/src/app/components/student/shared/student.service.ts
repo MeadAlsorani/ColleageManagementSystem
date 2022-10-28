@@ -20,4 +20,7 @@ export class StudentService extends CommonService {
   approveStudent(id: number) {
     return this.http.get(`${environment.apiUrl}Student/ApproveStudent/${id}`);
   }
+  courseBalances(id: number) {
+    return this.http.get(`${environment.apiUrl}Student/CoursesBalance/${id}`);
+  }
 }

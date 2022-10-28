@@ -67,6 +67,12 @@ export class EditStudentComponent extends BaseComponent implements OnInit {
         required: true,
         type: FormFieldType.string,
       },
+      {
+        code: 'registerationDate',
+        label: 'Registeration Date',
+        required: true,
+        type: FormFieldType.date,
+      },
     ];
     this.formGroup = this.formBuilder.group({});
     this.fields.forEach((field) => {

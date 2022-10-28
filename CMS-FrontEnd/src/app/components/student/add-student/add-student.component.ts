@@ -55,6 +55,12 @@ export class AddStudentComponent extends BaseComponent implements OnInit {
         required: true,
         type: FormFieldType.string,
       },
+      {
+        code: 'registerationDate',
+        label: 'Registeration Date',
+        required: true,
+        type: FormFieldType.date,
+      },
     ];
   }
 

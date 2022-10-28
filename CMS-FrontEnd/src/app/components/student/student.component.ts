@@ -8,6 +8,7 @@ import { Component, OnInit, Injector, ViewChild } from '@angular/core';
 import { PaginationResponse } from 'src/app/shared/interfaces/Request';
 import { MatDialog } from '@angular/material/dialog';
 import { ComponentType } from '@angular/cdk/portal';
+import { AuthService } from '../Authentication/auth.service';
 
 @Component({
   selector: 'app-student',
@@ -16,6 +17,7 @@ import { ComponentType } from '@angular/cdk/portal';
 })
 export class StudentComponent extends BaseComponent implements OnInit {
   @ViewChild('attendanceTemp') attendanceTemp?: ComponentType<any>;
+  @ViewChild('courseBalance') courseBalance?: ComponentType<any>;
   columns: string[];
   isLoading = true;
   selectedId = 0;
@@ -35,7 +37,8 @@ export class StudentComponent extends BaseComponent implements OnInit {
   constructor(
     injector: Injector,
     private studentService: StudentService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private authService: AuthService
   ) {
     super(injector);
     this.columns = [
@@ -50,9 +53,17 @@ export class StudentComponent extends BaseComponent implements OnInit {
   }
   ngOnInit() {
     this.getStudents().subscribe();
+    const user = this.authService.userData;
+    if (['Admin', 'Accountant'].indexOf(user.role) != -1) {
+      this.actions.push({
+        code: 'courses',
+        icon: '',
+        label: 'Financial Situation',
+      });
+    }
   }
   search(event: string) {
-    if(true){
+    if (true) {
       this.pagination.SearchStatement = event;
       this.getStudents().subscribe();
     }
@@ -93,6 +104,12 @@ export class StudentComponent extends BaseComponent implements OnInit {
     } else if (data.code === 'attendance') {
       this.selectedId = data.data.id;
       this.dialog.open(this.attendanceTemp!);
+    } else if (data.code === 'courses') {
+      console.log(data.data);
+      this.selectedId = data.data.id;
+      this.dialog.open(this.courseBalance!,{
+        width:'60%'
+      });
     }
   }
 }
