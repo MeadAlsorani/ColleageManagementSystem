@@ -18,10 +18,12 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 @NgModule({
   declarations: [],
   imports: [],
   exports: [
+    MatProgressBarModule,
     MatDialogModule,
     MatMenuModule,
     MatCheckboxModule,

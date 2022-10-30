@@ -36,6 +36,7 @@ export class AddComponent extends BaseComponent implements OnInit {
     return this._fields;
   }
   formGroup!: FormGroup;
+  isLoading = false;
   constructor(injector: Injector) {
     super(injector);
   }
@@ -46,6 +47,7 @@ export class AddComponent extends BaseComponent implements OnInit {
     });
   }
   submit() {
+    this.isLoading = true;
     this.submitFormEmitter.emit(this.formGroup.value);
   }
 }

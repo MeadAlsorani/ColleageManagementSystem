@@ -19,12 +19,14 @@ export class EditComponent extends BaseComponent implements OnInit {
   @Output() submitFormEmitter = new EventEmitter();
   @Input() fields: FormField[] = [];
   @Input() formGroup!: FormGroup;
+  isLoading = false;
   constructor(injector: Injector) {
     super(injector);
   }
 
   ngOnInit() {}
   submit() {
+    this.isLoading = true;
     this.submitFormEmitter.emit(this.formGroup.value);
   }
 }
