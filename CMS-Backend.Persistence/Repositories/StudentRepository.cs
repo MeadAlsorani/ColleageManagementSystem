@@ -58,8 +58,11 @@ namespace CMS_Backend.Persistence.Repositories
         public override async Task<PaginationResponse<Student>> GetAllWithPagination(ListPaginationRequest request)
         {
             var records = await dbContext.Students.AsNoTracking()
-                .Where(x => string.IsNullOrWhiteSpace(request.SearchStatement) ? 1 == 1 : (
-                string.Concat(x.FirstName, " ", x.LastName).Contains(request.SearchStatement) ||
+                .Where(x => string.IsNullOrWhiteSpace(request.SearchStatement) ? 1 == 1 :
+                request.SearchStatement == "$approved" ? x.Approved == true :
+                (
+                string.Concat(x.Name).Contains(request.SearchStatement) ||
+                string.Concat(x.NationalId).Contains(request.SearchStatement) ||
                 (!string.IsNullOrWhiteSpace(x.Address) && x.Address.Contains(request.SearchStatement)) ||
                 x.ClassLevel.ToString() == request.SearchStatement ||
                 (!string.IsNullOrWhiteSpace(x.PhoneNumber) && x.PhoneNumber.Contains(request.SearchStatement)) ||

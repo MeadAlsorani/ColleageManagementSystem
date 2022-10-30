@@ -42,7 +42,7 @@ namespace CMS_Backend.Persistence.Repositories
                 .OrderByDescending(x => x.CreationDate)
                 .Where(x => string.IsNullOrWhiteSpace(request.SearchStatement) ? 1 == 1 :
                 (x.Amount.ToString() == request.SearchStatement
-                || string.Concat(x.Student == null ? "" : x.Student.FirstName, " ", x.Student == null ? "" : x.Student.LastName).Contains(request.SearchStatement)
+                || string.Concat(x.Student == null ? "" : x.Student.Name).Contains(request.SearchStatement)
                 || string.Concat(
                     x.Course!.Class!.Name, " - ", x.Course!.Name
                     ).Contains(request.SearchStatement)

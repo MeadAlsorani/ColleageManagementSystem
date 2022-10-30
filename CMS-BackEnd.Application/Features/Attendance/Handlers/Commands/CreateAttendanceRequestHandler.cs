@@ -32,7 +32,8 @@ namespace CMS_BackEnd.Application.Features.Attendance.Handlers.Commands
             {
                 attendance.StudentId = request.CreateData.StaffStudentId;
             }
-            var rawRecords =await  attendanceRepository.Add(attendance);
+            attendance.Description = request.CreateData.Description;
+            var rawRecords = await attendanceRepository.Add(attendance);
             return mapper.Map<CreateAttendanceDto>(rawRecords);
         }
     }

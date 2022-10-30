@@ -40,6 +40,12 @@ export class EditAttendanceComponent extends BaseComponent implements OnInit {
         required: true,
         type: FormFieldType.date,
       },
+      {
+        code: 'description',
+        label: 'Description',
+        required: false,
+        type: FormFieldType.text,
+      },
     ];
     this.formGroup = this.formBuilder.group({
       type: [null, Validators.required],

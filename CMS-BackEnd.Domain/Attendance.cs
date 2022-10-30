@@ -10,6 +10,7 @@ namespace CMS_BackEnd.Domain
     public class Attendance : BaseModelClass
     {
         public DateTime Date { get; set; }
+        public string? Description { get; set; }
         public int? StaffId { get; set; }
         public Staff? Staff { get; set; }
         public int? StudentId { get; set; }

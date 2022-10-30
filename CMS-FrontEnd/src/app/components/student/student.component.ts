@@ -4,18 +4,33 @@ import { Action, PaginationChangParams } from './../../shared/interfaces/Table';
 import { switchMap, tap } from 'rxjs';
 import { StudentService } from './shared/student.service';
 import { BaseComponent } from './../../shared/components/Base.component';
-import { Component, OnInit, Injector, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Injector,
+  ViewChild,
+  AfterViewInit,
+  Inject,
+  ViewChildren,
+  QueryList,
+  ContentChildren,
+  ElementRef,
+} from '@angular/core';
 import { PaginationResponse } from 'src/app/shared/interfaces/Request';
 import { MatDialog } from '@angular/material/dialog';
 import { ComponentType } from '@angular/cdk/portal';
 import { AuthService } from '../Authentication/auth.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-student',
   templateUrl: './student.component.html',
   styleUrls: ['./student.component.less'],
 })
-export class StudentComponent extends BaseComponent implements OnInit {
+export class StudentComponent
+  extends BaseComponent
+  implements OnInit, AfterViewInit
+{
   @ViewChild('attendanceTemp') attendanceTemp?: ComponentType<any>;
   @ViewChild('courseBalance') courseBalance?: ComponentType<any>;
   columns: string[];
@@ -38,11 +53,13 @@ export class StudentComponent extends BaseComponent implements OnInit {
     injector: Injector,
     private studentService: StudentService,
     private dialog: MatDialog,
-    private authService: AuthService
+    private authService: AuthService,
+    private elRef: ElementRef
   ) {
     super(injector);
     this.columns = [
       'fullName',
+      'nationalId',
       'guardianName',
       'phoneNumber',
       'classLevel',
@@ -62,6 +79,14 @@ export class StudentComponent extends BaseComponent implements OnInit {
       });
     }
   }
+  ngAfterViewInit(): void {
+    const htmlDoc = this.elRef.nativeElement as HTMLElement;
+    const elements = htmlDoc.getElementsByClassName(
+      'approved-Students'
+    ) as HTMLCollection;
+
+    setTimeout(() => {}, 1500);
+  }
   search(event: string) {
     if (true) {
       this.pagination.SearchStatement = event;
@@ -72,6 +97,29 @@ export class StudentComponent extends BaseComponent implements OnInit {
     this.isLoading = true;
     return this.studentService.GetWithPagination(this.pagination).pipe(
       tap((response: PaginationResponse) => {
+        setTimeout(() => {
+          const htmlDoc = this.elRef.nativeElement as HTMLElement;
+          const elements = htmlDoc.getElementsByClassName(
+            'approved-Students'
+          ) as HTMLCollection;
+          const el = elements.namedItem('approved-Students');
+          el?.addEventListener('click', () => {
+            console.log('sssssssssssssssssssss');
+            const classes = el.classList as DOMTokenList;
+            if (classes.contains('filtered')) {
+              classes.remove('filtered');
+              this.pagination.SearchStatement = '';
+              this.getStudents().subscribe();
+            } else if (this.pagination.SearchStatement == '$approved') {
+              classes.add('filtered');
+            } else {
+              classes.add('filtered');
+              this.isLoading = true;
+              this.pagination.SearchStatement = '$approved';
+              this.getStudents().subscribe();
+            }
+          });
+        }, 1000);
         this.records = response;
         this.isLoading = false;
       })
@@ -107,8 +155,8 @@ export class StudentComponent extends BaseComponent implements OnInit {
     } else if (data.code === 'courses') {
       console.log(data.data);
       this.selectedId = data.data.id;
-      this.dialog.open(this.courseBalance!,{
-        width:'60%'
+      this.dialog.open(this.courseBalance!, {
+        width: '60%',
       });
     }
   }

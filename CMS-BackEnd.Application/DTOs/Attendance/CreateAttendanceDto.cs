@@ -11,5 +11,6 @@ namespace CMS_BackEnd.Application.DTOs.Attendance
         public AttendanceType Type { get; set; }
         public DateTime Date { get; set; }
         public int StaffStudentId { get; set; }
+        public string Description { get; set; }
     }
 }

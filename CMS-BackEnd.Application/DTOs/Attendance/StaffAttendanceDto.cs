@@ -12,6 +12,7 @@ namespace CMS_BackEnd.Application.DTOs.Attendance
     public class StaffAttendanceDto
     {
         public DateTime Date { get; set; }
+        public string Description { get; set; }
         public StaffListDto? Staff { get; set; }
     }
 }

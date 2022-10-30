@@ -14,14 +14,14 @@ export class AddStudentComponent extends BaseComponent implements OnInit {
     super(injector);
     this.fields = [
       {
-        code: 'FirstName',
-        label: 'First Name',
+        code: 'Name',
+        label: 'Name',
         required: true,
         type: FormFieldType.string,
       },
       {
-        code: 'LastName',
-        label: 'Last Name',
+        code: 'NationalId',
+        label: 'NationalId',
         required: true,
         type: FormFieldType.string,
       },
@@ -40,6 +40,12 @@ export class AddStudentComponent extends BaseComponent implements OnInit {
       {
         code: 'Address',
         label: 'Address',
+        required: false,
+        type: FormFieldType.text,
+      },
+      {
+        code: 'CoursesContent',
+        label: 'Courses',
         required: false,
         type: FormFieldType.text,
       },

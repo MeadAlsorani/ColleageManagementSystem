@@ -28,7 +28,7 @@ namespace CMS_BackEnd.Application.Profiles
             CreateMap<Student, StudentDto>()
                 .ForMember(dest => dest.FullName, opt =>
                 {
-                    opt.MapFrom(src => $"{src.FirstName} {src.LastName}");
+                    opt.MapFrom(src => src.Name);
                 })
                 .ForMember(dest => dest.Approved, opt => opt.MapFrom<TranslationResolver, string>(src => src.Approved ? "Approved" : "Not Approved"))
                 .ReverseMap();
@@ -87,7 +87,7 @@ namespace CMS_BackEnd.Application.Profiles
                 });
 
             CreateMap<Student, StudentCoursesDto>()
-                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => $"{src.FirstName} {src.LastName}"));
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.Name));
             #endregion
 
             #region Attendance
@@ -106,7 +106,7 @@ namespace CMS_BackEnd.Application.Profiles
                        else if (src.Student != null)
                        {
                            dest.Type = AttendanceType.Student.ToString();
-                           return $"{src.Student?.FirstName} {src.Student?.LastName}";
+                           return src.Student.Name;
                        }
                        return "";
                    });
@@ -259,7 +259,7 @@ namespace CMS_BackEnd.Application.Profiles
                 {
                     opt.MapFrom((src, dest) =>
                     {
-                        return $"{src.Student?.FirstName} {src.Student?.LastName}";
+                        return src.Student!.Name;
                     });
                 })
                 .ReverseMap();

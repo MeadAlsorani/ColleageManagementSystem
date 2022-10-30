@@ -18,7 +18,7 @@
   "Holiday": "عطلة",
   "Login": "تسجيل الدخول",
   "Username": "اسم المستخدم",
-  "Attendances": "الحضور",
+  "Attendances": "التفقد",
   "Courses": "المواد",
   "Staffs": "الموظفون",
   "Students": "الطلاب",
@@ -31,7 +31,7 @@
   "Name": "اسم",
   "Staff": "موظف",
   "Student": "الطالب",
-  "Attendance": "الحضور",
+  "Attendance": "التفقد",
   "fullName": "الاسم",
   "guardianName": "ولي الامر",
   "phoneNumber": "رقم الموبايل",
@@ -94,5 +94,7 @@
   "Registeration Date": "تاريخ التسجيل",
   "Financial Situation": "الوضع المالي",
   "Balance": "الرصيد",
-  "remains": "المتبقي"
+  "remains": "المتبقي",
+  "NationalId":"الرقم الوطني",
+  "nationalId":"الرقم الوطني"
 }

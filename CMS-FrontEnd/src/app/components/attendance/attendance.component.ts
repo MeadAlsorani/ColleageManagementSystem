@@ -20,14 +20,14 @@ export class AttendanceComponent extends BaseComponent implements OnInit {
     private attendanceService: AttendanceService
   ) {
     super(injector);
-    this.columns = ['name', 'type', 'date'];
+    this.columns = ['name', 'type', 'date', 'description'];
   }
 
   ngOnInit() {
     this.getAttendances().subscribe();
   }
   search(event: string) {
-    if(true){
+    if (true) {
       this.pagination.SearchStatement = event;
       this.getAttendances().subscribe();
     }

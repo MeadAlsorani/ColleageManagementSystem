@@ -10,8 +10,10 @@ namespace CMS_BackEnd.Application.DTOs.Student
     public class StudentCoursesDto 
     {
         public string FullName { get; set; }
+        public string NationalId { get; set; }
         public string GuardianName { get; set; }
         public string? PhoneNumber { get; set; }
+        public string CoursesContent { get; set; }
         public string Address { get; set; }
         public int ClassLevel { get; set; }
         public string SchoolName { get; set; }

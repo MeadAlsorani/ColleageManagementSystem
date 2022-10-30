@@ -4,6 +4,7 @@ using CMS_Backend.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CMS_Backend.Persistence.Migrations
 {
     [DbContext(typeof(ColleageManagementDbContext))]
-    partial class ColleageManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221030200003_Student_NationalId")]
+    partial class Student_NationalId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,10 +69,6 @@ namespace CMS_Backend.Persistence.Migrations
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ModificationDate")
                         .HasColumnType("datetime2");
@@ -139,505 +137,505 @@ namespace CMS_Backend.Persistence.Migrations
                         {
                             Id = 1,
                             ClassId = 1,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4276),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4276),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2774),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2774),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4275),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2773),
                             Name = "KG1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4275)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2773)
                         },
                         new
                         {
                             Id = 2,
                             ClassId = 1,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4286),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4287),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2777),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2778),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4286),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2777),
                             Name = "KG2",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4285)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2776)
                         },
                         new
                         {
                             Id = 3,
                             ClassId = 1,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4289),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4289),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2780),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2780),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4288),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2779),
                             Name = "KG3",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4288)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2779)
                         },
                         new
                         {
                             Id = 4,
                             ClassId = 2,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4291),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4292),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2782),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2783),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4291),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2782),
                             Name = "Level 1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4291)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2781)
                         },
                         new
                         {
                             Id = 5,
                             ClassId = 2,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4294),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4294),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2785),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2785),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4293),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2784),
                             Name = "Level 2",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4293)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2784)
                         },
                         new
                         {
                             Id = 6,
                             ClassId = 2,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4297),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4297),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2787),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2788),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4296),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2787),
                             Name = "Level 3",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4296)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2786)
                         },
                         new
                         {
                             Id = 7,
                             ClassId = 2,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4300),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4301),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2790),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2790),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4300),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2790),
                             Name = "Level 4",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4299)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2789)
                         },
                         new
                         {
                             Id = 8,
                             ClassId = 2,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4303),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4303),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2793),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2794),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4302),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2793),
                             Name = "Level 5",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4302)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2792)
                         },
                         new
                         {
                             Id = 9,
                             ClassId = 2,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4305),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4306),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2796),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2796),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4305),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2795),
                             Name = "Level 6",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4305)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2795)
                         },
                         new
                         {
                             Id = 10,
                             ClassId = 2,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4308),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4308),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2799),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2799),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4307),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2798),
                             Name = "Level 7",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4307)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2797)
                         },
                         new
                         {
                             Id = 11,
                             ClassId = 2,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4310),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4311),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2802),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2802),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4310),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2802),
                             Name = "Level 8",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4310)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2801)
                         },
                         new
                         {
                             Id = 12,
                             ClassId = 3,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4313),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4313),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2805),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2806),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4313),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2805),
                             Name = "Music",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4312)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2804)
                         },
                         new
                         {
                             Id = 13,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4316),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4316),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2808),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2808),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4315),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2807),
                             Name = "German A1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4315)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2807)
                         },
                         new
                         {
                             Id = 14,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4319),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4320),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2810),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2810),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4319),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2810),
                             Name = "German A2",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4318)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2809)
                         },
                         new
                         {
                             Id = 15,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4322),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4322),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2813),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2813),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4321),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2812),
                             Name = "German B1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4321)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2812)
                         },
                         new
                         {
                             Id = 16,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4324),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4325),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2815),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2816),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4324),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2815),
                             Name = "German B2",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4323)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2814)
                         },
                         new
                         {
                             Id = 17,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4327),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4327),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2818),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2818),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4326),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2817),
                             Name = "German C1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4326)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2817)
                         },
                         new
                         {
                             Id = 18,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4329),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4330),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2820),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2821),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4329),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2820),
                             Name = "German C2",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4328)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2819)
                         },
                         new
                         {
                             Id = 19,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4332),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4332),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2823),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2823),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4331),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2822),
                             Name = "German Conversation Course",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4331)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2822)
                         },
                         new
                         {
                             Id = 20,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4334),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4335),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2826),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2827),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4334),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2826),
                             Name = "Turkish A1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4333)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2825)
                         },
                         new
                         {
                             Id = 21,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4337),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4337),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2829),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2829),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4336),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2828),
                             Name = "Turkish A2",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4336)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2828)
                         },
                         new
                         {
                             Id = 22,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4339),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4340),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2831),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2832),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4339),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2831),
                             Name = "Turkish B1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4338)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2830)
                         },
                         new
                         {
                             Id = 23,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4342),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4342),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2834),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2834),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4341),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2833),
                             Name = "Turkish B2",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4341)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2833)
                         },
                         new
                         {
                             Id = 24,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4344),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4345),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2836),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2837),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4344),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2836),
                             Name = "Turkish C1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4343)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2835)
                         },
                         new
                         {
                             Id = 25,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4347),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4347),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2839),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2839),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4346),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2838),
                             Name = "Turkish C2",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4346)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2838)
                         },
                         new
                         {
                             Id = 26,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4349),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4351),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2841),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2842),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4349),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2841),
                             Name = "Turkish Conversation Course",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4349)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2840)
                         },
                         new
                         {
                             Id = 27,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4353),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4353),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2844),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2844),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4352),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2843),
                             Name = "Arabic A1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4352)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2843)
                         },
                         new
                         {
                             Id = 28,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4355),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4356),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2846),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2847),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4355),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2846),
                             Name = "Arabic A2",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4354)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2845)
                         },
                         new
                         {
                             Id = 29,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4358),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4358),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2849),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2849),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4357),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2848),
                             Name = "Arabic B1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4357)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2848)
                         },
                         new
                         {
                             Id = 30,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4360),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4360),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2851),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2852),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4360),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2851),
                             Name = "French A1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4359)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2850)
                         },
                         new
                         {
                             Id = 31,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4363),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4363),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2854),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2854),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4362),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2853),
                             Name = "French A2",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4362)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2853)
                         },
                         new
                         {
                             Id = 32,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4365),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4365),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2856),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2857),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4365),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2856),
                             Name = "French B1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4364)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2855)
                         },
                         new
                         {
                             Id = 33,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4368),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4368),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2859),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2859),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4367),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2858),
                             Name = "French B2",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4367)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2858)
                         },
                         new
                         {
                             Id = 34,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4370),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4370),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2861),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2862),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4370),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2861),
                             Name = "French C1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4369)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2860)
                         },
                         new
                         {
                             Id = 35,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4372),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4373),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2864),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2864),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4372),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2863),
                             Name = "French C2",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4372)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2863)
                         },
                         new
                         {
                             Id = 36,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4375),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4375),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2868),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2868),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4375),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2867),
                             Name = "English A1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4374)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2867)
                         },
                         new
                         {
                             Id = 37,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4378),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4378),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2870),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2871),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4377),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2870),
                             Name = "English A2",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4377)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2869)
                         },
                         new
                         {
                             Id = 38,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4380),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4381),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2873),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2873),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4380),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2872),
                             Name = "English B1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4379)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2872)
                         },
                         new
                         {
                             Id = 39,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4383),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4383),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2875),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2876),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4382),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2875),
                             Name = "English B2",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4382)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2874)
                         },
                         new
                         {
                             Id = 40,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4385),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4386),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2878),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2878),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4385),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2877),
                             Name = "English C1",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4384)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2877)
                         },
                         new
                         {
                             Id = 41,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4388),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4388),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2881),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2881),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4387),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2880),
                             Name = "English C2",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4387)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2880)
                         },
                         new
                         {
                             Id = 42,
                             ClassId = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4390),
-                            EndDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4391),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2883),
+                            EndDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2884),
                             LessonDuration = 0,
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4390),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2883),
                             Name = "English Conversation Course",
                             Price = 0,
-                            StartDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4389)
+                            StartDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2882)
                         });
                 });
 
@@ -667,29 +665,29 @@ namespace CMS_Backend.Persistence.Migrations
                         new
                         {
                             Id = 1,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4009),
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4010),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2545),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2546),
                             Name = "Kindergarten"
                         },
                         new
                         {
                             Id = 2,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4012),
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4012),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2548),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2549),
                             Name = "Program support"
                         },
                         new
                         {
                             Id = 3,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4014),
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4014),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2550),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2551),
                             Name = "Music "
                         },
                         new
                         {
                             Id = 4,
-                            CreationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4015),
-                            ModificationDate = new DateTime(2022, 10, 31, 2, 18, 22, 909, DateTimeKind.Local).AddTicks(4016),
+                            CreationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2552),
+                            ModificationDate = new DateTime(2022, 10, 30, 23, 0, 3, 630, DateTimeKind.Local).AddTicks(2552),
                             Name = "Languages"
                         });
                 });
@@ -925,10 +923,6 @@ namespace CMS_Backend.Persistence.Migrations
 
                     b.Property<int>("ClassLevel")
                         .HasColumnType("int");
-
-                    b.Property<string>("CoursesContent")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");

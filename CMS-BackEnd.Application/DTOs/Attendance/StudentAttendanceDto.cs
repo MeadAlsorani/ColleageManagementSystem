@@ -11,5 +11,6 @@ namespace CMS_BackEnd.Application.DTOs.Attendance
     {
         public DateTime Date { get; set; }
         public StudentDto Student { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -13,8 +13,9 @@ namespace CMS_BackEnd.Domain
         {
             StudentCourses = new List<StudentCourse>();
         }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string NationalId { get; set; }
+        public string? CoursesContent { get; set; }
+        public string Name { get; set; }
         public string GuardianName { get; set; }
         public string? PhoneNumber { get; set; }
         public string Address { get; set; }

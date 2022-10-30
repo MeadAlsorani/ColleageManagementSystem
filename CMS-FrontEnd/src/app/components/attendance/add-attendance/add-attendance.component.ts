@@ -35,6 +35,12 @@ export class AddAttendanceComponent extends BaseComponent implements OnInit {
         required: true,
         type: FormFieldType.date,
       },
+      {
+        code: 'Description',
+        label: 'Description',
+        required: false,
+        type: FormFieldType.text,
+      },
     ];
   }
 

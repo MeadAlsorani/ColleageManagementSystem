@@ -93,5 +93,7 @@
   "Registeration Date": "Kayıt Tarihi",
   "Financial Situation": "Finansal durum",
   "Balance": "Denge",
-  "remains": "kalıntılar"
+  "remains": "kalıntılar",
+  "NationalId": "T.C",
+  "nationalId": "T.C"
 }

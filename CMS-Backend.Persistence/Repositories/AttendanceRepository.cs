@@ -35,7 +35,7 @@ namespace CMS_Backend.Persistence.Repositories
             var records = await dbContext.Attendances
                 .AsNoTracking()
                 .Where(x => string.IsNullOrWhiteSpace(request.SearchStatement) ? 1 == 1 : (
-                x.Student == null ? 1 == 1 : string.Concat(x.Student!.FirstName, " ", x.Student!.LastName).Contains(request.SearchStatement) ||
+                x.Student == null ? 1 == 1 : string.Concat(x.Student!.Name).Contains(request.SearchStatement) || string.Concat(x.Student!.NationalId).Contains(request.SearchStatement) ||
                 x.Staff == null ? 1 == 1 : string.Concat(x.Staff!.FirstName, " ", x.Staff.LastName).Contains(request.SearchStatement)
                 ))
                 .ApplyPagination(request)
